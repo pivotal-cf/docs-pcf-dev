@@ -1,0 +1,19 @@
+## Connecting to PCF Dev
+
+### Targeting Your PCF Dev Instance
+
+After installing PCF Dev, please run the following code in your terminal to target your PCF Dev instance:
+
+```
+cf api api.local.pcfdev.io --skip-ssl-validation
+cf login
+
+Email: admin
+Password: admin
+```
+
+Your API system domain will be printed when you `vagrant up`. It will most likely be api.local.pcfdev.io, but it may differ slightly depending on your host system configuration.
+
+### Using PCF Dev
+
+Please see the PCF documentation, [here](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/deploy-app.html).

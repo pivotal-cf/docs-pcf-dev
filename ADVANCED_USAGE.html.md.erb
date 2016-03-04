@@ -1,0 +1,19 @@
+## Advanced Usage
+
+### Network Configuration
+When running on Virtualbox, PCF Dev will try to use local.pcfdev.io as the system domain. Where *.local.pcfdev.io resolves to 192.168.11.11. If the subnet containing 192.168.11.11 is already in use PCF Dev will pick the next available ip that adheres to the pattern 198.168.xx.11 (eg 198.168.44.11) and a corresponding system domain (e.g. local4.pcfdev.io).
+
+If you are launching PCF Dev in AWS the system domain will be the ip of the instance followed by .xip.io.
+
+In order to bring up PCF Dev on a custom IP or system domain, you must set the PCFDEV_IP and PCF_DOMAIN environment variables when starting the cluster.
+
+### Memory & CPU
+By default PCF Dev will try to allocate half of the memory available on your host machine with a minimum of 2GB and a maximum of 4GB.
+
+Set the VM_MEMORY environment variable to change the allocated memory. This value should be in MB units.
+
+PCF Dev will try to use all host cores. Set the VM_CORES environmnet variable to change this behavior.
+
+### Using Vagrant Directly
+
+If you wish, you can use vagrant directly instead of using the provided start, stop, and destroy scripts. To bring up the VM run `vagrant up --provider=<provider>`. To stop the VM run `vagrant halt`. Rerun `vagrant up` to start a stopped VM. `vagrant destroy` will permanently destroy the VM. See the vagrant documentation for more details.
