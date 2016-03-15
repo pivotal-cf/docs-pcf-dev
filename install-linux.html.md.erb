@@ -8,33 +8,25 @@ owner: PCF Dev
 
 #### PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as its virtualizer.
 1. Download VirtualBox for your Linux distribution [here](https://www.virtualbox.org/wiki/Linux_Downloads).
-1. Open the .deb file and double click the VirtualBox.pkg icon.
-1. In the pop up that says "This package will run a program to determine if the software can be installed," click Continue.
-1. In the installer wizard, click Continue.
-1. Select an install destination and click Install.
+1. Install the downloaded package using your distribution's package manager.
 
 #### PCF Dev uses [Vagrant](https://www.vagrantup.com/downloads.html) version 1.8.0 and above to run its development environment.
 1. Download Vagrant for your Linux distribution [here](https://www.vagrantup.com/downloads.html).
-1. Open the .deb file and double click the Vagrant.pkg icon.
-1. In the installer wizard, click Continue.
-1. Select an install destination and click Install.
+1. Install the downloaded package using your distribution's package manager.
 
 #### PCF Dev uses the [Cloud Foundry command line interface](https://github.com/cloudfoundry/cli) to push and scale apps.
 1. Download the cf CLI for your Linux distribution [here](https://github.com/cloudfoundry/cli#downloads). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
-1. Open the .pkg file.
-1. In the installer wizard, click Continue.
-1. Select an install destination and click Continue.
-1. When prompted, click Install.
+1. Install the downloaded package using your distribution's package manager.
 1. To verify your installation, open a terminal window and type cf. If your installation was successful, the cf CLI help listing appears.
 
 ## Installing PCF Dev
-1. Download from [Pivotal Network](https://network.pivotal.io/products/pcfdev)
+1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/)
 1. Unzip the downloaded zip file.
 1. Navigate into the unzipped directory.
-1. Run `./start-linux` script in your terminal.
+1. Run `vagrant up` in your terminal.
 
 ```
 unzip pcfdev-VERSION.zip
 cd pcfdev-VERSION
-./start-linux
+vagrant up
 ```
