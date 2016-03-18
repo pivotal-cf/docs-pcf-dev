@@ -1,0 +1,32 @@
+---
+breadcrumb: PCF Dev Documentation
+title: PCF Dev Overview
+owner: PCF Dev
+---
+
+<strong><%= modified_date %></strong>
+
+This guide describes how to install and use PCF Dev, a lightweight Pivotal Cloud Foundry&reg; installation that runs on a single virtual machine (VM) on your workstation. PCF Dev is intended for application developers who wish to develop and debug their application locally on a PCF deployment. PCF Dev includes Pivotal Elastic Runtime, Redis, RabbitMQ, and MySQL. It also supports all CF CLI commands. It offers developers access to Redis, RabbitMQ, and MySQL.
+
+PCF Dev is designed to mirror PCF exactly. If an application runs on PCF Dev, it will run on PCF with no modification in almost all cases.
+
+PCF Dev uses VirtualBox as its virtualizer, Vagrant to run its development environment, and the CF CLI to push and scale apps.
+
+## <a id="prerequisites"></a>Prerequisites ##
+
+* [Vagrant 1.8+](https://www.vagrantup.com/)
+* Latest version of [CF CLI](https://github.com/cloudfoundry/cli)
+* Internet connection required (for DNS)
+* [VirtualBox: 5.0+](https://www.virtualbox.org/)
+
+## <a id="installing"></a>Installing PCF Dev ##
+
+* [Installing PCF Dev on Mac OS X](./install-osx.html)
+* [Installing PCF Dev on Windows](./install-windows.html)
+* [Installing PCF Dev on Linux](./install-linux.html)
+
+## <a id="using-pcf-dev"></a>Using PCF Dev ##
+* [Using PCF Dev on Your Workstation](./usage.html)
+* [Comparing PCF Dev to Pivotal Cloud Foundry&reg;](./comparison.html)
+* [Advanced Usage of PCF Dev](./advanced-usage.html)
+* [Troubleshooting](./troubleshooting.html)
