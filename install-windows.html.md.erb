@@ -1,0 +1,45 @@
+---
+breadcrumb: PCF Dev Documentation
+title: Installing PCF Dev on Microsoft Windows
+owner: PCF Dev
+---
+
+## <a id="prerequisites"></a>Prerequisites 
+
+### <a id="virtualbox"></a>VirtualBox 
+
+PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as its virtualizer.
+
+1. Download VirtualBox 5.0.14 for Windows hosts [here](http://download.virtualbox.org/virtualbox/5.0.14/VirtualBox-5.0.14-105127-Win.exe).
+
+1. Open the `.exe` file and install using the wizard.
+
+### <a id="vagrant"></a>Vagrant
+
+PCF Dev uses [Vagrant](https://www.vagrantup.com/downloads.html) version 1.8.0 and above to run its development environment.
+
+1. Download Vagrant 1.8.1 for Windows hosts [here](https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.msi).
+
+1. Open the `.msi` file and install using the wizard.
+
+### <a id="cf-cli"></a>Cloud Foundry Command Line Interface 
+
+PCF Dev uses the [Cloud Foundry command line interface](https://github.com/cloudfoundry/cli) to push and scale apps.
+
+1. To install the cf CLI v6.15.0 for Windows 64 bit, download it [here](https://cli.run.pivotal.io/stable?release=windows64&version=6.15.0&source=github-rel). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
+
+1. Unpack the zip file and open the cf_installer application.
+
+1. Follow the installer wizard to install.
+
+1. To verify your installation, open a terminal window and type cf. If your installation was successful, the cf CLI help listing appears.
+
+## <a id="install -pcf-dev"></a>Install PCF Dev
+
+1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/)
+
+1. Unzip the downloaded zip file.
+
+1. Navigate into the unzipped directory.
+
+1. Run `.\start-windows.ps1` script in PowerShell.

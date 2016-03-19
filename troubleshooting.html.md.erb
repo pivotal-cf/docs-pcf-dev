@@ -4,10 +4,11 @@ title: Troubleshooting
 owner: PCF Dev
 ---
 
+This topic describes various scenarios related to installing PCF Dev. Refer to this section if you have issues with your installation or setup.
 
-Why does vagrant up say it has "no available version" ?
+## <a id="available"></a> No Available Version
 
-Cloning the repository and running vagrant up from the root will result in the error below. Please follow the install instructions and use one of the published Vagrantfiles.
+Cloning the repository and running `vagrant up` from the root will result in the error below. Please follow the install instructions and use one of the published Vagrantfiles.
 
 The box you're attempting to add has no available version that
 matches the constraints you requested. Please double-check your
@@ -19,6 +20,7 @@ Address: https://atlas.hashicorp.com/pcfdev/pcfdev
 Constraints: 0
 Available versions: 0.0.1, 0.1.0, 0.2.0, .... etc
 Why does cf api fail with "Invalid SSL Cert" error ?
+</pre>
 
 PCF Dev comes with a self-signed SSL certificate for its API and requires the --skip-ssl-validation option. This also applies to the Spring Boot Dashboard, which requires the checkbox "Self-signed" in order to connect.
 

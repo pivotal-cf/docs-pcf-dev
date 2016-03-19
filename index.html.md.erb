@@ -15,18 +15,48 @@ PCF Dev uses VirtualBox as its virtualizer, Vagrant to run its development envir
 ## <a id="prerequisites"></a>Prerequisites ##
 
 * [Vagrant 1.8+](https://www.vagrantup.com/)
-* Latest version of [CF CLI](https://github.com/cloudfoundry/cli)
+* Latest version of [CF CLI](../pivotalcf/cf-cli/install-go-cli.html)
 * Internet connection required (for DNS)
 * [VirtualBox: 5.0+](https://www.virtualbox.org/)
 
 ## <a id="installing"></a>Installing PCF Dev ##
 
-* [Installing PCF Dev on Mac OS X](./install-osx.html)
-* [Installing PCF Dev on Windows](./install-windows.html)
-* [Installing PCF Dev on Linux](./install-linux.html)
+* [Installing PCF Dev](./install-osx.html) on Mac OS X
+* [Installing PCF Dev](./install-linux.html) on Linux
+* [Installig PCF Dev](.//install-windows.html) on Microsoft WIndows
 
 ## <a id="using-pcf-dev"></a>Using PCF Dev ##
 * [Using PCF Dev on Your Workstation](./usage.html)
 * [Comparing PCF Dev to Pivotal Cloud Foundry&reg;](./comparison.html)
 * [Advanced Usage of PCF Dev](./advanced-usage.html)
 * [Troubleshooting](./troubleshooting.html)
+
+## <a id="comparision-to-pcf"></a>Comparing PCF Dev to Pivotal CF
+
+|                                                                           | PCF Dev                    | PCF                                   | CF            |
+| ---                                                                       | ---                        | ---                                   | ---           |
+| Space required                                                            | 15 GB                      | 100GB+                                | 50GB+         |
+| Memory required                                                           | 1.5 GB                     | 50GB+                                 | variable      |
+| Deployment                                                                | `vagrant up`               | Ops Manager                           | `bosh deploy` |
+| Estimated time-to-deploy                                                  | 10 Minutes                 | Hour+                                 | Hour+         |
+| Out-of-the-Box Services                                                   | Redis<br>MySQL<br>RabbitMQ | Redis<br>MySQL<br>RabbitMQ<br>Gemfire | N/A           |
+| Elastic Runtime                                                           | ✓                          | ✓                                     | ✓             |
+| Logging/Metrics                                                           | ✓                          | ✓                                     | ✓             |
+| Routing                                                                   | ✓                          | ✓                                     | ✓             |
+| Compatible with CF CLI                                                    | ✓                          | ✓                                     | ✓             |
+| Deploy apps with any supported buildpack                                  | ✓                          | ✓                                     | ✓             |
+| Supports Multi-Tenancy                                                    | ✓                          | ✓                                     | ✓             |
+| Diego Support                                                             | ✓                          | ✓                                     | ✓             |
+| Docker Support                                                            | ✓                          | ✓                                     | ✓             |
+| DEA Support                                                               |                            | ✓                                     | ✓             |
+| User-Provided Services                                                    | ✓                          | ✓                                     | ✓             |
+| High Availability                                                         |                            | ✓                                     | ✓             |
+| Integration with 3rd party Authorization                                  |                            | ✓                                     | ✓             |
+| Bosh Director<br>(i.e. can perform additional BOSH deployments)           |                            | ✓                                     | ✓             |
+| Day Two Lifecycle Operations<br>(e.g. rolling upgrades, security patches) |                            | ✓                                     | ✓             |
+| Ops Manager                                                               |                            | ✓                                     |               |
+| Apps Manager                                                              |                            | ✓                                     |               |
+| Tile Support                                                              |                            | ✓                                     |               |
+| Developers have root-level access across cluster                          | ✓                          |                                       |               |
+| Pre-provisioned                                                           | ✓                          |                                       |               |
+| Does not depend on BOSH                                                   | ✓                          |                                       |               |

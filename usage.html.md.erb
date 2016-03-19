@@ -4,27 +4,54 @@ title: Using PCF Dev
 owner: PCF Dev
 ---
 
-### Targeting Your PCF Dev Instance
+This topic describes how to use PCF Dev to target instances, push an application, and use marketplace services such as Redis, RabbitMQ, and MySQL. 
 
-After installing PCF Dev, please run the following code in your terminal to target your PCF Dev instance:
+## <a id="pcf-dev"></a>Targeting Your PCF Dev Instance
 
-```
-cf api api.local.pcfdev.io --skip-ssl-validation
-cf login
+After [installing PCF Dev](./install.html), follow these steps to target your PCF Dev instance:
 
-Email: admin
-Password: admin
-```
+1. In a terminal window, run `cf api api.local.pcfdev.io --skip-ssl-validation`
 
-Your API system domain will be printed when you `vagrant up`. It will most likely be api.local.pcfdev.io, but it may differ slightly depending on your host system configuration.
+1. When prompted, enter your user email and password.
 
-### Using PCF Dev
+	<pre class='terminal'>
+	$ cf api api.local.pcfdev.io --skip-ssl-validation
+	
+	$ cf login
 
-Please see the PCF documentation, [here](../devguide/deploy-apps/deploy-app.html).
+	Email: admin
+	Password: admin
+	</pre>
 
- ##Push a Simple App
+Your API system domain will be printed when you `vagrant up`. It will likely be api.local.pcfdev.io, but it may differ slightly depending on your host system configuration.
 
-To stage a simple app on PCF Dev, cd into the app directory and run cf push <APP_NAME>.
+## <a id="push"></a>Push an App 
+
+1. `cd` into your app directory.
+
+1. Run `cf push APP-NAME`. You can name your app anything you choose.
+
+For more information about pushing applications to your deployment, see [Deploy an Application](../pivotalcf/devguide/deploy-apps/deploy-app.html) topic.
+
+For more information about using the cf CLI, see the [Getting Started with the cf CLI](../pivotalcf/cf-cli/getting-started.html) topic.
+
+## <a id="marketplace"></a>Marketplace Services 
+
+PCF Dev supports marketplace services, giving developers access to Redis, RabbitMQ, and MySQL.
+
+In order to view the list of available services, run `cf marketplace` in a terminal window. 
+
+<pre class='terminal'>
+$ cf m
+Getting services from marketplace in org pcfdev-org / space pcfdev-space as admin...
+OK
+
+service      plans        description
+p-mysql      512mb, 1gb   MySQL databases on demand
+p-rabbitmq   standard     RabbitMQ is a robust and scalable high-performance multi-protocol messaging broker.
+p-redis      shared-vm    Redis service to provide a key-value store
+
+</pre>
 
 
-## Marketplace services - It offers developers access to Redis, RabbitMQ, and MySQL.
+For more information about using marketplace services see the [Managing Service Instances with the CLI](../pivotalcf/devguide/services/managing-services.html) topic.
