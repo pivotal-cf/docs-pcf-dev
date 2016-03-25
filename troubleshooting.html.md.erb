@@ -1,0 +1,53 @@
+---
+breadcrumb: PCF Dev Documentation
+title: Troubleshooting 
+owner: PCF Dev
+---
+
+This topic describes various scenarios related to installing PCF Dev. Refer to this section if you have issues with your installation or setup.
+
+## <a id="available"></a> Known Issues
+
+### <a id="vagrant"></a> Product Downloads
+
+Cloning the repository and running `vagrant up` from the root will result in the error below. Make sure you have the latest version of the [product](https://network.pivotal.io/products/pcfdev) and review the installation instructions.
+
+<pre class='terminal'>
+The box you're attempting to add has no available version that
+matches the constraints you requested. Please double-check your
+settings. Also verify that if you specified version constraints,
+that the provider you wish to use is available for these constraints.
+
+Box: pcfdev/pcfdev
+Address: https://atlas.hashicorp.com/pcfdev/pcfdev
+Constraints: 0
+Available versions: 0.0.1, 0.1.0, 0.2.0, .... etc
+</pre>
+
+### <a id="ssl_cert"></a> Invalid SSL Cert
+
+PCF Dev comes with a self-signed SSL certificate for its API and requires the `--skip-ssl-validation` option. 
+
+<pre class='terminal'>
+$ cf api api.local.pcfdev.io
+Setting api endpoint to api.local.pcfdev.io...
+FAILED
+Invalid SSL Cert for api.local.pcfdev.io
+TIP: Use 'cf api --skip-ssl-validation' to continue with an insecure API endpoint
+</pre>
+
+### <a id="vagrant_download"></a> Vagrant Download Failure
+
+If you are using prior versions of Vagrant 1.8.0, you need to manually delete temporary files in `~/.vagrant.d/tmp` prior to running `vagrant up` again. Newer versions of Vagrant support resuming box downloads automatically.
+
+<pre class='terminal'>
+==> default: Adding box 'pcfdev/pcfdev' (v0.48.0) for provider: virtualbox
+    default: Downloading: https://atlas.hashicorp.com/pcfdev/boxes/pcfdev/versions/0.48.0/providers/virtualbox.box
+==> default: Box download is resuming from prior download progress
+An error occurred while downloading the remote file. The error
+message, if any, is reproduced below. Please fix this error and try
+again.
+
+HTTP server doesn't seem to support byte ranges. Cannot resume.
+</pre>
+

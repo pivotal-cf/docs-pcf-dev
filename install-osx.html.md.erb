@@ -4,37 +4,75 @@ title: Installing PCF Dev on Mac OS X
 owner: PCF Dev
 ---
 
-## Prerequisites
+## <a id="prerequisites"></a>Prerequisites 
 
-#### PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as its virtualizer.
-1. Download VirtualBox 5.0.14 for OS X hosts [here](http://download.virtualbox.org/virtualbox/5.0.14/VirtualBox-5.0.14-105127-OSX.dmg).
-1. Open the .dmg file and double click the VirtualBox.pkg icon.
-1. In the pop up that says "This package will run a program to determine if the software can be installed," click Continue.
+### <a id="virtualbox"></a>VirtualBox 
+
+PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as its virtualizer.
+
+1. Download VirtualBox 5.0.14 for OS X hosts 
+[here](http://download.virtualbox.org/virtualbox/5.0.14/VirtualBox-5.0.14-105127-OSX.dmg).
+
+1. Open the `.dmg` file and double click the VirtualBox.pkg icon.
+
+1. In the pop up that says "This package will run a program to determine if the software can be installed," click **Continue**.
+
+1. In the installer wizard, click **Continue**.
+
+1. Select an install destination and click **Install**.
+
+### <a id="vagrant"></a>Vagrant
+
+PCF Dev uses [Vagrant](https://www.vagrantup.com/downloads.html) version 1.8.0 and above to run its development environment.
+
+1. Download Vagrant 1.8.1 for Mac OS X hosts 
+[here](https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.dmg).
+
+1. Open the `.dmg` file and double click the Vagrant.pkg icon.
+
 1. In the installer wizard, click Continue.
+
 1. Select an install destination and click Install.
 
-#### PCF Dev uses [Vagrant](https://www.vagrantup.com/downloads.html) version 1.8.0 and above to run its development environment.
-1. Download Vagrant 1.8.1 for Mac OS X hosts [here](https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.dmg).
-1. Open the .dmg file and double click the Vagrant.pkg icon.
-1. In the installer wizard, click Continue.
-1. Select an install destination and click Install.
+### <a id="cf-cli"></a>Cloud Foundry Command Line Interface 
 
-#### PCF Dev uses the [Cloud Foundry command line interface](https://github.com/cloudfoundry/cli) to push and scale apps.
+PCF Dev uses the [Cloud Foundry command line interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
+
 1. To install the cf CLI for Mac OS X 64 bit, download it from [here](https://cli.run.pivotal.io/stable?release=macosx64&source=github). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
-1. Open the .pkg file.
+
+1. Open the `.pkg` file.
+
 1. In the installer wizard, click Continue.
+
 1. Select an install destination and click Continue.
+
 1. When prompted, click Install.
+
 1. To verify your installation, open a terminal window and type cf. If your installation was successful, the cf CLI help listing appears.
 
-## Installing PCF Dev
+## <a id="install-pcf-dev"></a>Install PCF Dev
+
 1. Download the latest version of PCF Dev from [Pivotal Network](https://network.pivotal.io/)
 1. Unzip the downloaded zip file.
+<pre class="terminal">$ unzip pcfdev-VERSION.zip</pre>
 1. Navigate into the unzipped directory.
+<pre class="terminal">$ cd pcfdev-VERSION</pre>
 1. Run `./start-osx` script in your terminal.
+<pre class="terminal">$ ./start-osx</pre>
 
-```
-unzip pcfdev-VERSION.zip
-cd pcfdev-VERSION
-./start-osx
-```
+## <a id="stopping"></a>Stopping PCF Dev 
+
+To temporarily stop PCF Dev, perform the following steps:
+
+1. Open a terminal or command prompt and navigate to the pcfdev-<VERSION> folder.
+1. Execute `./stop-osx`.
+
+<p class='note'><strong>Note</strong>: Use the start script to resume the PCF Dev instance.</p>
+
+## <a id="uninstall"></a>Uninstalling PCF Dev 
+
+To permanently destroy PCF Dev:
+
+1. Open a terminal or command prompt and navigate to the pcfdev-<VERSION> folder.
+1. Execute `./destroy-osx`.
+
