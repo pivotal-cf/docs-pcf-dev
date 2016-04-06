@@ -6,7 +6,7 @@ owner: PCF Dev
 
 This topic describes how to use PCF Dev to target instances, push an application, and use marketplace services such as Redis, RabbitMQ, and MySQL. 
 
-## <a id="pcf-dev"></a>Targeting Your PCF Dev Instance
+## <a id="pcf-dev"></a>Target Your PCF Dev Instance
 
 After installing PCF Dev, follow these steps to target your PCF Dev instance:
 
@@ -23,15 +23,17 @@ After installing PCF Dev, follow these steps to target your PCF Dev instance:
 	Password: admin
 	</pre>
 
-Your API system domain will be printed when you `vagrant up`. It will likely be api.local.pcfdev.io, but it may differ slightly depending on your host system configuration.
+The terminal displays your API system domain when you run `vagrant up`. In most cases, your API system domain is `api.local.pcfdev.io`, but it may differ slightly depending on your host system configuration.
 
 ## <a id="push"></a>Push an App 
 
-1. `cd` into your app directory.
+Follow the procedure below to push an app to your PCF Dev instance.
 
-1. Run `cf push APP-NAME`. You can name your app anything you choose.
+1. Navigate to your app directory.
 
-For more information about pushing applications to your deployment, see [Deploy an Application](../pivotalcf/devguide/deploy-apps/deploy-app.html) topic.
+1. Run `cf push APP-NAME`. Replace "APP-NAME" with a name of your choice.
+  
+For more information about pushing apps to your deployment, see the [Deploy an Application](../pivotalcf/devguide/deploy-apps/deploy-app.html) topic.
 
 For more information about using the cf CLI, see the [Getting Started with the cf CLI](../pivotalcf/cf-cli/getting-started.html) topic.
 
@@ -42,7 +44,7 @@ PCF Dev supports marketplace services, giving developers access to Redis, Rabbit
 In order to view the list of available services, run `cf marketplace` in a terminal window. 
 
 <pre class='terminal'>
-$ cf m
+$ cf marketplace
 Getting services from marketplace in org pcfdev-org / space pcfdev-space as admin...
 OK
 
@@ -53,5 +55,4 @@ p-redis      shared-vm    Redis service to provide a key-value store
 
 </pre>
 
-
-For more information about using marketplace services see the [Managing Service Instances with the CLI](../pivotalcf/devguide/services/managing-services.html) topic.
+For more information about using marketplace services, see the [Managing Service Instances with the CLI](../pivotalcf/devguide/services/managing-services.html) topic.
