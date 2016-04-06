@@ -8,21 +8,21 @@ owner: PCF Dev
 
 This guide describes how to install and use PCF Dev, a lightweight Pivotal Cloud Foundry&reg; (PCF) installation that runs on a single virtual machine (VM) on your workstation. PCF Dev is intended for application developers who want to develop and debug their applications locally on a PCF deployment.
 
-PCF Dev includes Pivotal Elastic Runtime, Redis, RabbitMQ, and MySQL. It also supports all CF CLI commands. See the [Comparing PCF Dev to Pivotal CF](#comparison-to-pcf) table below for more product details.
+PCF Dev includes Pivotal Elastic Runtime, Redis, RabbitMQ, and MySQL. It also supports all cf CLI commands. See the [Comparing PCF Dev to Pivotal CF](#comparison-to-pcf) table below for more product details.
 
 ## <a id="prerequisites"></a>Prerequisites ##
 
 * [Vagrant 1.8+](https://www.vagrantup.com/): Use Vagrant to run the development environment.
 * [VirtualBox: 5.0+](https://www.virtualbox.org/): PCF Dev uses VirtualBox as its virtualizer.
-* Latest version of [CF CLI](../pivotalcf/cf-cli/install-go-cli.html): Use CF CLI to push and scale apps.
-* Internet connection required (for DNS)
-* 4GB free memory on your host machine. Pivotal recommends running on a host system with 8GB-16GB total RAM.
+* Latest version of [cf CLI](../pivotalcf/cf-cli/install-go-cli.html): Use the cf CLI to push and scale apps.
+* You must have an Internet connection for DNS.
+* 4GB free memory on your host machine. Pivotal recommends running on a host system with 8GB to 16GB total RAM.
 
 ## <a id="installing"></a>Installing PCF Dev ##
 
 * [Installing PCF Dev](./install-osx.html) on Mac OS X
 * [Installing PCF Dev](./install-linux.html) on Linux
-* [Installig PCF Dev](.//install-windows.html) on Microsoft WIndows
+* [Installing PCF Dev](.//install-windows.html) on Microsoft Windows
 
 ## <a id="using-pcf-dev"></a>Using PCF Dev ##
 * [Using PCF Dev](./usage.html)
@@ -32,7 +32,7 @@ PCF Dev includes Pivotal Elastic Runtime, Redis, RabbitMQ, and MySQL. It also su
 
 ## <a id="comparison-to-pcf"></a>Comparing PCF Dev to Pivotal CF
 
-PCF Dev mirrors [PCF](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html) in its key product offerings. If an application runs on PCF Dev, it runs on PCF with no modification in almost all cases. Review the table below for key product details.
+PCF Dev mirrors [PCF](../pivotalcf/installing/pcf-docs.html) in its key product offerings. If an application runs on PCF Dev, it runs on PCF with no modification in almost all cases. Review the table below for key product details.
 
 |                                                                           | PCF Dev                    | PCF                                   | CF            |
 | ---                                                                       | ---                        | ---                                   | ---           |
@@ -40,7 +40,7 @@ PCF Dev mirrors [PCF](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html)
 | Memory required                                                           | 1.5 GB                     | 50GB+                                 | variable      |
 | Deployment                                                                | `vagrant up`               | Ops Manager                           | `bosh deploy` |
 | Estimated time-to-deploy                                                  | 10 Minutes                 | Hour+                                 | Hour+         |
-| Out-of-the-Box Services                                                   | Redis<br>MySQL<br>RabbitMQ | Redis<br>MySQL<br>RabbitMQ<br>Gemfire | N/A           |
+| Out-of-the-Box Services                                                   | Redis<br>MySQL<br>RabbitMQ | Redis<br>MySQL<br>RabbitMQ<br>GemFire | N/A           |
 | Elastic Runtime                                                           | ✓                          | ✓                                     | ✓             |
 | Logging/Metrics                                                           | ✓                          | ✓                                     | ✓             |
 | Routing                                                                   | ✓                          | ✓                                     | ✓             |
@@ -53,8 +53,8 @@ PCF Dev mirrors [PCF](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html)
 | User-Provided Services                                                    | ✓                          | ✓                                     | ✓             |
 | High Availability                                                         |                            | ✓                                     | ✓             |
 | Integration with 3rd party Authorization                                  |                            | ✓                                     | ✓             |
-| Bosh Director<br>(i.e. can perform additional BOSH deployments)           |                            | ✓                                     | ✓             |
-| Day Two Lifecycle Operations<br>(e.g. rolling upgrades, security patches) |                            | ✓                                     | ✓             |
+| Bosh Director<br>(i.e., can perform additional BOSH deployments)           |                            | ✓                                     | ✓             |
+| Day Two Lifecycle Operations<br>(e.g., rolling upgrades, security patches) |                            | ✓                                     | ✓             |
 | Ops Manager                                                               |                            | ✓                                     |               |
 | Apps Manager                                                              |                            | ✓                                     |               |
 | Tile Support                                                              |                            | ✓                                     |               |
