@@ -16,7 +16,7 @@ PCF Dev includes Pivotal Elastic Runtime, Redis, RabbitMQ, and MySQL. It also su
 * [VirtualBox: 5.0+](https://www.virtualbox.org/): PCF Dev uses VirtualBox as its virtualizer.
 * Latest version of [cf CLI](../pivotalcf/cf-cli/install-go-cli.html): Use the cf CLI to push and scale apps.
 * You must have an Internet connection for DNS.
-* 4GB free memory on your host machine. Pivotal recommends running on a host system with 8GB to 16GB total RAM.
+* At least 2 GB of available memory on your host machine. Pivotal recommends running on a host system with at least 8 GB total RAM.
 
 ## <a id="installing"></a>Installing PCF Dev ##
 
@@ -36,8 +36,8 @@ PCF Dev mirrors [PCF](../pivotalcf/installing/pcf-docs.html) in its key product 
 
 |                                                                           | PCF Dev                    | PCF                                   | CF            |
 | ---                                                                       | ---                        | ---                                   | ---           |
-| Space required                                                            | 15 GB                      | 100GB+                                | 50GB+         |
-| Memory required                                                           | 1.5 GB                     | 50GB+                                 | variable      |
+| Space required                                                            | 20 GB                      | 100GB+                                | 50GB+         |
+| Memory required                                                           | 2 GB                       | 50GB+                                 | variable      |
 | Deployment                                                                | `vagrant up`               | Ops Manager                           | `bosh deploy` |
 | Estimated time-to-deploy                                                  | 10 Minutes                 | Hour+                                 | Hour+         |
 | Out-of-the-Box Services                                                   | Redis<br>MySQL<br>RabbitMQ | Redis<br>MySQL<br>RabbitMQ<br>GemFire | N/A           |
