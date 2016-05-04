@@ -6,7 +6,7 @@ owner: PCF Dev
 
 ## <a id="network"></a>Network Configuration 
 
-When running on VirtualBox, PCF Dev will try to use `local.pcfdev.io` as the system domain, where `*.local.pcfdev.io` resolves to `192.168.11.11`. If the subnet containing `192.168.11.11` is already in use, PCF Dev will pick the next available IP that adheres to the pattern `198.168.xx.11`, and a corresponding system domain. For example, `198.168.44.11` and `local4.pcfdev.io`.
+When running on VirtualBox, PCF Dev will try to use `local.pcfdev.io` as the system domain, where `*.local.pcfdev.io` resolves to `192.168.11.11`. If the subnet containing `192.168.11.11` is already in use, PCF Dev will pick the next available IP that adheres to the pattern `192.168.xx.11`, and a corresponding system domain. For example, `192.168.44.11` and `local4.pcfdev.io`.
 
 If you are launching PCF Dev in AWS, the system domain is the IP of the instance followed by `.xip.io`.
 
