@@ -1,0 +1,63 @@
+---
+breadcrumb: PCF Dev Documentation
+title: Working Offline
+owner: PCF Dev
+---
+
+## <a id="network"></a>Using PCF Dev Offline
+
+PCF Dev functions largely without a network connection by default, but by setting up a simple DNS redirection you can make it work entirely offline.
+
+###Working Offline with Mac OS X
+
+For OS X we recommend using [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) as your DNS forwarder. The easiest way to install Dnsmasq is to use the Homebrew package manager. Check that you have Homebrew installed by running `brew -v` in your terminal. If you do not, follow [these instructions](http://brew.sh/) for easy set up. Once you have Homebrew, run these commands to install Dnsmasq:
+```
+brew update # To update Homebrew
+brew install dnsmasq # Install dnsmasq
+```
+To configure Dnsmasq, copy the example configuration to /usr/local/etc/dnsmasq.conf (check that you do not already have a Dnsmasq configuration file before copying over).
+```
+cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf
+```
+To have launchd start dnsmasq now and restart at startup, run:
+```
+sudo brew services start dnsmasq
+```
+Configure Dnsmasq by editing the file you just placed at `/usr/local/etc/dnsmasq.conf`. We just need to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to the resolve the DNS. Do this adding this line:
+```
+address=/local.pcfdev.io/192.168.11.11
+address=/.local.pcfdev.io/192.168.11.11
+```
+Remember, if the subnet containing `192.168.11.11` is already in use, PCF Dev will pick the next available IP that adheres to the pattern `192.168.xx.11`, and a corresponding system domain. For example, `192.168.44.11` and `local4.pcfdev.io`. If your PCF Dev reports that it is using an alternate configuration when it comes up, use the appropriate combination in your Dnsmasq conf file.
+
+Restart Dnsmasq to ensure it recognizes your change.
+```
+sudo launchctl stop homebrew.mxcl.dnsmasq
+sudo launchctl start homebrew.mxcl.dnsmasq
+```
+
+To configure your system to use Dnsmasq, go to your network preferences and add 127.0.0.1 as your first DNS server.
+
+###Working Offline with Windows
+
+For Windows, we recommend using Acrylic as your DNS proxy. Download it from [their site](http://mayakron.altervista.org/) and follow the wizard to install it on your system.
+
+After installing, navigate to Start > Programs > Acrylic DNS Proxy > Config > Edit Acrylic Hosts File, then add the following text to the end of the file:
+```
+192.168.11.11 >local.pcfdev.io # This is equivalent to an entry that redirects both local.pcfdev.io and *.local.pcfdev.io
+```
+The Acrylic site has detailed instructions to configure your computer to use Acrylic as a DNS server for [Windows 7](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows7Configuration), [Windows 8](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows8Configuration), and [Windows 10](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows10Configuration).
+
+You may need to restart your DNS cache by navigating to Start > Programs > Acrilic DNS Proxy > Config > Restart Acrylic Service.
+
+###Working Offline with Linux
+
+Use your distribution’s package manager to install Dnsmasq on your computer. For example:
+```
+sudo apt-get install dnsmasq
+```
+Append the following line to /etc/dnsmasq.conf:
+```
+address=/local.pcfdev.io/192.168.11.11
+```
+Details on how to configure your computer to use Dnsmasq will differ by distribution. For Ubuntu users, [this blog post](https://www.leaseweb.com/labs/2013/08/wildcard-dns-ubuntu-hosts-file-using-dnsmasq/) from LeaseWeb labs provides more detailed instructions on configuration and troubleshooting.
