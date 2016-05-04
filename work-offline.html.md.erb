@@ -25,7 +25,6 @@ sudo brew services start dnsmasq
 ```
 Configure Dnsmasq by editing the file you just placed at `/usr/local/etc/dnsmasq.conf`. We just need to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to the resolve the DNS. Do this adding this line:
 ```
-address=/local.pcfdev.io/192.168.11.11
 address=/.local.pcfdev.io/192.168.11.11
 ```
 Remember, if the subnet containing `192.168.11.11` is already in use, PCF Dev will pick the next available IP that adheres to the pattern `192.168.xx.11`, and a corresponding system domain. For example, `192.168.44.11` and `local4.pcfdev.io`. If your PCF Dev reports that it is using an alternate configuration when it comes up, use the appropriate combination in your Dnsmasq conf file.
@@ -44,7 +43,7 @@ For Windows, we recommend using Acrylic as your DNS proxy. Download it from [the
 
 After installing, navigate to Start > Programs > Acrylic DNS Proxy > Config > Edit Acrylic Hosts File, then add the following text to the end of the file:
 ```
-192.168.11.11 >local.pcfdev.io # This is equivalent to an entry that redirects both local.pcfdev.io and *.local.pcfdev.io
+192.168.11.11 *.local.pcfdev.io
 ```
 The Acrylic site has detailed instructions to configure your computer to use Acrylic as a DNS server for [Windows 7](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows7Configuration), [Windows 8](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows8Configuration), and [Windows 10](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows10Configuration).
 
@@ -58,6 +57,6 @@ sudo apt-get install dnsmasq
 ```
 Append the following line to /etc/dnsmasq.conf:
 ```
-address=/local.pcfdev.io/192.168.11.11
+address=/.local.pcfdev.io/192.168.11.11
 ```
 Details on how to configure your computer to use Dnsmasq will differ by distribution. For Ubuntu users, [this blog post](https://www.leaseweb.com/labs/2013/08/wildcard-dns-ubuntu-hosts-file-using-dnsmasq/) from LeaseWeb labs provides more detailed instructions on configuration and troubleshooting.
