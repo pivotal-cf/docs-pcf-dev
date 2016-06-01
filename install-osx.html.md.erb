@@ -4,9 +4,9 @@ title: Installing PCF Dev on Mac OS X
 owner: PCF Dev
 ---
 
-## <a id="prerequisites"></a>Prerequisites 
+## <a id="prerequisites"></a>Prerequisites
 
-### <a id="virtualbox"></a>VirtualBox 
+### <a id="virtualbox"></a>VirtualBox
 
 PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as its virtualizer.
 
@@ -20,19 +20,7 @@ PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as i
 
 1. Select an install destination and click **Install**.
 
-### <a id="vagrant"></a>Vagrant
-
-PCF Dev uses [Vagrant](https://www.vagrantup.com/downloads.html) version 1.8.0 and later to run its development environment.
-
-1. Download the Vagrant 1.8.1 `.dmg` file for Mac OS X hosts from [Hashicorp](https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.dmg).
-
-1. Open the `.dmg` file and double click the Vagrant.pkg icon.
-
-1. In the installer wizard, click **Continue**.
-
-1. Select an install destination and click **Install**.
-
-### <a id="cf-cli"></a>Cloud Foundry Command Line Interface 
+### <a id="cf-cli"></a>Cloud Foundry Command Line Interface
 
 PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
 
@@ -50,26 +38,28 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 
 ## <a id="install-pcf-dev"></a>Install PCF Dev
 
-1. Download the latest version of PCF Dev from [Pivotal Network](https://network.pivotal.io/).
+1. Download the latest version of PCF Dev CLI plugin from the [Pivotal Network](https://network.pivotal.io/).
 1. Unzip the downloaded zip file.
-<pre class="terminal">$ unzip pcfdev-VERSION.zip</pre>
-1. Navigate into the unzipped directory.
-<pre class="terminal">$ cd pcfdev-VERSION</pre>
-1. Run `./start-osx` script in your terminal.
-<pre class="terminal">$ ./start-osx</pre>
+<pre class="terminal">$ unzip pcfdev-cli-VERSION-osx.zip</pre>
+1. Install the PCF Dev plugin
+<pre class="terminal">$ cf install-plugin ./pcfdev-cli-VERSION-osx</pre>
+1. Start PCF Dev
+<pre class="terminal">$ cf dev start</pre>
 
-## <a id="stopping"></a>Stop PCF Dev 
+<p class='note'><strong>Note</strong>: You must remove an old version of PCF Dev by running <code>cf uninstall-plugin pcfdev</code> before installing a new version.</p>
 
-To temporarily stop PCF Dev, perform the following steps:
+## <a id="stopping"></a>Stop PCF Dev
 
-1. Open a terminal or command prompt and navigate to the `pcfdev-VERSION` folder.
-1. Run `./stop-osx`.
+To temporarily stop PCF Dev:
 
-<p class='note'><strong>Note</strong>: Use the start script to resume the PCF Dev instance.</p>
+<pre class="terminal">$ cf dev stop</pre>
 
-## <a id="uninstall"></a>Uninstall PCF Dev 
+## <a id="uninstall"></a>Uninstall PCF Dev
 
-To permanently destroy PCF Dev:
+To destroy the PCF Dev VM:
 
-1. Open a terminal or command prompt and navigate to the pcfdev-VERSION folder.
-1. Run `./destroy-osx`.
+<pre class="terminal">$ cf dev destroy</pre>
+
+To remove the PCF Dev cf CLI plugin:
+
+<pre class="terminal">$ cf uninstall-plugin pcfdev</pre>

@@ -8,41 +8,26 @@ owner: PCF Dev
 
 In a restricted network environment, configuring PCF Dev to connect to a proxy permits app-to-internet connectivity, access to custom buildpacks, and the use of Docker images from the public internet.
 
-To run PCF Dev behind a proxy:
+To run PCF Dev behind a proxy, set the standard proxy environment variables for your platform before you start PCF Dev:
 
-1. Install the `vagrant-proxyconf` plugin:
+* Using Mac OS X or Linux:
   <pre class="terminal">
-  $ vagrant plugin install vagrant-proxyconf
+  $ HTTP\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
+  > HTTPS\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
+  > cf dev start
   </pre>
-
-2. Specify your HTTP proxy when starting PCF Dev:
-   * Using OS X:
-		<pre class="terminal">
-		$ HTTP\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
-		> HTTPS\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
-		> ./start-osx
-		</pre>
-   * Using Windows PowerShell:
-		<pre class="terminal">
-		>> $env:HTTP\_PROXY = "<span>http</span>://PROXY\_IP:PROXY\_PORT"
-		>> $env:HTTPS\_PROXY = "<span>http</span>://PROXY\_IP:PROXY\_PORT"
-		>> .\start-windows.ps1
-		</pre>
+* Using Windows PowerShell:
+  <pre class="terminal">
+  >> $env:HTTP\_PROXY = "<span>http</span>://PROXY\_IP:PROXY\_PORT"
+  >> $env:HTTPS\_PROXY = "<span>http</span>://PROXY\_IP:PROXY\_PORT"
+  >> cf dev start
+  </pre>
 
 ##<a id="allow-traffic-behind-proxy"></a> Allow Traffic to Bypass the Proxy
 
-You can connect to other addresses without using the proxy. For example, you might do this to connect apps to user-provided services on a private network.
+You can configure your apps to connect to other addresses without using the proxy. For example, you might do this to connect apps to user-provided services on a private network.
 
 * Set the `NO_PROXY` environment variable to a comma-separated list of hosts.
    <pre class="terminal">
    $ cf set-env APP\_NAME NO\_PROXY=192.168.2.54,192.168.100.34
    </pre>	
-
-##<a id="advanced-usage"></a> (Advanced) Configure an HTTP Proxy with Vagrant
-
-If you use Vagrant to manage PCF Dev, follow the procedure [above](#run-behind-proxy) with `vagrant` directly:
-
-* Set the `HTTP_PROXY` and `HTTPS_PROXY` environment variables when you run `vagrant up`:
-  <pre class="terminal">
-  $ HTTP\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT HTTPS\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT vagrant up
-  </pre>

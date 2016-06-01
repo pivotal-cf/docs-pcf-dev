@@ -4,46 +4,40 @@ title: Using PCF Dev
 owner: PCF Dev
 ---
 
-This topic describes how to use PCF Dev to target instances, push an application, and list available marketplace services. 
+This topic describes how to use PCF Dev to target instances, push an application, and list available marketplace services.
 
-<p class="note"><strong>Note</strong>: To use your PCF Dev instance, you must be running the PCF Dev VM. In a terminal window, run the <code>start</code> script appropriate for your operating system to boot the VM, and the <code>stop</code> script to stop the VM.</p>
+<p class="note"><strong>Note</strong>: To use your PCF Dev instance, you must be running the PCF Dev VM. In a terminal window, run <code>cf dev start</code> to boot the VM.</p>
 
 ## <a id="pcf-dev"></a>Target Your PCF Dev Instance
 
-After installing PCF Dev, follow these steps to target your PCF Dev instance:
+After starting PCF Dev, target it using the cf CLI. When prompted, enter "admin" as both the user email and password.
 
-1. In a terminal window, run `cf api api.local.pcfdev.io --skip-ssl-validation`.
+<pre class='terminal'>
+$ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
 
-1. When prompted, enter your user email and password.
+Email: admin
+Password: admin
+</pre>
 
-	<pre class='terminal'>
-	$ cf api api.local.pcfdev.io --skip-ssl-validation
-	
-	$ cf login
+The terminal displays your API system domain when you run `cf dev start`. In most cases, your API system domain is `api.local.pcfdev.io`, but it may differ slightly depending on your host system configuration.
 
-	Email: admin
-	Password: admin
-	</pre>
-
-The terminal displays your API system domain when you run `vagrant up` through the `start` script. In most cases, your API system domain is `api.local.pcfdev.io`, but it may differ slightly depending on your host system configuration.
-
-## <a id="push"></a>Push an App 
+## <a id="push"></a>Push an App
 
 Follow the procedure below to push an app to your PCF Dev instance.
 
 1. Navigate to your app directory.
 
 1. Run `cf push APP-NAME`. Replace "APP-NAME" with a name of your choice.
-  
+
 For more information about pushing apps to your deployment, see the [Deploy an Application](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/deploy-app.html) topic.
 
 For more information about using the cf CLI, see the [Getting Started with the cf CLI](http://docs.pivotal.io/pivotalcf/cf-cli/getting-started.html) topic.
 
-## <a id="marketplace"></a>List Marketplace Services 
+## <a id="marketplace"></a>List Marketplace Services
 
 PCF Dev supports marketplace services, giving developers access to Redis, RabbitMQ, and MySQL.
 
-In order to view the list of available services, run `cf marketplace` in a terminal window. 
+In order to view the list of available services, run `cf marketplace` in a terminal window.
 
 <pre class='terminal'>
 $ cf marketplace
