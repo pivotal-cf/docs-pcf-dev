@@ -27,27 +27,27 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 ## <a id="install-pcf-dev"></a>Install PCF Dev
 
 1. Download the latest version of PCF Dev CLI plugin from the [Pivotal Network](https://network.pivotal.io/).
-1. Unzip the downloaded zip file.
+1. Unzip the downloaded zip file:
 <pre class="terminal">$ unzip pcfdev-cli-VERSION-linux.zip</pre>
-1. Install the PCF Dev plugin
+1. Install the PCF Dev plugin:
 <pre class="terminal">$ cf install-plugin ./pcfdev-cli-VERSION-linux</pre>
-1. Start PCF Dev
+1. Start PCF Dev:
 <pre class="terminal">$ cf dev start</pre>
 
 <p class='note'><strong>Note</strong>: You must remove an old version of PCF Dev by running <code>cf uninstall-plugin pcfdev</code> before installing a new version.</p>
 
 ## <a id="stopping"></a>Stop PCF Dev
 
-To temporarily stop PCF Dev:
+To temporarily stop PCF Dev, run the following command:
 
 <pre class="terminal">$ cf dev stop</pre>
 
 ## <a id="uninstall"></a>Uninstall PCF Dev
 
-To destroy the PCF Dev VM:
+To destroy the PCF Dev VM, run the following command:
 
 <pre class="terminal">$ cf dev destroy</pre>
 
-To remove the PCF Dev cf CLI plugin:
+To remove the PCF Dev cf CLI plugin, run the followign command:
 
 <pre class="terminal">$ cf uninstall-plugin pcfdev</pre>

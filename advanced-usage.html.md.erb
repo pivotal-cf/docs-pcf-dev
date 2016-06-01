@@ -6,16 +6,18 @@ owner: PCF Dev
 
 ## <a id="memory"></a> Memory and CPU
 
-By default, PCF Dev will try to allocate half of the memory available on your host machine, with a minimum of 3GB and a maximum of 4GB.
+By default, PCF Dev tries to allocate half of the memory available on your host machine, with a minimum of 3GB and a maximum of 4GB.
 
-Set the `-m` flag to `cf dev start` to change the allocated memory. This value is in megabytes.
+To change the allocated memory, run the following command, replacing `NEW-ALLOCATED-MEMORY` with the amount of memory you want to allocate in megabytes:
+<pre class="terminal">$ cf dev start -m NEW-ALLOCATED-MEMORY</pre>
 
-PCF Dev will try to use all physical, non-hyperthreaded host cores. Set the `-c` flag to the `cf dev start` command to change this behavior.
+By default, PCF Dev tries to use all physical, non-hyperthreaded host cores. To change this setting, run the following command:
+<pre class="terminal">$ cf dev start -c</pre>
 
-## <a id="aws"></a> AWS
+## <a id="aws"></a> Amazon Web Services (AWS)
 
-We provide experimental support for deploying PCF Dev to AWS. Note that PCF Dev is not a secure distribution of PCF -- you must manage access to PCF Dev within AWS.
+Pivotal provides experimental support for deploying PCF Dev to AWS. 
 
-To use PCF Dev with AWS, you must have [Vagrant](https://www.vagrantup.com) and the [Vagrant AWS plugin](https://github.com/mitchellh/vagrant-aws) installed.
+<p class="note">PCF Dev is not a secure distribution of Pivotal Cloud Foundry&reg;. If you deploy PCF Dev to AWS, you must manage access to PCF Dev within AWS.</p>
 
-PCF Dev AWS kits are available on the Pivotal Network. More documentation is forthcoming.
+To use PCF Dev with AWS, you must have [Vagrant](https://www.vagrantup.com) and the [Vagrant AWS plugin](https://github.com/mitchellh/vagrant-aws) installed. PCF Dev AWS kits are available on the Pivotal Network. More documentation is forthcoming.
