@@ -6,7 +6,7 @@ owner: PCF Dev
 
 ##<a id="run-behind-proxy"></a> Run PCF Dev behind an HTTP Proxy
 
-In a restricted network environment, configuring PCF Dev to connect to a proxy permits app-to-internet connectivity, access to custom buildpacks, and the use of Docker images from the public internet.
+In a restricted network environment, configuring PCF Dev to connect to a proxy permits app-to-Internet connectivity, access to custom buildpacks, and the use of Docker images from the public Internet.
 
 To run PCF Dev behind a proxy, set the standard proxy environment variables for your platform before you start PCF Dev:
 
@@ -25,9 +25,9 @@ To run PCF Dev behind a proxy, set the standard proxy environment variables for 
 
 ##<a id="allow-traffic-behind-proxy"></a> Allow Traffic to Bypass the Proxy
 
-You can configure your apps to connect to other addresses without using the proxy. For example, you might do this to connect apps to user-provided services on a private network.
+You can configure your apps to connect to other addresses without using the proxy. For example, you might want to connect apps to user-provided services on a private network.
 
-* Set the `NO_PROXY` environment variable to a comma-separated list of hosts.
+* Set the `NO_PROXY` environment variable to a comma-separated list of hosts:
    <pre class="terminal">
    $ cf set-env APP\_NAME NO\_PROXY=192.168.2.54,192.168.100.34
    </pre>	
