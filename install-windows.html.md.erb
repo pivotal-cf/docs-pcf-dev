@@ -4,9 +4,9 @@ title: Installing PCF Dev on Microsoft Windows
 owner: PCF Dev
 ---
 
-## <a id="prerequisites"></a>Prerequisites 
+## <a id="prerequisites"></a>Prerequisites
 
-### <a id="virtualbox"></a>VirtualBox 
+### <a id="virtualbox"></a>VirtualBox
 
 PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as its virtualizer.
 
@@ -14,15 +14,7 @@ PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as i
 
 1. Open the `.exe` file and install using the wizard.
 
-### <a id="vagrant"></a>Vagrant
-
-PCF Dev uses [Vagrant](https://www.vagrantup.com/downloads.html) version 1.8.0 and above to run its development environment.
-
-1. Download Vagrant 1.8.1 for Windows hosts from [Hashicorp](https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.msi).
-
-1. Open the `.msi` file and install using the wizard.
-
-### <a id="cf-cli"></a>Cloud Foundry Command Line Interface 
+### <a id="cf-cli"></a>Cloud Foundry Command Line Interface
 
 PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) to push and scale apps.
 
@@ -36,28 +28,28 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 
 ## <a id="install-pcf-dev"></a>Install PCF Dev
 
-1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/).
-
+1. Download the latest version of PCF Dev CLI plugin from the [Pivotal Network](https://network.pivotal.io/).
 1. Unzip the downloaded zip file.
+1. Using PowerShell, navigate to the directory containing the zip file.
+1. Install the PCF Dev plugin
+<pre class="terminal"> >> cf install-plugin .\pcfdev-cli-VERSION-windows</pre>
+1. Start PCF Dev
+<pre class="terminal"> >> cf dev start</pre>
 
-1. Navigate into the unzipped directory.
+<p class='note'><strong>Note</strong>: You must remove an old version of PCF Dev by running <code>cf uninstall-plugin pcfdev</code> before installing a new version.</p>
 
-1. Run `.\start-windows.ps1` script in PowerShell.
+## <a id="stopping"></a>Stop PCF Dev
+#
+To temporarily stop PCF Dev:
 
-<p class='note'><strong>Note</strong>: Before running PCF Dev scripts, you may need to change your script execution policy to unrestricted by running <code>Set-ExecutionPolicy Unrestricted</code> in PowerShell.</p>
+<pre class="terminal"> >> cf dev stop</pre>
 
-## <a id="stopping"></a>Stop PCF Dev 
+## <a id="uninstall"></a>Uninstall PCF Dev
 
-To temporarily stop PCF Dev, perform the following steps:
+To destroy the PCF Dev VM:
 
-1. Open a terminal or command prompt and navigate to the pcfdev-VERSION folder.
-1. Run `.\stop-windows.ps1` in the PowerShell.
+<pre class="terminal"> >> cf dev destroy</pre>
 
-<p class='note'><strong>Note</strong>: Use the start script to resume the PCF Dev instance.</p>
+To remove the PCF Dev cf CLI plugin:
 
-## <a id="uninstall"></a>Uninstall PCF Dev 
-
-To permanently destroy PCF Dev:
-
-1. Open a terminal or command prompt and navigate to the pcfdev-VERSION folder.
-1. Run `.\destroy-windows.ps1` in the PowerShell.
+<pre class="terminal"> >> cf uninstall-plugin pcfdev</pre>
