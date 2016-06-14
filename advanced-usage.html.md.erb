@@ -12,8 +12,8 @@ machine, with a minimum of 3GB and a maximum of 4GB.
 To change the allocated memory, run the following command, replacing `NEW-ALLOCATED-MEMORY` with the amount of memory you want to allocate in megabytes:
 <pre class="terminal">$ cf dev start -m NEW-ALLOCATED-MEMORY</pre>
 
-By default, PCF Dev tries to use all physical, non-hyperthreaded host cores. To change this setting, run the following command:
-<pre class="terminal">$ cf dev start -c</pre>
+By default, PCF Dev tries to use all physical, non-hyperthreaded host cores. To change this setting, run the following command, replacing DESIRED-NUMBER-OF-CORES with the number of processor cores PCF Dev should use:
+<pre class="terminal">$ cf dev start -c DESIRED-NUMBER-OF-CORES</pre>
 
 ## <a id="aws"></a> Amazon Web Services (AWS)
 
