@@ -1,0 +1,183 @@
+---
+breadcrumb: PCF Dev Documentation
+title: Creating a Windows Cell
+owner: PCF Dev
+---
+
+Creating a Windows 2012R2 cell for hosting .NET applications is _not_ supported. These instructions exist only to document the gap between today and a supportable Windows PCF Dev cell.
+
+While Windows is unsupported by PCF Dev it is possible to get a working cell using Vagrant and VirtualBox. The most difficult issue to overcome is that we need two network adapters with VirtualBox. The NAT'd interface for internet access and a host-only network adapter to communicate between VMs. The difficulty is that CloudFoundry expects there to be only one interface so some services bind to the wrong interface.
+
+## <a id="overview"></a>Create a Windows 2012R2 Stack
+
+At a high level we need to do the following to create a Windows cell:
+
+- Add a new windows2012R2 stack to PCF Dev.
+- Bind the PCF Dev services to the host only adapter instead of the NAT'd adapter.
+- Create a Windows cell using the standard installation and configuration steps.
+- Replace the rep.exe and repservice.exe on the Windows cell with a forked version that will bind to the host-only adapter.
+
+The steps for creating a Windows cell that will work with PCF Dev are potentially error prone so most the steps have been automated using Vagrant.
+
+### <a id="pcfdevup"></a>Up the PCF Dev box
+
+Download the PCF Dev box and scripts if you haven't already. Once downloaded and before you start the PCF Dev Vagrant box add the following provisioner block before the existing provisioner block in the PCF Dev Vagrantfile:
+
+```
+# Special provisioner to support Windows Cells
+config.vm.provision "shell", run: "once" do |s|
+  s.inline = <<-SCRIPT
+    echo "- description: Windows Server 2012 R2" >> /var/vcap/jobs/cloud_controller_ng/config/stacks.yml
+    echo "  name: windows2012R2" >> /var/vcap/jobs/cloud_controller_ng/config/stacks.yml
+    grep -rl "10.0.2.15" /var/vcap/data/jobs | xargs sed -i 's/10.0.2.15/#{local_public_ip}/g'
+  SCRIPT
+end
+```
+
+This adds a windows2012R2 stack to PCF Dev and binds the CF services to the host only interface instead of the NAT'd interface. Binding to the host-only adapter allows the Windows VM to communicate with the CF services on the PCF Dev VM.
+
+Bring up the box according to the PCF Dev Vagrant box instructions.
+
+<p class='note'><strong>Note</strong>: Once you see "48 out of 49 running" for a few times, CTRL-C out of the Vagrant process. If you don't, the provisioning will never complete.</p>
+
+### <a id="createwin2012cell"></a>Create a Windows 2012R2 Cell
+
+Copy the Windows cell Vagrantfile below and place it another directory separate from the PCF Dev Vagrantfile. Bring up the Windows Vagrant box: `vagrant up`. This will download a public Windows 2012R2 Vagrant box from Vagrant Cloud and configure it as a cell alongside your PCF Dev installation. If you already have your own Windows Vagrant box with WinRM enabled you may use that instead by modifying the `config.vm.box` setting.
+
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "mwrock/Windows2012R2"
+
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  pcfdev_public_ip = ENV["PCFDEV_IP"] || "192.168.11.11"
+  local_public_ip = ENV["WIN_PCFDEV_IP"] || "192.168.11.12"
+
+  config.vm.network "private_network", ip: local_public_ip
+
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--memory", 2048]
+    v.customize ["modifyvm", :id, "--cpus", 2]
+  end
+
+  # Ensure UAC is disabled so the MSI installers run non-interactively
+  config.vm.provision "shell", run: "always" do |s|
+    s.inline = <<-SCRIPT
+      if ((Get-ItemProperty HKLM:Software/Microsoft/Windows/CurrentVersion/policies/system).EnableLUA -ne 0) {
+        New-ItemProperty -Path HKLM:Software/Microsoft/Windows/CurrentVersion/policies/system -Name EnableLUA -PropertyType DWord -Value 0 -Force
+        shutdown /r /f /t 5
+      }
+    SCRIPT
+  end
+
+  # Install Windows Diego/Garden
+  config.vm.provision "shell", run: "always" do |s|
+    s.inline = <<-SCRIPT
+      function Check-Service-Running($svcName) {
+        Write-Output "Checking $svcName service is running"
+        $svc = Get-Service -Name $svcName -ErrorAction SilentlyContinue
+        if ($svc.Status -ne "Running") {
+          Write-Output "$svcName service is not started"
+          exit 1
+        }
+      }
+
+      function Download-File($src, $target, $retryCount=0) {
+        Write-Output "Downloading $src"
+        (New-Object System.Net.WebClient).DownloadFile($src, $target)
+        if ($? -ne $true) {
+          Write-Output "$src download failed"
+          if ($retryCount -gt 3) {
+            exit 1
+          } else {
+            Start-Sleep -s 5
+            $retryCount = $retryCount + 1
+            Download-File $src $target $retryCount
+          }
+        }
+      }
+
+      function Service-Stop($svc, $retryCount=0) {
+        Write-Output "Stopping $svc"
+        net stop $svc
+        Start-Sleep -s 5
+        if ($LastExitCode -ne 0) {
+          Write-Output "Stop $svc failed"
+          if ($retryCount -lt 3) {
+            $retryCount = $retryCount + 1
+            Service-Stop $svc $retryCount
+          }
+        }
+      }
+
+      function Service-Start($svc) {
+        Write-Output "Starting $svc"
+        Start-Service $svc
+      }
+
+      Write-Output "Starting and configuring Windows Time service"
+      Service-Start 'w32time'
+      Set-Service w32time -startuptype "automatic"
+      W32tm /config /manualpeerlist:pool.ntp.org /syncfromflags:MANUAL
+      W32tm /config /update
+
+      Download-File 'https://raw.githubusercontent.com/sneal/garden-windows-release/configure-psremoting-only-if-disabled/scripts/setup.ps1' 'C:/Windows/Temp/setup.ps1'
+      Write-Output "Executing setup.ps1 script"
+      powershell.exe -File C:/Windows/Temp/setup.ps1 -quiet
+      if ($LastExitCode -ne 0) {
+        Write-Output "setup.ps1 failed"
+        exit 1
+      }
+
+      Download-File 'https://github.com/cloudfoundry/diego-windows-release/releases/download/v0.331/DiegoWindows.msi' 'C:/Windows/Temp/DiegoWindows.msi'
+      Write-Output "Installing DiegoWindows"
+      msiexec /passive /norestart /i C:\\Windows\\Temp\\DiegoWindows.msi CONSUL_IPS=#{pcfdev_public_ip} CF_ETCD_CLUSTER=http://#{pcfdev_public_ip}:4001 STACK=windows2012R2 REDUNDANCY_ZONE=windows LOGGREGATOR_SHARED_SECRET=loggregator-secret MACHINE_IP=#{local_public_ip} /log C:\\Windows\\Temp\\diegowindows.log
+
+      Download-File 'https://github.com/cloudfoundry/garden-windows-release/releases/download/v0.119/GardenWindows.msi' 'C:/Windows/Temp/GardenWindows.msi'
+      Write-Output "Installing GardenWindows"
+      msiexec /passive /norestart /i C:\\Windows\\Temp\\GardenWindows.msi ADMIN_USERNAME=vagrant ADMIN_PASSWORD="""vagrant""" MACHINE_IP=#{local_public_ip} /log C:\\Windows\\Temp\\gardenwindows.log
+
+      # Replace the Diego installed rep.exe and RepService.exe with our special forked version
+      # which supports a configurable listenAddr via MACHINE_IP
+      Service-Stop 'RepService'
+      Download-File 'https://github.com/sneal/rep/releases/download/NAT/rep.exe' 'C:/Program Files/CloudFoundry/DiegoWindows/rep.exe'
+      Download-File 'https://github.com/sneal/diego-windows-release/releases/download/NAT/RepService.exe' 'C:/Program Files/CloudFoundry/DiegoWindows/RepService.exe'
+      Service-Start 'RepService'
+
+      # Ensure all the CloudFoundry Windows services are installed and running
+      Check-Service-Running "ConsulService"
+      Check-Service-Running "ContainerizerService"
+      Check-Service-Running "GardenWindowsService"
+      Check-Service-Running "MetronService"
+      Check-Service-Running "RepService"
+    SCRIPT
+  end
+end
+```
+
+The Windows Vagrantfile does the following:
+
+1. Downloads the public [mwrock/Windows2012R2](https://atlas.hashicorp.com/mwrock/boxes/Windows2012R2) Vagrant box.
+1. Adds a host-only network adapter.
+1. Disables UAC so the DiegoWindows and GardenWindows installers can install silently via Vagrant.
+1. Reboots the box.
+1. Configures the Windows Time service to use a public NTP server.
+1. Runs the GardenWindows [setup.ps1](https://github.com/sneal/garden-windows-release/commit/b7c42d29e151b46594cad9af4cec2adc371549b6) script. This currently uses a forked version that doesn't uncessarily bounce the WinRM service.
+1. Silently installs the standard off the shelf versions of DiegoWindows and GardenWindows.
+1. Replaces the [rep.exe](https://github.com/cloudfoundry-incubator/rep/commit/81a5ba0694232c5f0f90d88491f91a6104eeffae) and [RepService.exe](https://github.com/sneal/diego-windows-release/commit/e3a89aae92bfcab9846f0f33e2b8cc35377f1165) with our special forked version that can handle two network adapters.
+1. Ensure all required services are in the running state.
+
+
+### <a id="issues"></a>Known Issues
+
+The PCF Dev provisioning hangs at 48 out of 49 services running and requires the user to CTRL-C out of the provisioning process. 
+
+The logging service doesn't work properly. This means you don't get any log output when pushing an application or using any of the standard `cf logs` commands.
+
+These issues could likely be addressed by fine tuning the rebinding of services. The existing IP find and replace script is a brute force hack.
+
+The instructions were created with PCF Dev 0.14.0, newer PCF Dev boxes likely won't work with these instructions.
+  
