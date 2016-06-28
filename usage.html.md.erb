@@ -10,13 +10,13 @@ This topic describes how to use PCF Dev to target instances, push an application
 
 ## <a id="pcf-dev"></a>Target Your PCF Dev Instance
 
-After starting PCF Dev, target it using the cf CLI. When prompted, enter `admin` as both the user email and password:
+After starting PCF Dev, target it using the cf CLI. When prompted, enter `user` for the email and `pass` for the password:
 
 <pre class='terminal'>
 $ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
 
-Email: admin
-Password: admin
+Email: user
+Password: pass
 </pre>
 
 The terminal displays your API system domain when you run `cf dev start`. In most cases, your API system domain is `api.local.pcfdev.io`, but it may differ slightly depending on your host system configuration.
