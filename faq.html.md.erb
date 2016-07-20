@@ -1,14 +1,10 @@
 ---
 breadcrumb: PCF Dev Documentation
-title: FAQ
+title: Frequently Asked Questions
 owner: PCF Dev
 ---
 
-## <a id="available"></a> Frequently Asked Questions
-
-### <a id="ssl_cert"></a> Why do a receive "Invalid SSL Certificate" errors when using the cf CLI?
-
-PCF Dev comes with a self-signed SSL certificate for its API. The self-signed SSL certificate causes an `Invalid SSL Cert` error when using the cf CLI. To avoid the error, use the `--skip-ssl-validation` option:
+## <a id="ssl_cert"></a> Why do I receive a "Invalid SSL Cert" error?
 
 <pre class='terminal'>
 $ cf api api.local.pcfdev.io
@@ -18,7 +14,11 @@ Invalid SSL Cert for api.local.pcfdev.io
 TIP: Use 'cf api --skip-ssl-validation' to continue with an insecure API endpoint
 </pre>
 
-### <a id="host"></a> How can I connect to services running on my workstation from apps running in PCF Dev?
+PCF Dev comes with a self-signed SSL certificate for its API. The self-signed SSL certificate causes an `Invalid SSL Cert` error when using the cf CLI. To avoid the error, use the `--skip-ssl-validation` option.
+
+
+
+## <a id="host"></a> How can I connect apps running in PCF Dev to services running on my workstation?
 
 PCF Dev provides a special hostname for addressing the host from inside of application containers.
 If the PCF Dev system domain is `local.pcfdev.io`, then the host will be routable at `host.pcfdev.io`.
@@ -27,7 +27,7 @@ Services running on the host must be listening on all network interfaces (not ju
 
 <p class="note"><strong>Note</strong>: Using <code>localhost</code> inside of app containers will not refer to your workstation.</p>
 
-### <a id="memory"></a> How can I customize the memory and CPU count used by the PCF Dev VM?
+## <a id="memory"></a> How can I customize the memory and CPU count used by the PCF Dev VM?
 
 By default, PCF Dev tries to allocate half of the memory available on your host machine, with a minimum of 3GB and a maximum of 4GB.
 
@@ -37,11 +37,11 @@ To change the allocated memory, run the following command, replacing `NEW-ALLOCA
 By default, PCF Dev tries to use all physical, non-hyperthreaded host cores. To change this setting, run the following command, replacing DESIRED-NUMBER-OF-CORES with the number of processor cores PCF Dev should use:
 <pre class="terminal">$ cf dev start -c DESIRED-NUMBER-OF-CORES</pre>
 
-### <a id="security_groups"></a> How are Application Security Groups (ASGs) configured in PCF Dev?
+## <a id="security_groups"></a> How are Application Security Groups (ASGs) configured in PCF Dev?
 
-Unlike PCF, PCF Dev allows applications to access all private address ranges without the need to add extra Application Security Groups.
-This is because PCF Dev is considered a trusted, local environment known users.
-If this behavior is undesiredable, the `all_pcfdev` security group may be removed.
+Unlike PCF, PCF Dev allows applications to access all private address ranges without the need for additional ASGs.
+This is because PCF Dev is considered a trusted, local environment.
+You can remove the `all_pcfdev` security group:
 
 <pre class='terminal'>
 $ cf unbind-running-security-group all_pcfdev
