@@ -1,0 +1,21 @@
+---
+breadcrumb: PCF Dev Documentation
+title: Troubleshooting
+owner: PCF Dev
+---
+
+This topic describes various scenarios related to installing PCF Dev. Refer to this section if you have issues with your installation or setup.
+
+## <a id="available"></a> Known Issues
+
+### <a id="ssl_cert"></a> Invalid SSL Certificate
+
+PCF Dev comes with a self-signed SSL certificate for its API. The self-signed SSL certificate causes an `Invalid SSL Cert` error when using the cf CLI. To avoid the error, use the `--skip-ssl-validation` option:
+
+<pre class='terminal'>
+$ cf api api.local.pcfdev.io
+Setting api endpoint to api.local.pcfdev.io...
+FAILED
+Invalid SSL Cert for api.local.pcfdev.io
+TIP: Use 'cf api --skip-ssl-validation' to continue with an insecure API endpoint
+</pre>
