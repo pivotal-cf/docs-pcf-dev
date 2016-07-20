@@ -4,9 +4,9 @@ title: Using PCF Dev Behind a Proxy
 owner: PCF Dev
 ---
 
-##<a id="run-behind-proxy"></a> Run PCF Dev behind an HTTP Proxy
+##<a id="run-behind-proxy"></a> Running PCF Dev Behind an HTTP Proxy
 
-In a restricted network environment, configuring PCF Dev to connect to a proxy permits app-to-Internet connectivity, access to custom buildpacks, and the use of Docker images from the public Internet.
+In a restricted network environment, configuring PCF Dev to connect to an HTTP proxy permits app-to-Internet connectivity, access to custom buildpacks, and the use of Docker images from the public Internet.
 
 To run PCF Dev behind a proxy, set the standard proxy environment variables for your platform before you start PCF Dev:
 
@@ -23,7 +23,28 @@ To run PCF Dev behind a proxy, set the standard proxy environment variables for 
   >> cf dev start
   </pre>
 
-##<a id="allow-traffic-behind-proxy"></a> Allow Traffic to Bypass the Proxy
+<p class="note"><strong>Note</strong>:
+It is not valid to use <code>localhost</code> for <code>PROXY_IP</code> or as the proxy server hostname, because <code>localhost</code> will refer to the PCF Dev VM itself.
+If PCF Dev needs to use a locally-running HTTP proxy, the proxy must be listening on all network interfaces, and you must address it as
+<code>host.pcfdev.io</code> (or <code>host2.pcfdev.io</code> if the system domain is <code>local2.pcfdev.io</code>).
+</p>
+
+##<a id="allow-cf-cli-behind-proxy"></a> Using the cf CLI Behind an HTTP Proxy
+
+The cf CLI must be configured to bypass your HTTP proxy for addresses that end in `local.pcfdev.io` (or your system domain).
+
+* Using Mac OS X or Linux:
+  <pre class="terminal">
+  $ export NO\_PROXY=.local.pcfdev.io,local.pcfdev.io,$NO_PROXY
+  $ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
+  </pre>
+* Using Windows PowerShell:
+  <pre class="terminal">
+  >> $env:NO\_PROXY = ".local.pcfdev.io,local.pcfdev.io,OTHER-DOMAINS"
+  >> cf login -a https://api.local.pcfdev.io --skip-ssl-validation
+  </pre>
+
+<a id="allow-traffic-behind-proxy"></a> Allowing Application Traffic to Bypass the Proxy
 
 You can configure your apps to connect to other addresses without using the proxy. For example, you might want to connect apps to user-provided services on a private network.
 
