@@ -8,13 +8,11 @@ This topic describes how to use PCF Dev to target instances, push an application
 
 <p class="note"><strong>Note</strong>: To use your PCF Dev instance, you must be running the PCF Dev VM. In a terminal window, run <code>cf dev start</code> to boot the VM.</p>
 
-## <a id="pcf-dev"></a>Target Your PCF Dev Instance
+## <a id="pcf-dev"></a>Log In to Your PCF Dev Instance
 
-After starting PCF Dev, target it using the cf CLI. When prompted, enter `user` for the email and `pass` for the password:
-
+After launching your PCF Dev instance, use the `cf login` command with the `-a` flag to target its API:
 <pre class='terminal'>
-$ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
-
+$ cf login -a https<span>:</span>//api.local.pcfdev.io --skip-ssl-validation
 Email: user
 Password: pass
 </pre>
