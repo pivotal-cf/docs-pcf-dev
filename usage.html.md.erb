@@ -53,8 +53,18 @@ For more information about using marketplace services, see the [Using Services i
 
 ## <a id="apps-manager"></a>Use Apps Manager
 
-Apps Manager is always running when PCF Dev is started. To view it, navigate to <a href="https://local.pcfdev.io/">https://local.pcfdev.io/</a>. You will likely be presented with a warning that the certificate is self-signed which you will need to allow. You can sign in using admin/admin or user/pass and will see this page:
+When you start PCF Dev, Apps Manager is started automatically. 
+Follow the procudure below to access Apps Manager:
 
-<img src="images/apps-manager.png" alt="Apps Manager"/>
+1. Navigate to `https://local.pcfdev.io/`
 
-Note: If PCF Dev started on a domain other than local.pcfdev.io then the Apps Manager URL will be different. For example, if you login to PCF Dev via api.local3.pcfdev.io, then you will need to navigate to <a href="https://local3.pcfdev.io/">https://local3.pcfdev.io/</a>.
+    <p class="note"><strong>Note</strong>: If PCF Dev started on a domain other than <code>local.pcfdev.io</code>, then the Apps Manager URL is different. 
+For example, if you login to PCF Dev at <code>api.local3.pcfdev.io</code>, then navigate to <a href="https://local3.pcfdev.io/">https://local3.pcfdev.io/</a> to access Apps Manager.</p>
+
+2. The first time you open Apps Manager after starting the PCF Dev, your browser shows a dialog or page about the security certificate. 
+Choose to connect to the Apps Manager URL. 
+
+3. Log in using admin/admin or user/pass. The Pivotal PCF Dev page appears:
+
+    <img src="images/apps-manager.png" alt="Apps Manager"/>
+
