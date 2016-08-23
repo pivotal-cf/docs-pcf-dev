@@ -4,13 +4,17 @@ title: Using Spring Cloud Services in PCF Dev
 owner: PCF Dev
 ---
 
-This topic describes how to deploy and use the [Spring Cloud® Services](http://docs.pivotal.io/spring-cloud-services/) suite within PCF Dev.
+This topic describes how to deploy and use the [Spring Cloud® Services (SCS)](http://docs.pivotal.io/spring-cloud-services/) suite within PCF Dev.
 
-When configured for use with SCS (Spring Cloud Services), PCF Dev currently provides the following services: [Config Server](http://docs.pivotal.io/spring-cloud-services/config-server/index.html), [Service Registry](http://docs.pivotal.io/spring-cloud-services/service-registry/index.html), and [Circuit Breaker Dashboard](http://docs.pivotal.io/spring-cloud-services/circuit-breaker/index.html).
+When configured to use SCS, PCF Dev provides the following services: 
+
+* [Config Server](http://docs.pivotal.io/spring-cloud-services/config-server/index.html)
+* [Service Registry](http://docs.pivotal.io/spring-cloud-services/service-registry/index.html)
+* [Circuit Breaker Dashboard](http://docs.pivotal.io/spring-cloud-services/circuit-breaker/index.html)
 
 ## <a id='launch-scs'></a> Launch Spring Cloud Services ##
 
-Launch your instance of PCF Dev with the `cf dev start` command and the `-s` flag indicating `scs` services.
+To launch PCF Dev using SCS, run `cf dev start` using the `-s` flag indicating `scs` services.
 
 <pre class='terminal'>
 $ cf dev start -s scs
@@ -24,85 +28,94 @@ Waiting for services to start...
 ...
 </pre>
 
-<p class="note"><strong>Note</strong>: Due to the increased demands of SCS, PCF Dev will try to allocate more memory than usual.</p>
+<p class="note"><strong>Note</strong>: Due to the increased demands of SCS, PCF Dev allocates more memory than usual.</p>
 
 
 ## <a id='use-scs'></a>Use Spring Cloud Services ##
 
-Once your instance of PCF Dev is created and provisioned, you can use SCS right away.
+To create a service instance of the Config Server using the cook sample app, perform the following:
 
-The following steps will show you to use Config Server for SCS within PCF Dev. We'll be using the cook sample app, found [here](https://github.com/spring-cloud-samples/cook/tree/1.1).
+1. Clone the [cook sample app](https://github.com/spring-cloud-samples/cook/tree/1.1) to your workspace.
 
-1. Clone the cook repo to your workspace and move into the root of the repository with your terminal.
+1. In a terminal window, navigate to the root repository of the cook sample app.
 
-1. On Mac OS X or Linux, run: `./gradlew build`. On Windows, run: `gradlew.bat build`.
+1. To complile the cook sample app, run one of the following commands:
+  * Mac OS X or Linux: `./gradlew build` 
+  * Windows: `gradlew.bat build`
 
-<pre class='terminal'>
-$ ./gradlew build
-...
-:compileTestJava
-:processTestResources UP-TO-DATE
-:testClasses
-:test
-2016-08-23 12:02:07.900  INFO 79148 --- [       Thread-5] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e: startup date [Tue Aug 23 12:02:04 EDT 2016]; root of context hierarchy
-2016-08-23 12:02:07.903  INFO 79148 --- [       Thread-5] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@4ef3f6da: startup date [Tue Aug 23 12:02:05 EDT 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e
-:check
-:build
+	<pre class='terminal'>
+	$ ./gradlew build
+	...
+	:compileTestJava
+	:processTestResources UP-TO-DATE
+	:testClasses
+	:test
+	2016-08-23 12:02:07.900  INFO 79148 --- [       Thread-5] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e: startup date [Tue Aug 23 12:02:04 EDT 2016]; root of context hierarchy
+	2016-08-23 12:02:07.903  INFO 79148 --- [       Thread-5] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@4ef3f6da: startup date [Tue Aug 23 12:02:05 EDT 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e
+	:check
+	:build
 
-BUILD SUCCESSFUL
-</pre>
+	BUILD SUCCESSFUL
+	</pre>
 
-1. Login to PCF Dev as a *user* user.
+1. To log in to PCF Dev, run the `cf login` command using user/pass as the credentials. For example:
 
-1. Create a service instance of the config server and wait for it finish being created. The status of the service instance should say `create succeeded`:
+	<pre class='terminal'>
+	$ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
+	Email> user
+	Password>
+	Authenticating...
+	OK
+	...
+	</pre>
 
-<pre class='terminal'>
-$ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
-Email> user
-Password>
-Authenticating...
-OK
-...
+1. Create a service instance of the config server, by running `cf create service` as shown in the following example: 
 
-$ cf create-service -c '{ "git": { "uri": "https://github.com/spring-cloud-samples/cook-config", "label": "master"  } }' p-config-server standard config-server
-Creating service instance config-server in org pcfdev-org / space pcfdev-space as user...
-OK
-...
+	<pre class='terminal'>
+	$ cf create-service -c '{ "git": { "uri": "https://github.com/spring-cloud-samples/cook-config", "label": "master"  } }' p-config-server standard config-server
+ 	Creating service instance config-server in org pcfdev-org / space pcfdev-space as user...
+ 	OK
+ 	...
+	</pre>
 
-$ cf service config-server
+1. To confirm that the service was created, run `cf service config-server`.
 
-Service instance: config-server
-Service: p-config-server
-Bound apps:
-Tags:
-Plan: standard
-Description: Config Server for Spring Cloud Applications
-Documentation url: http://docs.pivotal.io/spring-cloud-services/
-Dashboard: https://spring-cloud-broker.local.pcfdev.io/dashboard/p-config-server/155f5ce5-82fb-42ba-adba-d7c569733c5c
+	<pre class='terminal'>
+	$ cf service config-server
 
-Last Operation
-Status: create succeeded
-Message:
-Started: 2016-08-23T16:19:29Z
-Updated: 2016-08-23T16:20:31Z
-</pre>
+	Service instance: config-server
+	Service: p-config-server
+	Bound apps:
+	Tags:
+	Plan: standard
+	Description: Config Server for Spring Cloud Applications
+	Documentation url: http://docs.pivotal.io/spring-cloud-services/
+	Dashboard: https://spring-cloud-broker.local.pcfdev.io/dashboard/p-config-server/155f5ce5-82fb-42ba-adba-d7c569733c5c
 
-1. Simply `cf push` the built jar file.
-<pre class='terminal'>
-cf push -p ./build/libs/cook-0.0.1-SNAPSHOT.jar
-...
+	Last Operation
+	Status: create succeeded
+	Message:
+	Started: 2016-08-23T16:19:29Z
+	Updated: 2016-08-23T16:20:31Z
+	</pre>
 
-     state     since                    cpu    memory         disk             details
-#0   running   2016-08-23 12:23:51 PM   0.0%   421.2M of 1G   146.3M of 512M
-</pre>
+	When finished, the status of the service instance displays  `create succeeded`
 
-If everything is successful, you should be able to navigate to [http://cookie.local.pcfdev.io/restaurant](http://cookie.local.pcfdev.io/restaurant) and see what the value of "Today's Special" is. This value will be populated from the git repository passed in when creating the service: [https://github.com/spring-cloud-samples/cook-config](https://github.com/spring-cloud-samples/cook-config).
+1. Push the compiled JAR file as shown in the following:
+	<pre class='terminal'>
+	cf push -p ./build/libs/cook-0.0.1-SNAPSHOT.jar
+ 	...
+ 	     state     since                    cpu    memory         disk             details
+ 	\#0   running   2016-08-23 12:23:51 PM   0.0%   421.2M of 1G   146.3M of 512M
+	</pre>
 
-<p class="note"><strong>Note</strong>: PCF Dev uses an unverified certificate. When a PCF Dev SCS service makes use of an unverified certificate, the pushed applications must have the environment variable CF_TARGET set to the api url of the PCF Dev instance like: https://api.local.pcfdev.io. PCF Dev does this by default for all pushed applications.</p>
+1. After pushing the app, navigate to [http://cookie.local.pcfdev.io/restaurant](http://cookie.local.pcfdev.io/restaurant) to view the cook app. 
+
+<p class="note"><strong>Note</strong>: PCF Dev uses an unverified certificate. When a PCF Dev SCS service makes use of an unverified certificate, the pushed apps must have the environment variable <code>CF_TARGET</code> set to the api url of the PCF Dev instance like: <code>https://api.local.pcfdev.io</code>. PCF Dev does this by default for all pushed apps.</p>
 
 ## <a id='manage-scs'></a>Manage Spring Cloud Services ##
 
-You can manage your SCS instance within PCF Dev as well. Navigate to [https://local.pcfdev.io](https://local.pcfdev.io) and login using the admin credentials. You should be able to see instances of the SCS services will be housed inside the *instances* space of the *p-spring-cloud-services* org.
+To manage an SCS instance within PCF Dev, navigate to [Apps Manager](https://local.pcfdev.io) and login using the admin credentials. Instances of the SCS services are displayed in the **instances** space of the **p-spring-cloud-services** org. See [Use Apps Manager](./usage.html#apps-manager) for more information.
 
  <img src="images/scs-apps-manager.png" alt="SCS Apps Manager"/>
 
