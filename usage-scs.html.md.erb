@@ -43,6 +43,8 @@ To create a service instance of the Config Server using the cook sample app, per
   * Mac OS X or Linux: `./gradlew build` 
   * Windows: `gradlew.bat build`
 
+	For example, the output on Mac OS X appears as follows:
+
 	<pre class='terminal'>
 	$ ./gradlew build
 	...
@@ -58,7 +60,7 @@ To create a service instance of the Config Server using the cook sample app, per
 	BUILD SUCCESSFUL
 	</pre>
 
-1. To log in to PCF Dev, run the `cf login` command using user/pass as the credentials. For example:
+1. To log in to PCF Dev, run the `cf login` command to target your local domain.  Use user/pass as the credentials:
 
 	<pre class='terminal'>
 	$ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
@@ -69,7 +71,7 @@ To create a service instance of the Config Server using the cook sample app, per
 	...
 	</pre>
 
-1. Create a service instance of the config server, by running `cf create service` as shown in the following example: 
+1. Create a service instance of the config server, by running `cf create service` as shown in the following: 
 
 	<pre class='terminal'>
 	$ cf create-service -c '{ "git": { "uri": "https://github.com/spring-cloud-samples/cook-config", "label": "master"  } }' p-config-server standard config-server
@@ -78,7 +80,7 @@ To create a service instance of the Config Server using the cook sample app, per
  	...
 	</pre>
 
-1. To confirm that the service was created, run `cf service config-server`.
+1. To confirm that the service was created, run `cf service config-server`:
 
 	<pre class='terminal'>
 	$ cf service config-server
@@ -99,17 +101,14 @@ To create a service instance of the Config Server using the cook sample app, per
 	Updated: 2016-08-23T16:20:31Z
 	</pre>
 
-	When finished, the status of the service instance displays  `create succeeded`
+	When finished, the status of the service instance displays `create succeeded`.
 
-1. Push the compiled JAR file as shown in the following:
+1. Push the compiled JAR file:
 	<pre class='terminal'>
 	cf push -p ./build/libs/cook-0.0.1-SNAPSHOT.jar
- 	...
- 	     state     since                    cpu    memory         disk             details
- 	\#0   running   2016-08-23 12:23:51 PM   0.0%   421.2M of 1G   146.3M of 512M
 	</pre>
 
-1. After pushing the app, navigate to [http://cookie.local.pcfdev.io/restaurant](http://cookie.local.pcfdev.io/restaurant) to view the cook app. 
+1. Navigate to [http://cookie.local.pcfdev.io/restaurant](http://cookie.local.pcfdev.io/restaurant) to view the cook app. 
 
 <p class="note"><strong>Note</strong>: PCF Dev uses an unverified certificate. When a PCF Dev SCS service makes use of an unverified certificate, the pushed apps must have the environment variable <code>CF_TARGET</code> set to the api url of the PCF Dev instance like: <code>https://api.local.pcfdev.io</code>. PCF Dev does this by default for all pushed apps.</p>
 
