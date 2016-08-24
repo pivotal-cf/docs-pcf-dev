@@ -12,9 +12,11 @@ When configured to use SCS, PCF Dev provides the following services:
 * [Service Registry](http://docs.pivotal.io/spring-cloud-services/service-registry/index.html)
 * [Circuit Breaker Dashboard](http://docs.pivotal.io/spring-cloud-services/circuit-breaker/index.html)
 
+The sections below describe how to launch SCS and use the Config Server. The Service Registry and Circuit Breakker Dashboard work by default when PCF Dev is launched with SCS enabled.
+
 ## <a id='launch-scs'></a> Launch Spring Cloud Services ##
 
-To launch PCF Dev using SCS, run `cf dev start` using the `-s` flag indicating `scs` services.
+To launch PCF Dev using SCS, run `cf dev start` using the `-s scs` flag:
 
 <pre class='terminal'>
 $ cf dev start -s scs
@@ -60,7 +62,7 @@ To create a service instance of the Config Server using the cook sample app, per
 	BUILD SUCCESSFUL
 	</pre>
 
-1. To log in to PCF Dev, run the `cf login` command to target your local domain.  Use user/pass as the credentials:
+1. Run `cf login` to log in to PCF Dev and target your local domain using user/pass as the credentials. To avoid SSL validation errors, use the `--skip-ssl-validation` flag. See [SSL Validation Errors](./faq.html#ssl_cert).
 
 	<pre class='terminal'>
 	$ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
@@ -71,7 +73,7 @@ To create a service instance of the Config Server using the cook sample app, per
 	...
 	</pre>
 
-1. Create a service instance of the config server, by running `cf create service` as shown in the following: 
+1. Run `cf create service` to create a service instance of the config server. Use the `-c` flag to specify a JSON object containing configuration parameters for the service as showin in the following:
 
 	<pre class='terminal'>
 	$ cf create-service -c '{ "git": { "uri": "https://github.com/spring-cloud-samples/cook-config", "label": "master"  } }' p-config-server standard config-server
@@ -80,7 +82,7 @@ To create a service instance of the Config Server using the cook sample app, per
  	...
 	</pre>
 
-1. To confirm that the service was created, run `cf service config-server`:
+1. Run `cf service config-server` to confirm that the service was created:
 
 	<pre class='terminal'>
 	$ cf service config-server
