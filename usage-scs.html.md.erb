@@ -12,7 +12,7 @@ When configured to use SCS, PCF Dev provides the following services:
 * [Service Registry](http://docs.pivotal.io/spring-cloud-services/service-registry/index.html)
 * [Circuit Breaker Dashboard](http://docs.pivotal.io/spring-cloud-services/circuit-breaker/index.html)
 
-The sections below describe how to launch SCS and use the Config Server. The Service Registry and Circuit Breakker Dashboard work by default when PCF Dev is launched with SCS enabled.
+The sections below describe how to launch SCS and use the Config Server. The Service Registry and Circuit Breaker Dashboard work by default when PCF Dev is launched with SCS enabled.
 
 ## <a id='launch-scs'></a> Launch Spring Cloud Services ##
 
@@ -41,7 +41,7 @@ To create a service instance of the Config Server using the cook sample app, per
 
 1. In a terminal window, navigate to the root repository of the cook sample app.
 
-1. To complile the cook sample app, run one of the following commands:
+1. To compile the cook sample app, run one of the following commands:
   * Mac OS X or Linux: `./gradlew build` 
   * Windows: `gradlew.bat build`
 
@@ -73,7 +73,7 @@ To create a service instance of the Config Server using the cook sample app, per
 	...
 	</pre>
 
-1. Run `cf create service` to create a service instance of the config server. Use the `-c` flag to specify a JSON object containing configuration parameters for the service as showin in the following:
+1. Run `cf create service` to create a service instance of the config server. Use the `-c` flag to specify a JSON object containing configuration parameters for the service as show in the following example:
 
 	<pre class='terminal'>
 	$ cf create-service -c '{ "git": { "uri": "https://github.com/spring-cloud-samples/cook-config", "label": "master"  } }' p-config-server standard config-server
@@ -107,16 +107,16 @@ To create a service instance of the Config Server using the cook sample app, per
 
 1. Push the compiled JAR file:
 	<pre class='terminal'>
-	cf push -p ./build/libs/cook-0.0.1-SNAPSHOT.jar
+	$ cf push -p ./build/libs/cook-0.0.1-SNAPSHOT.jar
 	</pre>
 
 1. Navigate to [http://cookie.local.pcfdev.io/restaurant](http://cookie.local.pcfdev.io/restaurant) to view the cook app. 
 
-<p class="note"><strong>Note</strong>: PCF Dev uses an unverified certificate. When a PCF Dev SCS service makes use of an unverified certificate, the pushed apps must have the environment variable <code>CF_TARGET</code> set to the api url of the PCF Dev instance like: <code>https://api.local.pcfdev.io</code>. PCF Dev does this by default for all pushed apps.</p>
+<p class="note"><strong>Note</strong>: PCF Dev uses an unverified certificate. When a PCF Dev SCS service makes use of an unverified certificate, the pushed apps must have the environment variable <code>CF_TARGET</code> set to the api URL of the PCF Dev instance: <code>https://api.local.pcfdev.io</code>. PCF Dev does this by default for all pushed apps.</p>
 
 ## <a id='manage-scs'></a>Manage Spring Cloud Services ##
 
-To manage an SCS instance within PCF Dev, navigate to [Apps Manager](https://local.pcfdev.io) and login using the admin credentials. Instances of the SCS services are displayed in the **instances** space of the **p-spring-cloud-services** org. See [Use Apps Manager](./usage.html#apps-manager) for more information.
+To manage an SCS instance within PCF Dev, navigate to [Apps Manager](https://local.pcfdev.io) and log in using the admin credentials. Instances of the SCS services are displayed in the **instances** space of the **p-spring-cloud-services** org. See the [Use Apps Manager](./usage.html#apps-manager) topic for more information.
 
  <img src="images/scs-apps-manager.png" alt="SCS Apps Manager"/>
 
