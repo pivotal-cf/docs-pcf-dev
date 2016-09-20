@@ -1,36 +1,33 @@
 ---
 breadcrumb: PCF Dev Documentation
-title: Importing OVAs with PCF Dev
+title: Using a Local OVA with PCF Dev
 owner: PCF Dev
 ---
 
-By default, PCF Dev tries to download a pre-determined OVA upon start but one can import the OVA instead when internet access is imprudent. This topic describes how to use PCF Dev with a local OVA.
+This topic describes how to use PCF Dev with a local Open Virtualization Appliance (OVA). By default, PCF Dev tries to download a pre-determined OVA at start-up. You can configure PCF Dev to import an OVA instead when internet access is restricted.
 
-## <a id="ova-version"></a>Identify PCF Dev OVA Version
+1. Run `cf dev version` to determine the OVA version of your PCF Dev installation:
 
-Perform the following steps to retrieve the PCF Dev OVA version:
+	<pre class="terminal">
+	$ cf dev version
+	PCF Dev version 0.19.0 (CLI: 27d4cda, OVA: 0.234.0)
+	</pre>
 
-With the PCF Dev cli plugin installed, run `cf dev version`
-<pre class="terminal">
-$ cf dev version
-PCF Dev version 0.19.0 (CLI: 27d4cda, OVA: 0.234.0)
-</pre>
+	This command outputs the CLI and OVA version and the Git SHA of the CLI. In this example, the OVA version is `0.234.0`.
 
-This will output the CLI and OVA version as well as the git SHA of the CLI. In this example, the OVA version is `0.234.0`.
+1. Download the OVA file.
 
-## <a id="ova-version"></a>Download Corresponding OVA
+	OVA files are available on the <a href="https://network.pivotal.io/products/pcfdev#/releases/1622">Pivotal Network</a>. To download the OVA, click on the corresponding file in the release (e.g. `pcfdev-v0.234.0.ova`). You must be signed in and accept the EULA in order to download the OVA.
 
-The OVAs can be found in the `internal` release of the PCF Dev product on <a href="https://network.pivotal.io/products/pcfdev#/releases/1622">Pivotal Network</a>. To download the OVA, click on the corresponding file in the release (e.g. `pcfdev-v0.234.0.ova`).
-Note: You must be signed in and accept the EULA in order to download the OVA.
+1. Run `cf dev import /path/to/ova` to import the OVA file.
 
-## <a id="ova-version"></a>Import the OVA
+	<pre class="terminal">
+	$ cf dev import ~/Downloads/pcfdev-v0.234.0.ova
+	OVA version 0.234.0 imported successfully.
+	</pre>
 
-To import the OVA, run `cf dev import /path/to/ova`
-<pre class="terminal">
-$ cf dev import ~/Downloads/pcfdev-v0.234.0.ova
-OVA version 0.234.0 imported successfully.
-</pre>
+	This command copies the OVA file into the `$PCFDEV_HOME` directory (`.pcfdev` in your home directory by default). You can only import the version of the OVA corresponding to the version of your PCF Dev CLI plugin. All other OVAs are deleted.
 
-This will copy the OVA into the `$PCFDEV_HOME` directory (`.pcfdev` in your home directory by default). From here, you can run `cf dev start`.
+1. Navigate to the `$PCFDEV_HOME` directory.
 
-You will only be able to import the version of the OVA corresponding to the version of your PCF Dev CLI plugin. All other OVAs will be deleted.
+1. Run `cf dev start`.
