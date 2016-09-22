@@ -4,9 +4,9 @@ title: Using a Local OVA with PCF Dev
 owner: PCF Dev
 ---
 
-This topic describes how to use PCF Dev with a local Open Virtualization Appliance (OVA). By default, PCF Dev tries to download a pre-determined OVA at start-up. You can configure PCF Dev to import an OVA instead when internet access is restricted.
+This topic describes how to use PCF Dev with a local Open Virtualization Appliance (OVA). By default, PCF Dev tries to download a pre-determined OVA at startup. You can configure PCF Dev to import an OVA instead when Internet access is restricted.
 
-1. Run `cf dev version` to determine the OVA version of your PCF Dev installation:
+1. Run `cf dev version` to determine the OVA version of your PCF Dev installation.
 
 	<pre class="terminal">
 	$ cf dev version
@@ -17,16 +17,16 @@ This topic describes how to use PCF Dev with a local Open Virtualization Applian
 
 1. Download the OVA file.
 
-	OVA files are available on the <a href="https://network.pivotal.io/products/pcfdev#/releases/1622">Pivotal Network</a>. To download the OVA, click on the corresponding file in the release (e.g. `pcfdev-v0.234.0.ova`). You must be signed in and accept the EULA in order to download the OVA.
+	OVA files are available on the <a href="https://network.pivotal.io/products/pcfdev#/releases/1622">Pivotal Network</a>. To download the OVA, click on the corresponding file in the release, for example `pcfdev-v0.234.0.ova`. You must be signed in and accept the EULA to download the OVA.
 
-1. Run `cf dev import /path/to/ova` to import the OVA file.
+1. Run `cf dev import PATH-TO-OVA-FILE` to import the OVA file. Replaces PATH-TO-OVA-FILE with the path to your downloaded OVA file.
 
 	<pre class="terminal">
 	$ cf dev import ~/Downloads/pcfdev-v0.234.0.ova
 	OVA version 0.234.0 imported successfully.
 	</pre>
 
-	This command copies the OVA file into the `$PCFDEV_HOME` directory (`.pcfdev` in your home directory by default). You can only import the version of the OVA corresponding to the version of your PCF Dev CLI plugin. All other OVAs are deleted.
+	This command copies the OVA file into the `$PCFDEV_HOME` directory. You can only import the version of the OVA corresponding to the version of your PCF Dev CLI plugin. All other OVAs are deleted.
 
 1. Navigate to the `$PCFDEV_HOME` directory.
 
