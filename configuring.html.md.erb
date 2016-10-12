@@ -4,7 +4,7 @@ title: Configuring PCF Dev
 owner: PCF Dev
 ---
 
-PCF Dev several different configurations. This topic describes how to start PCF Dev with a specified memory usage, core count usage, domain, ip, cloudfoundry services, etc.. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates. 
+PCF Dev supports several different configurations. This topic describes how to start PCF Dev with a specified memory usage, core count usage, domain, ip, cloudfoundry services, etc. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates. 
 
 ## <a id="start-options"></a>Configure PCF Dev
 
@@ -63,14 +63,14 @@ By default, PCF Dev starts with MySQL, Redis, and RabbitMQ service brokers runni
 
 ## <a id="target"></a>Target PCF Dev
 
-To perform a `cf target` on your running PCF Dev instance, regardless of the domain currently targetted, run:
+To perform a `cf target` on your running PCF Dev instance, regardless of the domain is it currently configured to use, run:
 
 <pre class='terminal'>
 $ cf dev target
 Successfully logged in to api.local.pcfdev.io as user.
 </pre>
  
-This performs `cf login` as the `user user into the 'pcfdev-org' org and 'pcfdev-space' space. The `-t` option to `cf dev start` also performs this operation following the provisioning of the VM.
+The `cf dev target` command works if the PCF domain is `local.pcfdev.io` (the default) or a custom value, such as `cf dev start -d pcfdev.example.com`. Running `cf dev target` performs `cf login` as the `user user into the 'pcfdev-org' org and 'pcfdev-space' space. The `-t` option to `cf dev start` also performs this operation following the provisioning of the VM. 
 
 ## <a id="trust"></a>Trust PCF Dev
 
