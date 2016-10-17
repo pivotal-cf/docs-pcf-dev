@@ -4,7 +4,7 @@ title: Configuring PCF Dev
 owner: PCF Dev
 ---
 
-PCF Dev supports several different configurations. This topic describes how to start PCF Dev with a specified memory usage, core count usage, domain, ip, cloudfoundry services, etc. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates. 
+PCF Dev supports several different configurations. This topic describes how to start PCF Dev with specific memory usage, core count usage, domain, IP, and Cloud Foundry services, among others. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates. 
 
 ## <a id="start-options"></a>Configure PCF Dev
 
@@ -19,19 +19,19 @@ The `cf dev start` command supports the following configuration-specific flags a
 | `-m  memory-in-mb` |  Memory to allocate for VM. Default: half of total memory, max 4 GB, max 8 GB with SCS. |
 | `-r registry1,registry2,...`  |  Docker registries that PCF Dev will use without SSL validation. Specify in 'host:port' format. |
 | `-s  service1,service2` | Specify the services started with PCF Dev. <br>Options: redis, rabbitmq, spring-cloud-services (scs), default, all, none <br> Default: redis, rabbitmq <br> (MySQL is always available and cannot be disabled.) |
-| `-t | Perform a CF login to PCF Dev after starting, as the 'user' user. |
+| `-t` | Perform a CF login to PCF Dev after starting, as the 'user' user. |
 
 ### <a id="domain-and-ip"></a>Domain and IP
 
-The `-d` and `-i` flags can be used to specify a custom domain and IP address respectively for PCF to use. This can be useful if you have your own domain that you would like to access using PCF Dev.
+The `-d` and `-i` flags specify a custom domain and IP address that PCF Dev uses. Specifiying a domain and IP address is useful if you have your own domain that you would like to access using PCF Dev.
 
 If an IP address is specified without a domain, the domain is assumed to be `<ip>.xip.io`.
 
-If a domain is specifided, an IP address must also be specified unless the domain is a standard PCF Dev domain, for example `local.pcfdev.io`, `local2.pcfdev.io`, etc.
+If a domain is specified, an IP address must also be specified unless the domain is a standard PCF Dev domain. For example the following are valid domains: `local.pcfdev.io`, `local2.pcfdev.io`.
 
 When both a domain and IP address are specified, no validation occurs.
 
-The following are examples of valid IP and Domain configurations for PCF Dev:
+The following are examples of valid IP and domain configurations for PCF Dev:
 
 * `cf dev start -i 192.168.54.54`
 * `cf dev start -d local3.pcfdev.io`
@@ -43,7 +43,7 @@ However, the following is not a valid configuration:
 
 ### <a id="insecure-docker-registries"></a>Insecure Docker Registries
 
-PCF Dev allows applications to be pushed from docker images. By default, these images must be hosted on Docker Hub. The `-r` flag adds support for custom insecure docker registries. The following example shows how to start PCF Dev and push an app using an insecure docker registry on your host on port 5000.
+PCF Dev allows applications to be pushed from Docker images. By default, these images must be hosted on Docker Hub. The `-r` flag adds support for custom insecure Docker registries. The following example shows how to start PCF Dev and push an app using an insecure docker registry on your host running on port 5000.
 
 <pre class='terminal'>
 $ cf dev start -r host.pcfdev.io:5000
@@ -55,11 +55,11 @@ $ cf push -o host.pcfdev.io:5000/repository/image
 
 ### <a id="service-brokers"></a>Service Brokers
 
-By default, PCF Dev starts with MySQL, Redis, and RabbitMQ service brokers running. The service brokers that are started with PCF Dev can be changed with the `-s` flag.
+By default, PCF Dev starts with the MySQL, Redis, and RabbitMQ service brokers running. The service brokers that are started with PCF Dev can be changed with the `-s` flag.
 
-* `cf dev start -s all` will start all of the service brokers (MySQL, Redis, RabbitMQ, and Spring Cloud Services)
-* `cf dev start -s none` will start with no additional service brokers (except for MySQL which is a mandatory service broker)
-* `cf dev start -s redis,scs` will start with Redis and Spring Cloud Services
+* `cf dev start -s all` starts all of the service brokers (MySQL, Redis, RabbitMQ, and Spring Cloud Services)
+* `cf dev start -s none` starts with no additional service brokers (except for MySQL which is a mandatory service broker)
+* `cf dev start -s redis,scs` starts with Redis and Spring Cloud Services
 
 ## <a id="target"></a>Target PCF Dev
 
@@ -70,11 +70,11 @@ $ cf dev target
 Successfully logged in to api.local.pcfdev.io as user.
 </pre>
  
-The `cf dev target` command works if the PCF domain is `local.pcfdev.io` (the default) or a custom value, such as `cf dev start -d pcfdev.example.com`. Running `cf dev target` performs `cf login` as the `user user into the 'pcfdev-org' org and 'pcfdev-space' space. The `-t` option to `cf dev start` also performs this operation following the provisioning of the VM. 
+The `cf dev target` command works if the PCF domain is `local.pcfdev.io` (default) or a custom value, such as `cf dev start -d pcfdev.example.com`. Running `cf dev target` performs `cf login` as the user `user` into the 'pcfdev-org' org and 'pcfdev-space' space. The `-t` option to `cf dev start` also performs this operation following the provisioning of the VM. 
 
 ## <a id="trust"></a>Trust PCF Dev
 
-Provisioning dynamically creates self-signed certificates to be used within its components. However, this results in various SSL validation warnings both from the cf CLI and when using Apps Manager in a browser. To remove these SSL validation warning errors, you can insert this self-signed certificate into your OS certificate store with:
+Provisioning dynamically creates self-signed certificates used within its components. However, this results in various SSL validation warnings both from the cf CLI and when using Apps Manager in a browser. To remove these SSL validation warning errors, you can insert this self-signed certificate into your OS certificate store with:
 
 <pre class='terminal'>
 $ cf dev trust
@@ -92,11 +92,11 @@ API endpoint: https://api.local.pcfdev.io
 Email>
 </pre>
 
-The `-k` option to `cf dev start` also performs this operation following the provisioning of the VM. To remove these certificates from your certificate store, you can run: `cf dev untrust`. These certificates are automatically removed as part of a `cf dev destroy`, as well.
+The `-k` option to `cf dev start` also performs this operation following the provisioning of the VM. To remove these certificates from your certificate store, run: `cf dev untrust`. These certificates are automatically removed as part of a `cf dev destroy`.
 
-<p class="note"><strong>Note</strong>: If you run <code>cf dev destroy</code> and are prompted to enter your password, it is because the plugin is attempting to remove PCF Dev specific certificates from your certificate store. </p>
+<p class="note"><strong>Note</strong>: If you run <code>cf dev destroy</code> and are prompted to enter your password, this is because the plugin is attempting to remove PCF Dev-specific certificates from your certificate store. </p>
 
-The following shows the conditions where `cf dev trust` is expected to remove SSL validation warnings:
+The following table shows conditions where `cf dev trust` is expected to remove SSL validation warnings:
 
 | OS | CF CLI | Chrome |  Firefox | Internet Explorer |
 |---|---|---|---|---|
