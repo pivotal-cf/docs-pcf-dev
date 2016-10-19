@@ -4,7 +4,7 @@ title: Configuring PCF Dev
 owner: PCF Dev
 ---
 
-PCF Dev supports several different configurations. This topic describes how to start PCF Dev with specific memory usage, core count usage, domain, IP, and Cloud Foundry services, among others. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates. 
+PCF Dev supports several different configurations. This topic describes how to start PCF Dev with specific memory usage, core count usage, domain, IP address, and Cloud Foundry services, among others. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates. 
 
 ## <a id="start-options"></a>Configure PCF Dev
 
@@ -12,26 +12,26 @@ The `cf dev start` command supports the following configuration-specific flags a
 
 | flag |  description |
 |---|---|---|---|
-| `-c number-of-cores`  | Number of processor cores used by VM. Default: number of physical cores. |
+| `-c number-of-cores`  | Specify the number of processor cores used by VM. Default: Number of physical cores. |
 | `-d domain`  |  Specify the domain that the PCF Dev VM will occupy. |
-| `-i ip-address`  |  Specify the IP Address that the PCF Dev VM will occupy. |
+| `-i ip-address`  |  Specify the IP address that the PCF Dev VM will occupy. |
 | `-k` |  Import VM certificates into host's trusted certificate store. |
-| `-m  memory-in-mb` |  Memory to allocate for VM. Default: half of total memory, max 4 GB, max 8 GB with SCS. |
-| `-r registry1,registry2,...`  |  Docker registries that PCF Dev will use without SSL validation. Specify in 'host:port' format. |
+| `-m  memory-in-mb` |  Specify memory to allocate for VM. Default: Half of total memory, with a maximum of 4 GB, or 8 GB with SCS. |
+| `-r registry1,registry2,...`  | Specify Docker registries that PCF Dev will use without SSL validation. Use `host:port` format. |
 | `-s  service1,service2` | Specify the services started with PCF Dev. <br>Options: redis, rabbitmq, spring-cloud-services (scs), default, all, none <br> Default: redis, rabbitmq <br> (MySQL is always available and cannot be disabled.) |
-| `-t` | Perform a CF login to PCF Dev after starting, as the 'user' user. |
+| `-t` | Specify to perform `cf login` to PCF Dev after starting, as the 'user' user. |
 
-### <a id="domain-and-ip"></a>Domain and IP
+### <a id="domain-and-ip"></a>Domain and IP Address
 
-The `-d` and `-i` flags specify a custom domain and IP address that PCF Dev uses. Specifiying a domain and IP address is useful if you have your own domain that you would like to access using PCF Dev.
+The `-d` and `-i` flags specify a custom domain and IP address that PCF Dev uses. Specify a domain and IP address if you have your own domain that you want to access using PCF Dev.
 
-If an IP address is specified without a domain, the domain is assumed to be `<ip>.xip.io`.
+If you specify an IP address without a domain, the domain is assumed to be `<ip>.xip.io`.
 
-If a domain is specified, an IP address must also be specified unless the domain is a standard PCF Dev domain. For example the following are valid domains: `local.pcfdev.io`, `local2.pcfdev.io`.
+If you specify a domain, you must also specify an IP address unless the domain is a standard PCF Dev domain. For example, the following are valid domains: `local.pcfdev.io`, `local2.pcfdev.io`.
 
-When both a domain and IP address are specified, no validation occurs.
+When you specify both a domain and IP address, no validation occurs.
 
-The following are examples of valid IP and domain configurations for PCF Dev:
+The following are examples of valid IP address and domain configurations for PCF Dev:
 
 * `cf dev start -i 192.168.54.54`
 * `cf dev start -d local3.pcfdev.io`
@@ -57,13 +57,13 @@ $ cf push -o host.pcfdev.io:5000/repository/image
 
 By default, PCF Dev starts with the MySQL, Redis, and RabbitMQ service brokers running. The service brokers that are started with PCF Dev can be changed with the `-s` flag.
 
-* `cf dev start -s all` starts all of the service brokers (MySQL, Redis, RabbitMQ, and Spring Cloud Services)
-* `cf dev start -s none` starts with no additional service brokers (except for MySQL which is a mandatory service broker)
+* `cf dev start -s all` starts all of the service brokers: MySQL, Redis, RabbitMQ, and Spring Cloud Services
+* `cf dev start -s none` starts with no additional service brokers, except for the mandatory service broker, MySQL 
 * `cf dev start -s redis,scs` starts with Redis and Spring Cloud Services
 
 ## <a id="target"></a>Target PCF Dev
 
-To perform a `cf target` on your running PCF Dev instance, regardless of the domain is it currently configured to use, run:
+To perform a `cf target` on your running PCF Dev instance, regardless of the domain is it currently configured to use, run the following command:
 
 <pre class='terminal'>
 $ cf dev target
@@ -74,7 +74,7 @@ The `cf dev target` command works if the PCF domain is `local.pcfdev.io` (defaul
 
 ## <a id="trust"></a>Trust PCF Dev
 
-Provisioning dynamically creates self-signed certificates used within its components. However, this results in various SSL validation warnings both from the cf CLI and when using Apps Manager in a browser. To remove these SSL validation warning errors, you can insert this self-signed certificate into your OS certificate store with:
+Provisioning dynamically creates self-signed certificates used within its components. However, this results in various SSL validation warnings both from the Cloud Foundry Command Line interface (cf CLI), and when using Apps Manager in a browser. To remove these SSL validation warning errors, you can insert this self-signed certificate into your OS certificate store with:
 
 <pre class='terminal'>
 $ cf dev trust
