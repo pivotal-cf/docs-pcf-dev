@@ -19,7 +19,7 @@ This topic describes how to use PCF Dev with a local Open Virtualization Applian
 
 	OVA files are available on the <a href="https://network.pivotal.io/products/pcfdev#/releases/1622">Pivotal Network</a>. To download the OVA, click on the corresponding file in the release, for example `pcfdev-v0.234.0.ova`. You must be signed in and accept the EULA to download the OVA.
 
-1. Run `cf dev import PATH-TO-OVA-FILE` to import the OVA file. Replaces PATH-TO-OVA-FILE with the path to your downloaded OVA file.
+1. Run `cf dev import PATH-TO-OVA-FILE` to import the OVA file. Replace PATH-TO-OVA-FILE with the path to your downloaded OVA file.
 
 	<pre class="terminal">
 	$ cf dev import ~/Downloads/pcfdev-v0.234.0.ova
@@ -27,7 +27,5 @@ This topic describes how to use PCF Dev with a local Open Virtualization Applian
 	</pre>
 
 	This command copies the OVA file into your `$PCFDEV_HOME` directory. You can only import the version of the OVA that corresponds to the version of your PCF Dev CLI plugin. All other OVAs are deleted.
-
-1. Navigate to your `$PCFDEV_HOME` directory.
 
 1. Run `cf dev start`.
