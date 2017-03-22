@@ -43,7 +43,7 @@ However, the following is not a valid configuration:
 
 ### <a id="insecure-docker-registries"></a>Insecure Docker Registries
 
-PCF Dev allows applications to be pushed from Docker images. By default, these images must be hosted on Docker Hub. The `-r` flag adds support for custom insecure Docker registries. The following example shows how to start PCF Dev and push an app using an insecure docker registry on your host running on port 5000.
+PCF Dev allows applications to be pushed from Docker images. By default, these images must be hosted on Docker Hub. The `-r` flag allows you to specify Docker registries that PCF Dev should allow you to push from, even if those registries don't have valid SSL certificates.  The following example shows how to start PCF Dev and push an app using an existing insecure docker registry on your host running on port 5000.
 
 <pre class='terminal'>
 $ cf dev start -r host.pcfdev.io:5000
