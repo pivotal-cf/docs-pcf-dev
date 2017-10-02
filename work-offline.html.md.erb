@@ -16,15 +16,11 @@ For OS X, Pivotal recommends using [Dnsmasq](http://www.thekelleys.org.uk/dnsmas
 $ brew update
 $ brew install dnsmasq
 </pre>
-1. To configure Dnsmasq, copy the example configuration from your Dnsmasq directory to `/usr/local/etc/dnsmasq.conf`. Check that you do not already have a Dnsmasq configuration file in that location before copying over.
-<pre class="terminal">
-$ cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf
-</pre>
 1. To have `launchd` start Dnsmasq and restart at startup, run the following command:
 <pre class="terminal">
 sudo brew services start dnsmasq
 </pre>
-1. Configure Dnsmasq by editing the file you just placed at `/usr/local/etc/dnsmasq.conf` to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS. To perform this redirection, add the line `address=/.local.pcfdev.io/192.168.11.11` to the `dnsmasq.conf` file:
+1. Configure Dnsmasq by editing the default configuration file placed at `/usr/local/etc/dnsmasq.conf` to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS. To perform this redirection, add the line `address=/.local.pcfdev.io/192.168.11.11` to the `dnsmasq.conf` file:
 <pre class="terminal">
 $ echo "address=/.local.pcfdev.io/192.168.11.11" >> /usr/local/etc/dnsmasq.conf
 </pre>
