@@ -42,7 +42,7 @@ PCF Dev mirrors [PCF](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html)
 | ---                                                                       | ---                        | ---                                   | ---           |
 | Space required                                                            | 20 GB                      | 100GB+                                | 50GB+         |
 | Memory required                                                           | 3 GB                       | 50GB+                                 | variable      |
-| Deployment                                                                | `cf dev start`             | Ops Manager                           | `<%= bosh_deploy  %>` |
+| Deployment                                                                | `cf dev start`             | Ops Manager                           | `<%= vars.bosh_deploy  %>` |
 | Estimated time-to-deploy                                                  | 10 Minutes                 | Hour+                                 | Hour+         |
 | Out-of-the-Box Services                                                   | Redis<br>MySQL<br>RabbitMQ | Redis<br>MySQL<br>RabbitMQ<br>GemFire | N/A           |
 | PAS                                                           | ✓                          | ✓                                     | ✓             |
