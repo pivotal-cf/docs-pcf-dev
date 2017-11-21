@@ -49,15 +49,14 @@ For Windows, Pivotal recommends using Acrylic as your DNS proxy. Perform the fol
 
 ## <a id="linux"></a>Using PCF Dev Offline with Linux
 
-For Linux, Pivotal recommends using your distribution's package manager to install Dnsmasq on your computer. The following example uses `apt-get`, but the package manager will vary depending on your distribution.
-
-1. Install Dnsmasq using your distribution's package manager.
+1. Configure Dnsmasq by editing the `dnsmasq.conf` file to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS. To perform this redirection, add the line `address=/.local.pcfdev.io/192.168.11.11` to `/etc/NetworkManager/dnsmasq.conf`:
 <pre class="terminal">
-$ sudo apt-get install dnsmasq
-</pre>
-1. Configure Dnsmasq by editing the `dnsmasq.conf` file to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS. To perform this redirection, add the line `address=/.local.pcfdev.io/192.168.11.11` to `/etc/dnsmasq.conf`:
-<pre class="terminal">
-$ echo "address=/.local.pcfdev.io/192.168.11.11" >> /etc/dnsmasq.conf
+$ echo "address=/.local.pcfdev.io/192.168.11.11" >> /etc/NetworkManager/dnsmasq.conf
 </pre>
 
-Details on how to configure your computer to use Dnsmasq will differ by distribution. For Ubuntu users, [this blog post](https://www.leaseweb.com/labs/2013/08/wildcard-dns-ubuntu-hosts-file-using-dnsmasq/) from LeaseWeb labs provides more detailed instructions on configuration and troubleshooting.
+1. Reload the service by running the following commands:
+  1. For Ubuntu v14.04+, run `service network-manager restart`
+
+  1. For Ubuntu v15.04+, run `systemctl restart NetworkManager.service`
+
+Details on how to configure your computer to use Dnsmasq will differ by distribution.
