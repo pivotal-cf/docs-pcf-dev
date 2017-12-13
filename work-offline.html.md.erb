@@ -24,7 +24,7 @@ sudo brew services start dnsmasq
 <pre class="terminal">
 $ echo "address=/.local.pcfdev.io/192.168.11.11" >> /usr/local/etc/dnsmasq.conf
 </pre>
-<p class="note"><strong>Note</strong> If the subnet containing <code>192.168.11.11</code> is already in use, PCF Dev picks the next available IP that adheres to the pattern <code>192.168.xx.11</code>, and a corresponding system domain. For example, <code>192.168.44.11</code> and <code>local4.pcfdev.io</code>. If your PCF Dev reports that it is using an alternate configuration when it comes up, use the appropriate combination in your <code>dnsmasq.conf</code> file.</p>
+<p class="note"><strong>Note</strong>: If the subnet containing <code>192.168.11.11</code> is already in use, PCF Dev picks the next available IP address that adheres to the pattern <code>192.168.xx.11</code>, and a corresponding system domain. For example, <code>192.168.44.11</code> and <code>local4.pcfdev.io</code>. If your PCF Dev reports that it is using an alternate configuration when it comes up, use the appropriate combination in your <code>dnsmasq.conf</code> file.</p>
 
 1. Restart Dnsmasq to ensure it recognizes your change.
 <pre class="terminal">
@@ -70,4 +70,4 @@ $ echo "address=/.local.pcfdev.io/192.168.11.11" > /etc/NetworkManager/dnsmasq.d
 $ echo "address=/.local.pcfdev.io/192.168.11.11" >> /etc/dnsmasq.conf
 </pre>
 
-<p class="note"><strong>Note: </strong>Details on how to configure your Linux installation to use Dnsmasq may differ by distribution.</p>
+<p class="note"><strong>Note</strong>: Details about configuring your Linux installation to use Dnsmasq may differ by distribution.</p>
