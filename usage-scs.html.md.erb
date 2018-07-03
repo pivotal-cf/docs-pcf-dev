@@ -76,7 +76,7 @@ To create a service instance of the Config Server using the cook sample app, per
 1. Run `cf create service` to create a service instance of the config server. Use the `-c` flag to specify a JSON object containing configuration parameters for the service as show in the following example:
 
 	<pre class='terminal'>
-	$ cf create-service -c '{ "git": { "uri": "https://github.com/spring-cloud-services-samples/cook-config", "label": "master"  } }' p-config-server standard config-server
+	$ cf create-service -c '{ "git": { "uri": "https://github.com/spring-cloud-services-samples/cook-config", "label": "master"  } }' p-config-server standard cook-config-server
  	Creating service instance config-server in org pcfdev-org / space pcfdev-space as user...
  	OK
  	...
