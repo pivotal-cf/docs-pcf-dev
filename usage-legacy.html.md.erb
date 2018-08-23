@@ -1,0 +1,70 @@
+---
+breadcrumb: PCF Dev Documentation
+title: Using PCF Dev
+owner: PCF Dev
+---
+
+This topic describes how to use PCF Dev to target instances, push an application, and list available marketplace services.
+
+<p class="note"><strong>Note</strong>: To use your PCF Dev instance, you must be running the PCF Dev VM. In a terminal window, run <code>cf dev start</code> to boot the VM.</p>
+
+## <a id="pcf-dev"></a>Log in to Your PCF Dev Instance
+
+After launching your PCF Dev instance, use the `cf login` command with the `-a` flag to target its API:
+<pre class='terminal'>
+$ cf login -a https<span>:</span>//api.local.pcfdev.io --skip-ssl-validation
+Email: user
+Password: pass
+</pre>
+
+The terminal displays your API system domain when you run `cf dev start`. In most cases, your API system domain is `api.local.pcfdev.io`, but it may differ slightly depending on your host system configuration.
+
+## <a id="push"></a>Push an App
+
+Follow the procedure below to push an app to your PCF Dev instance.
+
+1. Navigate to your app directory.
+
+1. Run `cf push APP-NAME`. Replace `APP-NAME` with a name of your choice.
+
+For more information about pushing apps to your deployment, see the [Deploy an Application](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/deploy-app.html) topic.
+
+For more information about using the cf CLI, see the [Getting Started with the cf CLI](http://docs.pivotal.io/pivotalcf/cf-cli/getting-started.html) topic.
+
+## <a id="marketplace"></a>List Marketplace Services
+
+PCF Dev supports marketplace services, giving developers access to Redis, RabbitMQ, and MySQL.
+
+In order to view the list of available services, run `cf marketplace` in a terminal window.
+
+<pre class='terminal'>
+$ cf marketplace
+Getting services from marketplace in org pcfdev-org / space pcfdev-space as admin...
+OK
+
+service      plans        description
+p-mysql      512mb, 1gb   MySQL databases on demand
+p-rabbitmq   standard     RabbitMQ is a robust and scalable high-performance multi-protocol messaging broker.
+p-redis      shared-vm    Redis service to provide a key-value store
+
+</pre>
+
+For more information about using marketplace services, see the [Using Services in PCF Dev](dev-services.html) topic.
+
+## <a id="apps-manager"></a>Use Apps Manager
+
+When you start PCF Dev, Apps Manager starts automatically. 
+Follow the procedure below to access Apps Manager.
+
+1. Navigate to `https://apps.local.pcfdev.io/`
+
+    <p class="note"><strong>Note</strong>: If PCF Dev started on a domain other than <code>local.pcfdev.io</code>, then the Apps Manager URL is different. 
+For example, if you log in to PCF Dev at <code>api.local3.pcfdev.io</code>, then navigate to <a href="https://apps.local3.pcfdev.io/">https://apps.local3.pcfdev.io/</a> to access Apps Manager.</p>
+
+2. The first time you open Apps Manager after starting the PCF Dev, your browser shows a dialog or page about the security certificate. 
+Choose to connect to the Apps Manager URL. Alternatively, you can run `cf dev trust` to add the PCF Dev certificate to your OS certificate store. See [here](./configuring.html#trust) for more details.
+
+3. Log in using admin/admin or user/pass. The Pivotal PCF Dev page appears:
+
+    <img src="images/apps-manager.png" alt="Apps Manager"/>
+

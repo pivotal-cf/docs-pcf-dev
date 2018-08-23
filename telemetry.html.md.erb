@@ -1,0 +1,64 @@
+---
+breadcrumb: PCF Dev Documentation
+title: Telemetry in PCF Dev
+owner: PCF Dev
+---
+
+## <a id='Overview'></a>Overview 
+
+We use telemetry to help us understand how our tool is being used.  We value our users privacy, therefore all telemetry is completely anonymous. There is no way for anyone with the telemetry to identify who is using the CF Dev tool.  In an effort to make our data as transparent as possible, we will be publishing aggregated anonymous usage data to this page periodically to help our user community understand how the tool is being used. 
+
+In addition to making this data completely anonymous, we require users to opt-in to allowing us to collect telemetry from their tool. Upon running `$ cf dev start` for the first time, we will prompt the user to opt-in to capturing analytics.  Any time after that you can turn on/off telemetry by running `$ cf dev telemetry --on/off`
+
+## <a id='Telemetry Data'></a>Telemetry Data 
+
+The intent of collecting anonymous usage telemetry is to better understand what features are most frequently used which will in turn help us improve those features (or provide new features) moving forward.
+
+Every usage event that we capture will include these eight data points.  When these events occur we will store this data locally until we push it to our servers for storage and analysis.  
+
+* Event
+* Data
+* Timestamp
+* Anonymous ID
+* Operating System
+* Build
+
+
+**Event**
+
+The event data point is collected to understand what and how cli commands are being used.  We only capture events if they are entered by a user or when they encounter an error with the tool.  The following user events are captured:
+
+* Begin Start - When a user runs `$ cf dev start -f <pcf dev .iso file>`
+* Start Finish - When `$ cf dev start` finishes starting up
+* Error - When a user encounters an error while using the tool
+* Stop - When a user runs `$ cf dev stop`
+* Uninstall - When a user uninstalls the cf cli plugin by running `$ cf plugin-uninstall dev`
+
+**Data**
+
+Anonymous metadata associated with events
+
+**Timestamp**
+
+The UTC timestamp when the event occurred.
+
+**ID**
+
+A cryptographically (SHA256) anonymous and unique ID for a machine. This metric will not be published.
+
+**Operating System**
+
+The operating system where the event occurred.
+
+**Build**
+
+  The build of the cli tool in which the event occurred.
+
+
+
+
+##<a id='Collection of Data'></a>Collection of Data
+We will be collecting data locally and periodically sending it to a public data store.  If telemetry is turned off, no attempt to capture or send data will be made.
+
+##<a id='Use of Data'></a>Use of Data
+Our goal is to use this data to better understand how our users use the product.  We are not using it to track user behavior.  We plan to release aggregate usage statistics to the developer community every quarter so users can get a better understanding of how the tool is being used in the community.
