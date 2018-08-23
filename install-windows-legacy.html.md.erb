@@ -1,6 +1,6 @@
 ---
 breadcrumb: PCF Dev Documentation
-title: Installing PCF Dev on Linux
+title: Installing PCF Dev on Microsoft Windows 7 and 8
 owner: PCF Dev
 ---
 
@@ -10,29 +10,31 @@ owner: PCF Dev
 
 PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as its virtualizer.
 
-1. Download VirtualBox for your Linux distribution from [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads).
+1. Download VirtualBox 5.0.14 for Windows hosts from [VirtualBox](http://download.virtualbox.org/virtualbox/5.0.14/VirtualBox-5.0.14-105127-Win.exe).
 
-1. Install the downloaded package using the package manager for your distribution.
+1. Open the `.exe` file and install using the wizard.
 
 ### <a id="cf-cli"></a>Cloud Foundry Command Line Interface
 
 PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
 
-1. Download the cf CLI for your Linux distribution from the [cf CLI repository in GitHub](https://github.com/cloudfoundry/cli#downloads). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
+1. To install the cf CLI for Windows (64 bit), download it [here](https://cli.run.pivotal.io/stable?release=windows64&source=github-rel). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
 
-1. Install the downloaded package using the package manager for your distribution.
+1. Unpack the zip file and open the `cf_installer` application.
 
-1. To verify your installation, open a terminal window and enter `cf` at the prompt. If your installation was successful, the cf CLI help listing appears.
+1. Follow the installer wizard to install.
+
+1. To verify your installation, open a terminal window and enter `cf`. If your installation was successful, the cf CLI help listing appears.
 
 ## <a id="install-pcf-dev"></a>Install PCF Dev
 
 1. Download version 0.30 of PCF Dev from the [Pivotal Network](https://network.pivotal.io/).
-1. Unzip the downloaded zip file:
-<pre class="terminal">$ unzip pcfdev-VERSION-linux.zip</pre>
+1. Unzip the downloaded zip file.
+1. Using PowerShell, navigate to the directory containing the unzipped plugin file.
 1. Install the PCF Dev plugin:
-<pre class="terminal">$ ./pcfdev-VERSION-linux</pre>
+<pre class="terminal"> >> .\pcfdev-VERSION-windows.exe</pre>
 1. Start PCF Dev:
-<pre class="terminal">$ cf dev start</pre>
+<pre class="terminal"> >> cf dev start</pre>
   It may take several minutes for the PCF Dev virtual machine (VM) and its services to start.
 <p class="note"><strong>Note</strong>: You may be prompted to continue if your available memory is less than the recommended amount.</p>
 
@@ -41,19 +43,17 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 
 After the **PCF Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
 
-
 ## <a id="stopping"></a>Stop PCF Dev
-
 To temporarily stop PCF Dev, run the following command:
 
-<pre class="terminal">$ cf dev stop</pre>
+<pre class="terminal"> >> cf dev stop</pre>
 
 ## <a id="uninstall"></a>Uninstall PCF Dev
 
 To destroy the PCF Dev VM, run the following command:
 
-<pre class="terminal">$ cf dev destroy</pre>
+<pre class="terminal"> >> cf dev destroy</pre>
 
-To remove PCF Dev, run the following command:
+To remove the PCF Dev, run the following command:
 
-<pre class="terminal">$ cf uninstall-plugin pcfdev</pre>
+<pre class="terminal"> >> cf uninstall-plugin pcfdev</pre>

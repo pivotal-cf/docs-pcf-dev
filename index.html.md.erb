@@ -6,16 +6,15 @@ owner: PCF Dev
 
 <strong><%= modified_date %></strong>
 
-This guide describes how to install and use PCF Dev, a lightweight Pivotal Cloud Foundry (PCF) installation that runs on a single virtual machine (VM) on your workstation. PCF Dev is intended for application developers who want to develop and debug their applications locally on a PCF deployment.
+This guide describes how to install and use PCF Dev, a full featured Pivotal Cloud Foundry (PCF) installation that runs on a your workstation's native hypervisors. PCF Dev is intended for application developers to test out their application on a local PCF deployment and operators who to test our features of PCF in their local environment.
 
-PCF Dev includes Pivotal Application Service (PAS) , Redis, RabbitMQ, and MySQL. It also supports all Cloud Foundry Command Line Interface (cf CLI) functionality. See the [Comparing PCF Dev to Pivotal Cloud Foundry](#comparison-to-pcf) table below for more product details.
+PCF Dev includes Pivotal Application Service (PAS), Redis, RabbitMQ, and MySQL. It also supports all Cloud Foundry Command Line Interface (cf CLI) functionality. See the [Comparing PCF Dev to Pivotal Cloud Foundry](#comparison-to-pcf) table below for more product details.
 
 ## <a id="prerequisites"></a>Prerequisites ##
 
-* [VirtualBox: 5.0+](https://www.virtualbox.org/): PCF Dev uses VirtualBox as its virtualizer.
 * The latest version of the [cf CLI](http://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html): Use the cf CLI to push and scale apps.
-* You must have an Internet connection for DNS. See <a href="./work-offline.html">Using PCF Dev Offline</a> if you do not have an Internet connection.
-* At least 3 GB of available memory on your host machine. Pivotal recommends running on a host system with at least 8 GB of total RAM.
+* You must have an Internet connection for DNS. 
+* At least 8 GB of available memory on your host machine. Pivotal recommends running on a host system with at least 16 GB of total RAM.
 
 ## <a id="installing"></a>Installing PCF Dev ##
 
@@ -40,10 +39,10 @@ PCF Dev mirrors [PCF](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html)
 
 |                                                                           | PCF Dev                    | PCF                                   | CF            |
 | ---                                                                       | ---                        | ---                                   | ---           |
-| Space required                                                            | 20 GB                      | 100GB+                                | 50GB+         |
-| Memory required                                                           | 3 GB                       | 50GB+                                 | variable      |
+| Space required                                                            | 100 GB                      | 100GB+                                | 50GB+         |
+| Memory required                                                           | 8 GB                       | 50GB+                                 | variable      |
 | Deployment                                                                | `cf dev start`             | Ops Manager                           | `<%= vars.bosh_deploy  %>` |
-| Estimated time-to-deploy                                                  | 10 Minutes                 | Hour+                                 | Hour+         |
+| Estimated time-to-deploy                                                  | 60+ Minutes                 | Hour+                                 | Hour+         |
 | Out-of-the-Box Services                                                   | Redis<br>MySQL<br>RabbitMQ | Redis<br>MySQL<br>RabbitMQ<br>GemFire | N/A           |
 | PAS                                                           | ✓                          | ✓                                     | ✓             |
 | Logging/Metrics                                                           | ✓                          | ✓                                     | ✓             |
@@ -56,11 +55,10 @@ PCF Dev mirrors [PCF](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html)
 | User-Provided Services                                                    | ✓                          | ✓                                     | ✓             |
 | High Availability                                                         |                            | ✓                                     | ✓             |
 | Integration with 3rd party Authorization                                  |                            | ✓                                     | ✓             |
-| BOSH Director<br>(i.e., can perform additional BOSH deployments)           |                            | ✓                                     | ✓             |
+| BOSH Director<br>(i.e., can perform additional BOSH deployments)           | ✓                            | ✓                                     | ✓             |
 | Day Two Lifecycle Operations<br>(e.g., rolling upgrades, security patches) |                            | ✓                                     | ✓             |
 | Ops Manager                                                               |                            | ✓                                     |               |
 | Apps Manager                                                              | ✓                          | ✓                                     |               |
 | Tile Support                                                              |                            | ✓                                     |               |
 | Developers have root-level access across cluster                          | ✓                          |                                       |               |
 | Pre-provisioned                                                           | ✓                          |                                       |               |
-| Does not depend on BOSH                                                   | ✓                          |                                       |               |

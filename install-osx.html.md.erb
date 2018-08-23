@@ -6,20 +6,6 @@ owner: PCF Dev
 
 ## <a id="prerequisites"></a>Prerequisites
 
-### <a id="virtualbox"></a>VirtualBox
-
-PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as its virtualizer.
-
-1. Download the VirtualBox 5.0.14 `.dmg` file for Mac OS X hosts from [VirtualBox](http://download.virtualbox.org/virtualbox/5.0.14/VirtualBox-5.0.14-105127-OSX.dmg).
-
-1. Open the `.dmg` file and double-click the VirtualBox.pkg icon.
-
-1. In the pop up that says "This package will run a program to determine if the software can be installed," click **Continue**.
-
-1. In the installer wizard, click **Continue**.
-
-1. Select an install destination and click **Install**.
-
 ### <a id="cf-cli"></a>Cloud Foundry Command Line Interface
 
 PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
@@ -39,17 +25,12 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 ## <a id="install-pcf-dev"></a>Install PCF Dev
 
 1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/).
-1. Unzip the downloaded zip file:
-<pre class="terminal">$ unzip pcfdev-VERSION-osx.zip</pre>
-1. Install the PCF Dev plugin:
-<pre class="terminal">$ ./pcfdev-VERSION-osx</pre>
+1. Install the CF Dev plugin required to run PCF Dev
+<pre class="terminal">$ cf install-plugin cfdev</pre>
 1. Start PCF Dev:
-<pre class="terminal">$ cf dev start</pre>
+<pre class="terminal">$ cf dev start -f <.iso file download></pre>
   It may take several minutes for the PCF Dev virtual machine (VM) and its services to start.
-<p class="note"><strong>Note</strong>: You may be prompted to continue if your available memory is less than the recommended amount.</p>
 
-1. If prompted, enter your API token. This token is required for authentication and appears at the bottom of the **Edit Profile** tab in your [Pivotal Network account](https://network.pivotal.io/users/dashboard/edit-profile). 
-<p class="note"><strong>Note</strong>: The API token does not appear in the terminal session when you enter it.</p>
 
 After the **PCF Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
 
@@ -62,10 +43,6 @@ To temporarily stop PCF Dev, run the following command:
 
 ## <a id="uninstall"></a>Uninstall PCF Dev
 
-To destroy the PCF Dev VM, run the following command:
+To remove CF Dev, run the following command:
 
-<pre class="terminal">$ cf dev destroy</pre>
-
-To remove PCF Dev, run the following command:
-
-<pre class="terminal">$ cf uninstall-plugin pcfdev</pre>
+<pre class="terminal">$ cf uninstall-plugin cfdev</pre>

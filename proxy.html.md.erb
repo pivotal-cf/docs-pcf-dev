@@ -26,7 +26,7 @@ To run PCF Dev behind a proxy, set the standard proxy environment variables for 
 <p class="note"><strong>Note</strong>:
 Do not use <code>localhost</code> for <code>PROXY_IP</code> or as the proxy server hostname, because <code>localhost</code> refers to the PCF Dev VM itself.
 If PCF Dev needs to use a locally-running HTTP proxy, the proxy must be listening on all network interfaces, and you must address it as
-<code>host.pcfdev.io</code>. For a system domain <code>local2.pcfdev.io</code>, address the proxy as <code>host2.pcfdev.io</code>, and so on.
+<code>host.cfdev.sh</code>. For a system domain <code>dev.cfdev.sh</code>, address the proxy as <code>host.cfdev.sh</code>, and so on.
 </p>
 
 ##<a id="allow-cf-cli-behind-proxy"></a> Using the cf CLI Behind an HTTP Proxy
@@ -35,13 +35,13 @@ You must configure the cf CLI to bypass your HTTP proxy for addresses that end i
 
 * For Mac OS X or Linux:
   <pre class="terminal">
-  $ export NO\_PROXY=.local.pcfdev.io,local.pcfdev.io,$NO_PROXY
-  $ cf login -a http<span>s</span>://api.local.pcfdev.io --skip-ssl-validation
+  $ export NO\_PROXY=.dev.cfdev.sh,dev.cfdev.sh,$NO_PROXY
+  $ cf login -a http<span>s</span>://api.dev.cfdev.sh --skip-ssl-validation
   </pre>
 * For Windows PowerShell:
   <pre class="terminal">
-  >> $env:NO\_PROXY = ".local.pcfdev.io,local.pcfdev.io,OTHER-DOMAINS"
-  >> cf login -a http<span>s</span>://api.local.pcfdev.io --skip-ssl-validation
+  >> $env:NO\_PROXY = ".dev.cfdev.sh,dev.cfdev.sh,OTHER-DOMAINS"
+  >> cf login -a http<span>s</span>://api.ldev.cfdev.sh --skip-ssl-validation
   </pre>
 
 ## <a id="allow-traffic-behind-proxy"></a> Allowing Application Traffic to Bypass the Proxy

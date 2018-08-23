@@ -1,18 +1,16 @@
 ---
 breadcrumb: PCF Dev Documentation
-title: Installing PCF Dev on Microsoft Windows
+title: Installing PCF Dev on Microsoft Windows 10
 owner: PCF Dev
 ---
-
+<p class="note"><strong>Note</strong>: If you would like to run PCF Dev on Windows withouth Hyper-V - please follow these <a href="./install-windows-legacy.html">instructions</a></p>
 ## <a id="prerequisites"></a>Prerequisites
 
-### <a id="virtualbox"></a>VirtualBox
+### <a id="virtualbox"></a>Hyper-V
 
-PCF Dev uses [VirtualBox](https://www.virtualbox.org) version 5.0 and above as its virtualizer.
+PCF Dev uses Hyper-V on Windows 10 to run on native hypervisors.
 
-1. Download VirtualBox 5.0.14 for Windows hosts from [VirtualBox](http://download.virtualbox.org/virtualbox/5.0.14/VirtualBox-5.0.14-105127-Win.exe).
-
-1. Open the `.exe` file and install using the wizard.
+1. Use this tutorial from Microsoft to enable Hyper-V on your machine before starting PCF Dev - https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v
 
 ### <a id="cf-cli"></a>Cloud Foundry Command Line Interface
 
@@ -29,31 +27,23 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 ## <a id="install-pcf-dev"></a>Install PCF Dev
 
 1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/).
-1. Unzip the downloaded zip file.
-1. Using PowerShell, navigate to the directory containing the unzipped plugin file.
-1. Install the PCF Dev plugin:
-<pre class="terminal"> >> .\pcfdev-VERSION-windows.exe</pre>
+1. In PowerShell, install the CF Dev plugin required to run PCF Dev
+<pre class="terminal">$ cf install-plugin cfdev</pre>
 1. Start PCF Dev:
-<pre class="terminal"> >> cf dev start</pre>
+<pre class="terminal">$ cf dev start -f <.iso file download></pre>
   It may take several minutes for the PCF Dev virtual machine (VM) and its services to start.
-<p class="note"><strong>Note</strong>: You may be prompted to continue if your available memory is less than the recommended amount.</p>
-
-1. If prompted, enter your API token. This token is required for authentication and appears at the bottom of the **Edit Profile** tab in your [Pivotal Network account](https://network.pivotal.io/users/dashboard/edit-profile).
-<p class="note"><strong>Note</strong>: The API token does not appear in the terminal session when you enter it.</p>
-
+<p class="note"><strong>Note</strong>: You must run PowerShell in Administrator mode with PCF Dev.</p>
 After the **PCF Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
 
+
 ## <a id="stopping"></a>Stop PCF Dev
+
 To temporarily stop PCF Dev, run the following command:
 
-<pre class="terminal"> >> cf dev stop</pre>
+<pre class="terminal">$ cf dev stop</pre>
 
 ## <a id="uninstall"></a>Uninstall PCF Dev
 
-To destroy the PCF Dev VM, run the following command:
+To remove PCF Dev, run the following command:
 
-<pre class="terminal"> >> cf dev destroy</pre>
-
-To remove the PCF Dev, run the following command:
-
-<pre class="terminal"> >> cf uninstall-plugin pcfdev</pre>
+<pre class="terminal">$ cf uninstall-plugin cfdev</pre>
