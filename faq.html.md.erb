@@ -7,10 +7,10 @@ owner: PCF Dev
 ## <a id="ssl_cert"></a> Why do I receive a "Invalid SSL Cert" error?
 
 <pre class='terminal'>
-$ cf api api.local.pcfdev.io
-Setting api endpoint to api.local.pcfdev.io...
+$ cf api api.dev.cfdev.sh
+Setting api endpoint to api.dev.cfdev.sh...
 FAILED
-Invalid SSL Cert for api.local.pcfdev.io
+Invalid SSL Cert for api.dev.cfdev.sh
 TIP: Use 'cf api --skip-ssl-validation' to continue with an insecure API endpoint
 </pre>
 
@@ -21,20 +21,19 @@ PCF Dev comes with a self-signed SSL certificate for its API. The self-signed SS
 ## <a id="host"></a> How can I connect apps running in PCF Dev to services running on my workstation?
 
 PCF Dev provides a special hostname for addressing the host from inside of application containers.
-If the PCF Dev system domain is `local.pcfdev.io`, then the host will be routable at `host.pcfdev.io`.
-If the system domain is `local2.pcfdev.io`, the host will be routable at `host2.pcfdev.io`, and so on.
+If the PCF Dev system domain is `dev.cfdev.sh`, then the host will be routable at `host.cfdev.sh`.
 Services running on the host must be listening on all network interfaces (not just `localhost`) for apps to access them.
 
 <p class="note"><strong>Note</strong>: Using <code>localhost</code> inside of app containers will not refer to your workstation.</p>
 
-## <a id="memory"></a> How can I customize the memory and CPU count used by the PCF Dev VM?
+## <a id="memory"></a> How can I customize the memory and CPU count used by PCF Dev ?
 
-By default, PCF Dev tries to allocate half of the memory available on your host machine, with a minimum of 3GB and a maximum of 4GB.
+By default, PCF Dev allocates 8GB of memory to run.
 
 To change the allocated memory, run the following command, replacing `NEW-ALLOCATED-MEMORY` with the amount of memory you want to allocate in megabytes:
 <pre class="terminal">$ cf dev start -m NEW-ALLOCATED-MEMORY</pre>
 
-By default, PCF Dev tries to use all physical, non-hyperthreaded host cores. To change this setting, run the following command, replacing DESIRED-NUMBER-OF-CORES with the number of processor cores PCF Dev should use:
+By default, PCF Dev tries to use 4 cores. To change this setting, run the following command, replacing DESIRED-NUMBER-OF-CORES with the number of processor cores PCF Dev should use:
 <pre class="terminal">$ cf dev start -c DESIRED-NUMBER-OF-CORES</pre>
 
 ## <a id="security_groups"></a> How are Application Security Groups (ASGs) configured in PCF Dev?
