@@ -4,7 +4,9 @@ title: Using PCF Dev Behind a Proxy
 owner: PCF Dev
 ---
 
-##<a id="run-behind-proxy"></a> Running PCF Dev Behind an HTTP Proxy
+This topic describes how to use PCF Dev with a proxy.
+
+##<a id="run-behind-proxy"></a> Run PCF Dev Behind an HTTP Proxy
 
 In a restricted network environment, configuring PCF Dev to connect to an HTTP proxy permits app-to-Internet connectivity, access to custom buildpacks, and the use of Docker images from the public Internet.
 
@@ -29,7 +31,7 @@ If PCF Dev needs to use a locally-running HTTP proxy, the proxy must be listenin
 <code>host.cfdev.sh</code>. For a system domain <code>dev.cfdev.sh</code>, address the proxy as <code>host.cfdev.sh</code>, and so on.
 </p>
 
-##<a id="allow-cf-cli-behind-proxy"></a> Using the cf CLI Behind an HTTP Proxy
+##<a id="allow-cf-cli-behind-proxy"></a> Use the cf CLI Behind an HTTP Proxy
 
 You must configure the cf CLI to bypass your HTTP proxy for addresses that end in `local.pcfdev.io`, which is your system domain:
 
@@ -44,7 +46,7 @@ You must configure the cf CLI to bypass your HTTP proxy for addresses that end i
   >> cf login -a http<span>s</span>://api.ldev.cfdev.sh --skip-ssl-validation
   </pre>
 
-## <a id="allow-traffic-behind-proxy"></a> Allowing Application Traffic to Bypass the Proxy
+## <a id="allow-traffic-behind-proxy"></a> Allow Application Traffic to Bypass the Proxy
 
 You can configure your apps to connect to other addresses without using the proxy. For example, you can connect apps to user-provided services on a private network.
 

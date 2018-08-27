@@ -3,14 +3,18 @@ breadcrumb: PCF Dev Documentation
 title: Installing PCF Dev on Microsoft Windows 10
 owner: PCF Dev
 ---
-<p class="note"><strong>Note</strong>: If you would like to run PCF Dev on Windows withouth Hyper-V - please follow these <a href="./install-windows-legacy.html">instructions</a></p>
+
+<p class="note"><strong>Note</strong>: To run PCF Dev on Windows without Hyper-V, see <a href="install-windows.html">Installing PCF Dev on Microsoft Windows 7 and 8</a>.</p>
+
+This topic describes how to install PCF Dev on Windows 10.
+
 ## <a id="prerequisites"></a>Prerequisites
 
 ### <a id="virtualbox"></a>Hyper-V
 
 PCF Dev uses Hyper-V on Windows 10 to run on native hypervisors.
 
-1. Use this tutorial from Microsoft to enable Hyper-V on your machine before starting PCF Dev - https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v
+To enable Hyper-V on your machine before starting PCF Dev, follow the steps in [Install Hyper-V on Windows 10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) in the Microsoft documentation 
 
 ### <a id="cf-cli"></a>Cloud Foundry Command Line Interface
 
@@ -27,7 +31,7 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 ## <a id="install-pcf-dev"></a>Install PCF Dev
 
 1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/).
-1. In PowerShell, install the CF Dev plugin required to run PCF Dev
+1. In PowerShell, install the CF Dev plugin required to run PCF Dev:
 <pre class="terminal">$ cf install-plugin cfdev</pre>
 1. Start PCF Dev:
 <pre class="terminal">$ cf dev start -f <.iso file download></pre>

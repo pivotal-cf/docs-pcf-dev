@@ -16,8 +16,6 @@ TIP: Use 'cf api --skip-ssl-validation' to continue with an insecure API endpoin
 
 PCF Dev comes with a self-signed SSL certificate for its API. The self-signed SSL certificate causes an `Invalid SSL Cert` error when using the cf CLI. To avoid the error, use the `--skip-ssl-validation` option.
 
-
-
 ## <a id="host"></a> How can I connect apps running in PCF Dev to services running on my workstation?
 
 PCF Dev provides a special hostname for addressing the host from inside of application containers.
@@ -31,10 +29,16 @@ Services running on the host must be listening on all network interfaces (not ju
 By default, PCF Dev allocates 8GB of memory to run.
 
 To change the allocated memory, run the following command, replacing `NEW-ALLOCATED-MEMORY` with the amount of memory you want to allocate in megabytes:
-<pre class="terminal">$ cf dev start -m NEW-ALLOCATED-MEMORY</pre>
 
-By default, PCF Dev tries to use 4 cores. To change this setting, run the following command, replacing DESIRED-NUMBER-OF-CORES with the number of processor cores PCF Dev should use:
-<pre class="terminal">$ cf dev start -c DESIRED-NUMBER-OF-CORES</pre>
+```
+cf dev start -m NEW-ALLOCATED-MEMORY
+```
+
+By default, PCF Dev tries to use 4 cores. To change this setting, run the following command, replacing `DESIRED-NUMBER-OF-CORES` with the number of processor cores PCF Dev should use:
+
+```
+cf dev start -c DESIRED-NUMBER-OF-CORES
+```
 
 ## <a id="security_groups"></a> How are Application Security Groups (ASGs) configured in PCF Dev?
 
