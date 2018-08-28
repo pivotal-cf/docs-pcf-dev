@@ -12,7 +12,7 @@ This topic describes how to install PCF Dev on Mac OS X.
 
 PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
 
-1. To install the cf CLI for Mac OS X (64 bit), download it [here](https://cli.run.pivotal.io/stable?release=macosx64&source=github). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
+1. [Download](https://cli.run.pivotal.io/stable?release=macosx64&source=github) the cf CLI for Mac OS X (64 bit). If you previously used the cf CLI v5 Ruby gem, you must uninstall the gem first.
 
 1. Open the `.pkg` file.
 
@@ -29,10 +29,12 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/).
 1. Install the CF Dev plugin required to run PCF Dev:
 <pre class="terminal">$ cf install-plugin cfdev</pre>
-1. Start PCF Dev:
-<pre class="terminal">$ cf dev start -f <.iso file download></pre>
-  It may take several minutes for the PCF Dev virtual machine (VM) and its services to start.
+1. Start PCF Dev. Enter the following command, replacing `.ISO-FILE` with the name of the .iso file you downloaded:
 
+	```
+	cf dev start -f .ISO-FILE
+	```
+  It may take several minutes for the PCF Dev VM and its services to start.
 
 After the **PCF Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
 
