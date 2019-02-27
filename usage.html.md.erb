@@ -10,11 +10,11 @@ This topic describes how to use PCF Dev to target instances, push an application
 
 ## <a id="pcf-dev"></a>Log in to Your PCF Dev Instance
 
-After launching your PCF Dev instance, use the `cf login` command with the `-a` flag to target its API:
+After starting your PCF Dev instance, use the `cf login` command with the `-a` flag to target its API:
 <pre class='terminal'>
 $ cf login -a https<span>:</span>//api.dev.cfdev.sh --skip-ssl-validation
-Email: user
-Password: pass
+Regular User: Email: user / Password: pass
+Admin User: Email: admin / Password: admin
 </pre>
 
 The terminal displays your API system domain when you run `cf dev start`. In most cases, your API system domain is `api.dev.cfdev.sh`, but it may differ slightly depending on your host system configuration.
@@ -33,9 +33,9 @@ For more information about using the cf CLI, see the [Getting Started with the c
 
 ## <a id="marketplace"></a>List Marketplace Services
 
-PCF Dev supports marketplace services, giving developers access to Redis, RabbitMQ, and MySQL.
+PCF Dev supports marketplace services, giving developers access to Spring Cloud Services, Redis, RabbitMQ, and MySQL.
 
-In order to view the list of available services, run `cf marketplace` in a terminal window.
+In order to view the list of available services, run `cf marketplace` in a terminal window. Services that are not started will not appear in marketplace.
 
 <pre class='terminal'>
 $ cf marketplace
@@ -48,6 +48,8 @@ p-rabbitmq   standard     RabbitMQ is a robust and scalable high-performance mul
 p-redis      shared-vm    Redis service to provide a key-value store
 
 </pre>
+
+To undeploy a service run `cf dev stop` and redeploy the services of your choosing.
 
 For more information about using marketplace services, see the [Using Services in PCF Dev](dev-services.html) topic.
 

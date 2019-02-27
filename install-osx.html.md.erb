@@ -29,10 +29,10 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/).
 1. Install the CF Dev plugin required to run PCF Dev:
 <pre class="terminal">$ cf install-plugin cfdev</pre>
-1. Start PCF Dev. Enter the following command, replacing `.FILE` with the name of the .iso or .tgz file you downloaded:
+1. Start PCF Dev. Enter the following command, replacing `<filepath/file>` with the filepath of the .iso or .tgz file you downloaded:
 
 	```
-	cf dev start -f .FILE
+	cf dev start -f <filepath/file>
 	```
   It may take several minutes for the PCF Dev VM and its services to start.
 
@@ -41,12 +41,12 @@ After the **PCF Dev is now running** banner appears, you can [log in](./usage.ht
 
 ## <a id="stopping"></a>Stop PCF Dev
 
-To temporarily stop PCF Dev, run the following command:
+To stop PCF Dev, run the following command:
 
 <pre class="terminal">$ cf dev stop</pre>
 
 ## <a id="uninstall"></a>Uninstall PCF Dev
 
-To remove CF Dev, run the following command:
+To remove PCF Dev, run the following command:
 
 <pre class="terminal">$ cf uninstall-plugin cfdev</pre>

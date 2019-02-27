@@ -3,9 +3,6 @@ breadcrumb: PCF Dev Documentation
 title: Using Spring Cloud Services in PCF Dev
 owner: PCF Dev
 ---
-
-<p class="note"><strong>Note</strong>: This functionality is not supported in the current version of PCF Dev. Use PCF Dev v0.30 for PCF v1.11 or earlier for this functionality.</p>
-
 This topic describes how to deploy and use the [Spring Cloud® Services (SCS)](http://docs.pivotal.io/spring-cloud-services/) suite within PCF Dev.
 
 When configured to use SCS, PCF Dev provides the following services: 
@@ -33,6 +30,18 @@ Waiting for services to start...
 </pre>
 
 <p class="note"><strong>Note</strong>: Due to the increased demands of SCS, PCF Dev allocates more memory than usual.</p>
+
+Alternatively, you can deploy SCS after start:
+
+<pre class='terminal'>
+$ cf dev deploy-service scs
+Deploying scs...
+OK
+
+</pre>
+
+To undeploy SCS, stop PCF Dev:
+<pre class="terminal">$ cf dev stop</pre>
 
 
 ## <a id='use-scs'></a>Use Spring Cloud Services ##
@@ -118,7 +127,7 @@ To create a service instance of the Config Server using the cook sample app, per
 
 ## <a id='manage-scs'></a>Manage Spring Cloud Services ##
 
-To manage an SCS instance within PCF Dev, navigate to [Apps Manager](https://apps.local.pcfdev.io) and log in using the admin credentials. Instances of the SCS services are displayed in the **instances** space of the **p-spring-cloud-services** org. See the [Use Apps Manager](./usage.html#apps-manager) topic for more information.
+To manage an SCS instance within PCF Dev, navigate to [Apps Manager](https://apps.local.pcfdev.io) and log in using the admin credentials (admin/admin). Instances of the SCS services are displayed in the **instances** space of the **p-spring-cloud-services** org. See the [Use Apps Manager](./usage.html#apps-manager) topic for more information.
 
  <img src="images/scs-apps-manager.png" alt="SCS Apps Manager"/>
 

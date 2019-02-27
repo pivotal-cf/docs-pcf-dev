@@ -8,15 +8,16 @@ owner: PCF Dev
 
 This guide describes how to install and use PCF Dev, a fully featured Pivotal Cloud Foundry (PCF) installation that runs on your workstation's native hypervisor. 
 
-PCF Dev enables application developers to test out their app on a local PCF deployment, and enables operators to test out features of PCF in their local environment.
+PCF Dev enables application developers to test and debug their app on a local PCF deployment, and enables operators to test out features of PCF in their local environment.
 
-PCF Dev includes Pivotal Application Service (PAS), Redis, RabbitMQ, and MySQL. It also supports all Cloud Foundry Command Line Interface (cf CLI) functionality. See the [Comparing PCF Dev to Pivotal Cloud Foundry](#comparison-to-pcf) table below for more product details.
+PCF Dev includes Pivotal Application Service (PAS), Spring Cloud Services, Redis, RabbitMQ, and MySQL. It also supports all Cloud Foundry Command Line Interface (cf CLI) functionality. See the [Comparing PCF Dev to Pivotal Cloud Foundry](#comparison-to-pcf) table below for more product details.
 
 ## <a id="prerequisites"></a>Prerequisites ##
 
 * The latest version of the [cf CLI](http://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html): Use the cf CLI to push and scale apps.
 * You must have an Internet connection for DNS. 
 * At least 8 GB of available memory on your host machine. Pivotal recommends running on a host system with at least 16 GB of total RAM.
+* Virtualization permissions
 
 ## <a id="installing"></a>Installing PCF Dev ##
 
@@ -46,8 +47,8 @@ PCF Dev mirrors [PCF](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html)
 | Space required                                                            | 100 GB                      | 100GB+                                | 50GB+         |
 | Memory required                                                           | 8 GB                       | 50GB+                                 | variable      |
 | Deployment                                                                | `cf dev start`             | Ops Manager                           | `<%= vars.bosh_deploy  %>` |
-| Estimated time-to-deploy                                                  | 60+ Minutes                 | Hour+                                 | Hour+         |
-| Out-of-the-Box Services                                                   | Redis<br>MySQL<br>RabbitMQ | Redis<br>MySQL<br>RabbitMQ<br>GemFire | N/A           |
+| Estimated time-to-deploy                                                  | 30 Minutes                 | Hour+                                 | Hour+         |
+| Out-of-the-Box Services                                                   | Redis<br>MySQL<br>RabbitMQ<br>Spring Cloud | Redis<br>MySQL<br>RabbitMQ<br>GemFire | N/A           |
 | PAS                                                           | ✓                          | ✓                                     | ✓             |
 | Logging/Metrics                                                           | ✓                          | ✓                                     | ✓             |
 | Routing                                                                   | ✓                          | ✓                                     | ✓             |
