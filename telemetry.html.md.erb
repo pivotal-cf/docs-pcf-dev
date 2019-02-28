@@ -39,11 +39,23 @@ The event data point is collected to understand how the CLI is used. We only cap
 
 The following user events are captured:
 
-* **Begin Start**: When a user runs `cf dev start -f .FILE`.
-* **Start Finish**: When `cf dev start` finishes starting up.
-* **Error**: When a user encounters an error while using the tool.
-* **Stop**: When a user runs `cf dev stop`.
-* **Uninstall** When a user uninstalls the cf CLI plugin by running `cf plugin-uninstall dev`.
+* **Start Begin**: When a user runs `$ cf dev start`
+* **Start End**: When cf dev is finished starting
+* **Error**: When a user encounters an error while using the tool
+* **Stop**: When a user runs `$ cf dev stop`
+* **Uninstall**: When a user uninstalls the cf cli plugin by running `$ cf uninstall-plugin cfdev`
+* **App Created**: When a user pushes an app using `$ cf push <app name>`
+* **Route Created**: When a user creates a route using `$ cf create-route <route name>`
+* **Deployed Service**: When a user deploys a service after start using `$ cf deploy-service <service name>`
+* **Service Created**: When a user creates a service instance using `$ cf create-service <service plan> <service instance name>`
+* **User Provided Service Created**: When a user creates a user provided service using `$ cf create-user-provided-service <service name>`
+* **App Bound To Service**: When a user binds an app to a service using `$ cf bind-service <app name> <service instance name>`
+* **App Restage**: When a user restages an app using `$ cf restage <app name>`
+* **Org Created**: When a user creates an org using `$ cf create-org <org name>`
+* **Space Created**: When a user creates a space using `$ cf create-space <space name>`
+* **User Created**: When a user creates a user using `$ cf create-user <username> <password>`
+* **Bosh**: When a user accesses the BOSH director using `$ cf dev bosh`
+* **Telemetry Off**: When a user turns telemetry off using `$ cf dev telemetry --off`
 
 ##<a id='Collection of Data'></a>Collection of Data
 

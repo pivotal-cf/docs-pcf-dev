@@ -6,7 +6,7 @@ owner: PCF Dev
 
 <p class="note"><strong>Note</strong>: If you are using PCF Dev v0.30 or earlier, see <a href="configuring-legacy.html">Configuring PCF Dev (Legacy)</a>.</p>
 
-PCF Dev supports several different configurations. This topic describes how to start PCF Dev with specific memory usage, core count usage, custom startup .iso files, and Cloud Foundry services, among others. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates. 
+PCF Dev supports several different configurations. This topic describes how to start PCF Dev with specific memory usage, core count usage, custom startup .iso and .tgz files, and Cloud Foundry services, among others. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates. 
 
 ## <a id="start-options"></a>Configure PCF Dev
 
@@ -15,8 +15,11 @@ The `cf dev start` command supports the following configuration-specific flags a
 | flag |  description |
 |---|---|---|---|
 | `-c number-of-cores`  | Specify the number of processor cores used by VM. Default: 4. |
+| `-f <filepath/file>`  | Specify path to .dev file containing bosh & cf bits to start with. |
 | `-m  memory-in-mb` |  Specify memory to allocate for VM. Default: 8 GB. |
 | `-r registry1,registry2,...`  | Specify Docker registries that PCF Dev will use without SSL validation. Use `host:port` format. |
+| `-s service1,service2,...`  | Specify services to start with. Accepts `-scs,redis,mysql,rabbitmq,all`. Default: none. You can deploy services ad hoc after start.|
+
 
 
 ### <a id="insecure-docker-registries"></a>Insecure Docker Registries

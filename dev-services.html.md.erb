@@ -4,15 +4,15 @@ title: Using Services in PCF Dev
 owner: PCF Dev
 ---
 
-This topic describes how to create, delete, update, and bind marketplace services in PCF Dev.
+This topic describes how to deploy, create, delete, update, and bind marketplace services in PCF Dev.
 
 PCF Dev provides access to three marketplace services: Redis, RabbitMQ, and MySQL. You can create instances of these services and bind them to your applications to generate and deliver credentials to the applications.
 
-<p class="note"><strong>Note</strong>: To manage and bind service instances you must be running the PCF Dev .iso and you must be logged in to your PCF Dev instance. Complete the steps in the <a href="usage.html">Using PCF Dev</a> topic before following the procedures below.</p>
+<p class="note"><strong>Note</strong>: To manage and bind service instances you must be running the PCF Dev .iso or .tgz and you must be logged in to your PCF Dev instance. Complete the steps in the <a href="usage.html">Using PCF Dev</a> topic before following the procedures below.</p>
 
 ## <a id='marketplace'></a> List Marketplace Services ##
 
-Run the command `cf marketplace` to display information about the marketplace services provided by PCF Dev.
+Run the command `cf marketplace` to display information about the marketplace services available in PCF Dev. Services that are not started will not appear in marketplace.
 
 <pre class='terminal'>
 $ cf marketplace
@@ -25,6 +25,28 @@ p-rabbitmq   standard     RabbitMQ is a robust and scalable high-performance mul
 p-redis      shared-vm    Redis service to provide a key-value store
 
 </pre>
+
+## <a id='marketplace'></a> Deploy Services ##
+
+<p class="note"><strong>Note</strong>: Ad hoc service deployment requires PCF Dev v1.0.0+</p>
+
+Run the command `cf dev deploy-service SERVICE NAME` to deploy a service.
+
+<pre class='terminal'>
+$ cf dev deploy-service redis
+Deploying redis...
+OK
+
+</pre>
+
+PCF Dev supports marketplace services, giving developers access to Spring Cloud Services, Redis, RabbitMQ, and MySQL.
+
+| flag |  description |
+|---|---|---|---|
+| `scs`  | Server-side components for Spring Cloud projects. |
+| `redis` |  Redis service provides a key-value store. |
+| `rabbitmq`  | RabbitMQ is a robust and scalable high-performance multi-protocol messaging broker. |
+| `mysql`  | MySQL databases on demand. |
 
 ## <a id='create'></a>Create Service Instances ##
 
