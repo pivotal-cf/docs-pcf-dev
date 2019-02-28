@@ -4,6 +4,8 @@ title: Installing PCF Dev on Mac OS X
 owner: PCF Dev
 ---
 
+<strong><%= modified_date %></strong>
+
 This topic describes how to install PCF Dev on Mac OS X.
 
 ## <a id="prerequisites"></a>Prerequisites
@@ -29,10 +31,10 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/).
 1. Install the CF Dev plugin required to run PCF Dev:
 <pre class="terminal">$ cf install-plugin cfdev</pre>
-1. Start PCF Dev. Enter the following command, replacing `<filepath/file>` with the filepath of the .iso or .tgz file you downloaded:
+1. Start PCF Dev. Enter the following command, replacing `FILEPATH/FILE` with the filepath of the .iso or .tgz file you downloaded:
 
 	```
-	cf dev start -f <filepath/file>
+	cf dev start -f FILEPATH/FILE
 	```
   It may take several minutes for the PCF Dev VM and its services to start.
 

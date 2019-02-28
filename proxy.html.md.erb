@@ -4,6 +4,8 @@ title: Using PCF Dev Behind a Proxy
 owner: PCF Dev
 ---
 
+<strong><%= modified_date %></strong>
+
 This topic describes how to use PCF Dev with a proxy.
 
 ##<a id="run-behind-proxy"></a> Run PCF Dev Behind an HTTP Proxy
@@ -53,5 +55,4 @@ You can configure your apps to connect to other addresses without using the prox
 * Set the `NO_PROXY` environment variable to a comma-separated list of hosts:
    <pre class="terminal">
    $ cf set-env APP\_NAME NO\_PROXY=192.0.2.54,198.51.100.34
-   </pre>	
-	
+   </pre>

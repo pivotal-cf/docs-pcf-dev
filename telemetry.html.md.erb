@@ -4,25 +4,27 @@ title: Telemetry in PCF Dev
 owner: PCF Dev
 ---
 
+<strong><%= modified_date %></strong>
+
 This topic describes telemetry in PCF Dev.
 
-## <a id='Overview'></a>Overview 
+## <a id='Overview'></a>Overview
 
-Pivotal uses telemetry to help us understand how PCF Dev is being used. We value our users privacy, and all telemetry is completely anonymous. In addition, users must opt in to telemetry collection from the CF Dev tool. 
+Pivotal uses telemetry to help us understand how PCF Dev is being used. We value our users privacy, and all telemetry is completely anonymous. In addition, users must opt in to telemetry collection from the CF Dev tool.
 
-There is no way for anyone with the telemetry to identify who is using the CF Dev tool. In an effort to make our data as transparent as possible, we will be publishing aggregated anonymous usage data to this topic periodically to help our user community understand how the tool is being used. 
+There is no way for anyone with the telemetry to identify who is using the CF Dev tool. In an effort to make our data as transparent as possible, we will be publishing aggregated anonymous usage data to this topic periodically to help our user community understand how the tool is being used.
 
-## <a id='opt-in'></a>Opt In to Telemetry Collection 
+## <a id='opt-in'></a>Opt In to Telemetry Collection
 
-When you run `cf dev start` for the first time, you will be prompted to opt in to capturing analytics. 
+When you run `cf dev start` for the first time, you will be prompted to opt in to capturing analytics.
 
 You can turn telemetry on or off at any time by by running `cf dev telemetry --on/off`.
 
-## <a id='Telemetry Data'></a>Telemetry Data 
+## <a id='Telemetry Data'></a>Telemetry Data
 
 Pivotal collects anonymous usage telemetry in order to better understand what features are most frequently used. This will in turn help us improve those features, or provide new features, moving forward.
 
-Every usage event that we capture includes the following eight data points:   
+Every usage event that we capture includes the following eight data points:
 
 * **Event**: For more information about the event data point, see [Event Data Point](#event-data).
 * **Data**: Anonymous metadata associated with events.
@@ -35,27 +37,27 @@ We store this data locally until we push it to our servers for storage and analy
 
 ### <a id='event-data'></a>Event Data Point
 
-The event data point is collected to understand how the CLI is used. We only capture events if they are entered by a user or when they encounter an error with the tool. 
+The event data point is collected to understand how the CLI is used. We only capture events if they are entered by a user or when they encounter an error with the tool.
 
 The following user events are captured:
 
-* **Start Begin**: When a user runs `$ cf dev start`
-* **Start End**: When cf dev is finished starting
+* **Start Begin**: When a user runs `cf dev start`
+* **Start End**: When `cf dev` finishes starting up
 * **Error**: When a user encounters an error while using the tool
-* **Stop**: When a user runs `$ cf dev stop`
-* **Uninstall**: When a user uninstalls the cf cli plugin by running `$ cf uninstall-plugin cfdev`
-* **App Created**: When a user pushes an app using `$ cf push <app name>`
-* **Route Created**: When a user creates a route using `$ cf create-route <route name>`
-* **Deployed Service**: When a user deploys a service after start using `$ cf deploy-service <service name>`
-* **Service Created**: When a user creates a service instance using `$ cf create-service <service plan> <service instance name>`
-* **User Provided Service Created**: When a user creates a user provided service using `$ cf create-user-provided-service <service name>`
-* **App Bound To Service**: When a user binds an app to a service using `$ cf bind-service <app name> <service instance name>`
-* **App Restage**: When a user restages an app using `$ cf restage <app name>`
-* **Org Created**: When a user creates an org using `$ cf create-org <org name>`
-* **Space Created**: When a user creates a space using `$ cf create-space <space name>`
-* **User Created**: When a user creates a user using `$ cf create-user <username> <password>`
-* **Bosh**: When a user accesses the BOSH director using `$ cf dev bosh`
-* **Telemetry Off**: When a user turns telemetry off using `$ cf dev telemetry --off`
+* **Stop**: When a user runs `cf dev stop`
+* **Uninstall**: When a user uninstalls the cf CLI plugin by running `cf uninstall-plugin cfdev`
+* **App Created**: When a user pushes an app using `cf push APP-NAME`
+* **Route Created**: When a user creates a route using `cf create-route ROUTE-NAME`
+* **Deployed Service**: When a user deploys a service after start using `cf deploy-service SERVICE-NAME`
+* **Service Created**: When a user creates a service instance using `cf create-service SERVICE-PLAN SERVICE-INSTANCE-NAME`
+* **User Provided Service Created**: When a user creates a user provided service using `cf create-user-provided-service SERVICE-NAME`
+* **App Bound To Service**: When a user binds an app to a service using `$ cf bind-service APP-NAME SERVICE-INSTANCE-NAME`
+* **App Restage**: When a user restages an app using `cf restage APP-NAME`
+* **Org Created**: When a user creates an org using `cf create-org ORG-NAME`
+* **Space Created**: When a user creates a space using `cf create-space SPACE-NAME`
+* **User Created**: When a user creates a user using `cf create-user USERNAME PASSWORD`
+* **Bosh**: When a user accesses the BOSH director using `cf dev bosh`
+* **Telemetry Off**: When a user turns telemetry off using `cf dev telemetry --off`
 
 ##<a id='Collection of Data'></a>Collection of Data
 

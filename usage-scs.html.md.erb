@@ -3,9 +3,12 @@ breadcrumb: PCF Dev Documentation
 title: Using Spring Cloud Services in PCF Dev
 owner: PCF Dev
 ---
+
+<strong><%= modified_date %></strong>
+
 This topic describes how to deploy and use the [Spring Cloud® Services (SCS)](http://docs.pivotal.io/spring-cloud-services/) suite within PCF Dev.
 
-When configured to use SCS, PCF Dev provides the following services: 
+When configured to use SCS, PCF Dev provides the following services:
 
 * [Config Server](http://docs.pivotal.io/spring-cloud-services/common/config-server/index.html)
 * [Service Registry](http://docs.pivotal.io/spring-cloud-services/common/service-registry/index.html)
@@ -31,7 +34,7 @@ Waiting for services to start...
 
 <p class="note"><strong>Note</strong>: Due to the increased demands of SCS, PCF Dev allocates more memory than usual.</p>
 
-Alternatively, you can deploy SCS after start:
+Alternatively, you can deploy SCS after start by running the following command:
 
 <pre class='terminal'>
 $ cf dev deploy-service scs
@@ -53,7 +56,7 @@ To create a service instance of the Config Server using the cook sample app, per
 1. In a terminal window, navigate to the root repository of the cook sample app.
 
 1. To compile the cook sample app, run one of the following commands:
-  * Mac OS X or Linux: `./gradlew build` 
+  * Mac OS X or Linux: `./gradlew build`
   * Windows: `gradlew.bat build`
 
 	For example, the output on Mac OS X appears as follows:
@@ -121,14 +124,12 @@ To create a service instance of the Config Server using the cook sample app, per
 	$ cf push -p ./build/libs/cook-0.0.1-SNAPSHOT.jar
 	</pre>
 
-1. Navigate to [http://cookie.local.pcfdev.io/restaurant](http://cookie.local.pcfdev.io/restaurant) to view the cook app. 
+1. Navigate to [http://cookie.local.pcfdev.io/restaurant](http://cookie.local.pcfdev.io/restaurant) to view the cook app.
 
 <p class="note"><strong>Note</strong>: PCF Dev uses an unverified certificate. When a PCF Dev SCS service makes use of an unverified certificate, the pushed apps must have the environment variable <code>CF_TARGET</code> set to the api URL of the PCF Dev instance: <code>https://api.local.pcfdev.io</code>. PCF Dev does this by default for all pushed apps.</p>
 
 ## <a id='manage-scs'></a>Manage Spring Cloud Services ##
 
-To manage an SCS instance within PCF Dev, navigate to [Apps Manager](https://apps.local.pcfdev.io) and log in using the admin credentials (admin/admin). Instances of the SCS services are displayed in the **instances** space of the **p-spring-cloud-services** org. See the [Use Apps Manager](./usage.html#apps-manager) topic for more information.
+To manage an SCS instance within PCF Dev, navigate to [Apps Manager](https://apps.local.pcfdev.io) and log in using the admin credentials, `admin/admin`. Instances of the SCS services are displayed in the **instances** space of the **p-spring-cloud-services** org. See the [Use Apps Manager](./usage.html#apps-manager) topic for more information.
 
  <img src="images/scs-apps-manager.png" alt="SCS Apps Manager"/>
-
-

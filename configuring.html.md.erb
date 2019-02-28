@@ -4,29 +4,29 @@ title: Configuring PCF Dev
 owner: PCF Dev
 ---
 
+<strong><%= modified_date %></strong>
+
 <p class="note"><strong>Note</strong>: If you are using PCF Dev v0.30 or earlier, see <a href="configuring-legacy.html">Configuring PCF Dev (Legacy)</a>.</p>
 
-PCF Dev supports several different configurations. This topic describes how to start PCF Dev with specific memory usage, core count usage, custom startup .iso and .tgz files, and Cloud Foundry services, among others. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates. 
+PCF Dev supports several different configurations. This topic describes how to start PCF Dev with specific memory usage, core count usage, custom startup .iso and .tgz files, and Cloud Foundry services, among others. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates.
 
 ## <a id="start-options"></a>Configure PCF Dev
 
-The `cf dev start` command supports the following configuration-specific flags at startup: 
+The `cf dev start` command supports the following configuration-specific flags at startup:
 
 | flag |  description |
 |---|---|---|---|
 | `-c number-of-cores`  | Specify the number of processor cores used by VM. Default: 4. |
-| `-f <filepath/file>`  | Specify path to .dev file containing bosh & cf bits to start with. |
+| `-f filepath/file`  | Specify the path to the .dev file containing the `bosh` and `cf` bits to start with. |
 | `-m  memory-in-mb` |  Specify memory to allocate for VM. Default: 8 GB. |
-| `-r registry1,registry2,...`  | Specify Docker registries that PCF Dev will use without SSL validation. Use `host:port` format. |
+| `-r registry1,registry2,...`  | Specify Docker registries for PCF Dev to use without SSL validation. Use `host:port` format. |
 | `-s service1,service2,...`  | Specify services to start with. Accepts `-scs,redis,mysql,rabbitmq,all`. Default: none. You can deploy services ad hoc after start.|
-
-
 
 ### <a id="insecure-docker-registries"></a>Insecure Docker Registries
 
-You can push applications to PCF Dev from Docker images. 
+You can push applications to PCF Dev from Docker images.
 
-By default, these images must be hosted on Docker Hub. Use the `-r` flag to specify Docker registries that PCF Dev should allow you to push from, even if those registries do not have valid SSL certificates. 
+By default, these images must be hosted on Docker Hub. Use the `-r` flag to specify Docker registries that PCF Dev should allow you to push from, even if those registries do not have valid SSL certificates.
 
 The following example shows how to start PCF Dev and push an app using an existing insecure Docker registry on your host running on port 5000:
 
