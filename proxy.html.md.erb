@@ -14,7 +14,10 @@ In a restricted network environment, configuring PCF Dev to connect to an HTTP p
 
 To run PCF Dev behind a proxy, set the standard proxy environment variables for your platform before you start PCF Dev:
 
-* Using Mac OS X or Linux:
+<p class="note"><strong>Note</strong>:
+Proxy Support is not currently supported on Linux. That means the environment variables `HTTP_PROXY, HTTPS_PROXY, NO_PROXY`, are not fully supported. Proxy Support on Linux is only supported in PCF Dev v0.30 or earlier.</p>
+
+* Using Mac OS X:
   <pre class="terminal">
   $ HTTP\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
   > HTTPS\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
@@ -37,7 +40,7 @@ If PCF Dev needs to use a locally-running HTTP proxy, the proxy must be listenin
 
 You must configure the cf CLI to bypass your HTTP proxy for addresses that end in `local.pcfdev.io`, which is your system domain:
 
-* For Mac OS X or Linux:
+* For Mac OS X:
   <pre class="terminal">
   $ export NO\_PROXY=.dev.cfdev.sh,dev.cfdev.sh,$NO_PROXY
   $ cf login -a http<span>s</span>://api.dev.cfdev.sh --skip-ssl-validation
