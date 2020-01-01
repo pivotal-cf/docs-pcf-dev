@@ -25,7 +25,7 @@ This topic describes how to install <%= vars.platform_name %> Dev on Windows 7 a
 
 1. To install the cf CLI for Windows (64 bit), download it [here](https://cli.run.pivotal.io/stable?release=windows64&source=github-rel). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
 
-1. Unpack the zip file and open the `cf_installer` application.
+1. Unpack the ZIP file and open the `cf_installer` app.
 
 1. Follow the installer wizard to install.
 
@@ -36,37 +36,49 @@ This topic describes how to install <%= vars.platform_name %> Dev on Windows 7 a
 
 1. Download <%= vars.platform_name %> Dev v0.30 from the [Pivotal Network](https://network.pivotal.io/).
 
-1. Unzip the downloaded zip file.
+1. Unzip the downloaded ZIP file.
 
 1. Using PowerShell, navigate to the directory containing the unzipped plugin file.
 
-1. Install the <%= vars.platform_name %> Dev plugin:
-<pre class="terminal"> >> .\pcfdev-VERSION-windows.exe</pre>
+1. Install the <%= vars.platform_name %> Dev plugin by running
 
-1. Start <%= vars.platform_name %> Dev:
-<pre class="terminal"> >> cf dev start</pre>
-  It may take several minutes for the <%= vars.platform_name %> Dev virtual machine (VM) and its services to start.
-	<p class="note"><strong>Note</strong>: You may be prompted to continue if your available memory is less than the recommended amount.</p>
+	```
+	.\pcfdev-VERSION-windows.exe
+	```
 
-1. If prompted, enter your API token. This token is required for authentication and appears at the bottom of the **Edit Profile** tab in your [Pivotal Network account](https://network.pivotal.io/users/dashboard/edit-profile).
-<p class="note"><strong>Note</strong>: The API token does not appear in the terminal session when you enter it.</p>
+1. Start <%= vars.platform_name %> Dev by running:
 
-After the **<%= vars.platform_name %> Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
+	```
+	cf dev start
+	```
+  	It may take several minutes for the <%= vars.platform_name %> Dev virtual machine (VM) and its services to start.
+	<p class="note"><strong>Note:</strong> You may be prompted to continue if your available memory is less than the recommended amount.</p>
+
+1. If prompted, enter your API token. This token is required for authentication and appears at the bottom of the **Edit Profile** tab in your Pivotal Network account.
+	<p class="note"><strong>Note:</strong> The API token does not appear in the terminal session when you enter it.</p>
+
+After the **<%= vars.platform_name %> Dev is now running** banner appears, you can log in. For more information about logging in, see the [Log In to Your <%= vars.platform_name %> Dev Instance](./usage.html#pcf-dev) section of the _Using <%= vars.platform_name %> Dev_ topic.
 
 
-## <a id="stopping"></a>Stop <%= vars.platform_name %> Dev
+## <a id="stopping"></a> Stop <%= vars.platform_name %> Dev
 
-To temporarily stop <%= vars.platform_name %> Dev, run the following command:
+To temporarily stop <%= vars.platform_name %> Dev, run:
 
-<pre class="terminal"> >> cf dev stop</pre>
+```
+cf dev stop
+```
 
 
-## <a id="uninstall"></a>Uninstall <%= vars.platform_name %> Dev
+## <a id="uninstall"></a> Uninstall <%= vars.platform_name %> Dev
 
-To destroy the <%= vars.platform_name %> Dev VM, run the following command:
+To destroy the <%= vars.platform_name %> Dev VM, run:
 
-<pre class="terminal"> >> cf dev destroy</pre>
+```
+cf dev destroy
+```
 
-To remove the <%= vars.platform_name %> Dev, run the following command:
+To remove the <%= vars.platform_name %> Dev, run:
 
-<pre class="terminal"> >> cf uninstall-plugin pcfdev</pre>
+```
+cf uninstall-plugin pcfdev
+```

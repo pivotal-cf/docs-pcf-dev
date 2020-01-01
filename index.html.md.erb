@@ -8,9 +8,9 @@ owner: Pivotal Platform Dev
 
 This guide describes how to install and use <%= vars.platform_name %> Dev, a fully-featured <%= vars.platform_name %> installation that runs on your workstation's native hypervisor.
 
-<%= vars.platform_name %> Dev enables application developers to test and debug their app on a local <%= vars.platform_name %> deployment, and enables operators to test out features of <%= vars.platform_name %> in their local environment.
+<%= vars.platform_name %> Dev enables app developers to test and debug their app on a local <%= vars.platform_name %> deployment, and enables operators to test out features of <%= vars.platform_name %> in their local environment.
 
-<%= vars.platform_name %> Dev includes Pivotal Application Service (PAS), Spring Cloud Services, Redis, RabbitMQ, and MySQL. It also supports all Cloud Foundry Command Line Interface (cf CLI) functionality. See the [Comparing <%= vars.platform_name %> Dev to <%= vars.platform_name %>](#comparison-to-pcf) table below for more product details.
+<%= vars.platform_name %> Dev includes Pivotal Application Service (PAS), Spring Cloud Services, Redis, RabbitMQ, and MySQL. It also supports all Cloud Foundry Command Line Interface (cf CLI) functionality. For more product details, see [Comparing <%= vars.platform_name %> Dev to <%= vars.platform_name %>](#comparison-to-pcf).
 
 
 ## <a id="prerequisites"></a> Prerequisites
@@ -18,35 +18,35 @@ This guide describes how to install and use <%= vars.platform_name %> Dev, a ful
 Before you can install <%= vars.platform_name %> Dev, you must have:
 
 * The latest version of the [cf CLI](http://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html): Use the cf CLI to push and scale apps.
-* You must have an Internet connection for DNS.
-* At least 8 GB of available memory on your host machine. Pivotal recommends running on a host system with at least 16 GB of total RAM.
+* An Internet connection for DNS.
+* At least 8&nbsp;GB of available memory on your host machine. Pivotal recommends running on a host system with at least 16&nbsp;GB of total RAM.
 * Virtualization permissions.
 
 
 ## <a id="installing"></a> Installing <%= vars.platform_name %> Dev
 
-* <a href="./install-osx.html">Installing <%= vars.platform_name %> Dev on Mac OS X</a>
-* <a href="./install-windows.html">Installing <%= vars.platform_name %> Dev on Microsoft Windows</a>
-* <a href="./install-linux.html">Installing <%= vars.platform_name %> Dev on Linux</a>
+* [Installing <%= vars.platform_name %> Dev on Mac OS X](./install-osx.html)
+* [Installing <%= vars.platform_name %> Dev on Microsoft Windows](./install-windows.html)
+* [Installing <%= vars.platform_name %> Dev on Linux](./install-linux.html)
 
 
 ## <a id="using-pcf-dev"></a> Configuring and Using <%= vars.platform_name %> Dev
 
-* <a href="./configuring.html">Configuring <%= vars.platform_name %> Dev</a>
-* <a href="./usage.html">Using <%= vars.platform_name %> Dev</a>
-* <a href="./dev-services.html">Using Services in <%= vars.platform_name %> Dev</a>
-* <a href="./usage-scs.html">Using Spring Cloud Services in <%= vars.platform_name %> Dev</a>
-* <a href="./proxy.html">Using <%= vars.platform_name %> Dev Behind a Proxy</a>
-* <a href="./work-offline.html">Using <%= vars.platform_name %> Dev Offline</a>
-* <a href="./import-ova.html">Using a Local OVA with <%= vars.platform_name %> Dev</a>
-* <a href="./aws.html"><%= vars.platform_name %> Dev on AWS</a>
-* <a href="./telemetry.html">Telemetry</a>
-* <a href="./faq.html">Frequently Asked Questions</a>
+* [Configuring <%= vars.platform_name %> Dev](./configuring.html)
+* [Using <%= vars.platform_name %> Dev](./usage.html)
+* [Using Services in <%= vars.platform_name %> Dev](./dev-services.html)
+* [Using Spring Cloud Services in <%= vars.platform_name %> Dev](./usage-scs.html)
+* [Using <%= vars.platform_name %> Dev Behind a Proxy](./proxy.html)
+* [Using <%= vars.platform_name %> Dev Offline](./work-offline.html)
+* [Using a Local OVA with <%= vars.platform_name %> Dev](./import-ova.html)
+* [<%= vars.platform_name %> Dev on AWS](./aws.html)
+* [Telemetry](./telemetry.html)
+* [Frequently Asked Questions](./faq.html)
 
 
 ## <a id="comparison-to-pcf"></a> Comparing <%= vars.platform_name %> Dev to <%= vars.platform_name %>
 
-<%= vars.platform_name %> Dev mirrors [<%= vars.platform_name %>](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html) in its key product offerings. If an app runs on <%= vars.platform_name %> Dev, it runs on <%= vars.platform_name %> with no modification in almost all cases. Review the table below for key product details.
+<%= vars.platform_name %> Dev mirrors [<%= vars.platform_name %>](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html) in its key product offerings. If an app runs on <%= vars.platform_name %> Dev, it runs on <%= vars.platform_name %> with no modification in almost all cases. For key product details, see the table below:
 
 |     | <%= vars.platform_name %> Dev | <%= vars.platform_name %>  | Cloud Foundry |
 | --- | ----------------------------- | ---------------------------| ------------- |
@@ -66,8 +66,8 @@ Before you can install <%= vars.platform_name %> Dev, you must have:
 | User-provided services | ✓ | ✓ | ✓ |
 | High availability |   | ✓ | ✓ |
 | Integration with third-party authorization |   | ✓ | ✓ |
-| BOSH Director<br>(i.e., can perform additional BOSH deployments) | ✓ | ✓ | ✓ |
-| Day two lifecycle operations<br>(e.g., rolling upgrades, security patches) |   | ✓ | ✓ |
+| BOSH Director<br>(can perform additional BOSH deployments) | ✓ | ✓ | ✓ |
+| Day two lifecycle operations<br>(such as rolling upgrades, security patches) |   | ✓ | ✓ |
 | Ops Manager |   | ✓ |   |
 | Apps Manager | ✓ | ✓ |   |
 | Tile support |   | ✓ |   |

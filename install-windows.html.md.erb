@@ -17,7 +17,7 @@ This topic describes how to install <%= vars.platform_name %> Dev on Windows 10.
 
 <%= vars.platform_name %> Dev uses Hyper-V on Windows 10 to run on native hypervisors.
 
-To enable Hyper-V on your machine before starting <%= vars.platform_name %> Dev, follow the steps in [Install Hyper-V on Windows 10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) in the Microsoft documentation
+To enable Hyper-V on your machine before starting <%= vars.platform_name %> Dev, follow the steps in [Install Hyper-V on Windows 10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) in the Microsoft documentation.
 
 ### <a id="cf-cli"></a> Cloud Foundry Command Line Interface
 
@@ -36,29 +36,36 @@ To enable Hyper-V on your machine before starting <%= vars.platform_name %> Dev,
 
 1. Download the latest version of <%= vars.platform_name %> Dev from the [Pivotal Network](https://network.pivotal.io/).
 
-1. In PowerShell, install the CF Dev plugin required to run <%= vars.platform_name %> Dev:
-<pre class="terminal">$ cf install-plugin cfdev</pre>
+1. In PowerShell, install the CF Dev plugin required to run <%= vars.platform_name %> Dev by running:
+
+	```
+	cf install-plugin cfdev
+	```
 
 1. Start <%= vars.platform_name %> Dev. Enter the following command, replacing `FILEPATH/FILE` with the location and name of the .iso or .tgz file you downloaded:
 
 	```
 	cf dev start -f FILEPATH/FILE
 	```
-  It may take several minutes for the <%= vars.platform_name %> Dev VM and its services to start.
-  <p class="note"><strong>Note</strong>: You must run PowerShell in Administrator mode with <%= vars.platform_name %> Dev.</p>
+  	Where `FILEPATH/FILE` is the filepath of the .iso or .tgz file you downloaded. It may take several minutes for the <%= vars.platform_name %> Dev VM and its services to start.
+  	<p class="note"><strong>Note:</strong> You must run PowerShell in Administrator mode with <%= vars.platform_name %> Dev.</p>
 
-After the **<%= vars.platform_name %> Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
+After the **<%= vars.platform_name %> Dev is now running** banner appears, you can log in. For more information about logging in, see the [Log In to Your <%= vars.platform_name %> Dev Instance](./usage.html#pcf-dev) section of the _Using <%= vars.platform_name %> Dev_ topic.
 
 
 ## <a id="stopping"></a> Stop <%= vars.platform_name %> Dev
 
-To stop <%= vars.platform_name %> Dev, run the following command:
+To stop <%= vars.platform_name %> Dev, run:
 
-<pre class="terminal">$ cf dev stop</pre>
+```
+cf dev stop
+```
 
 
 ## <a id="uninstall"></a> Uninstall <%= vars.platform_name %> Dev
 
-To remove <%= vars.platform_name %> Dev, run the following command:
+To remove <%= vars.platform_name %> Dev, run:
 
-<pre class="terminal">$ cf uninstall-plugin cfdev</pre>
+```
+cf uninstall-plugin pcfdev
+```

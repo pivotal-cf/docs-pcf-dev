@@ -11,16 +11,20 @@ This topic describes telemetry in <%= vars.platform_name %> Dev.
 
 ## <a id='Overview'></a> Overview
 
-Pivotal uses telemetry to help us understand how <%= vars.platform_name %> Dev is being used. We value our users privacy, and all telemetry is completely anonymous. In addition, users must opt in to telemetry collection from the CF Dev tool.
+Pivotal uses telemetry to understand how <%= vars.platform_name %> Dev is being used. Pivotal values user privacy, and all telemetry is completely anonymous. In addition, users must opt in to telemetry collection from the CF Dev tool.
 
-There is no way for anyone with the telemetry to identify who is using the CF Dev tool. In an effort to make our data as transparent as possible, we will be publishing aggregated anonymous usage data to this topic periodically to help our user community understand how the tool is being used.
+There is no way for anyone with the telemetry to identify who is using the CF Dev tool. In an effort to make Pivotal's data as transparent as possible, Pivotal publishes aggregated anonymous usage data to this topic periodically to help the user community understand how the tool is being used.
 
 
 ## <a id='opt-in'></a> Opt In to Telemetry Collection
 
 When you run `cf dev start` for the first time, you will be prompted to opt in to capturing analytics.
 
-You can turn telemetry on or off at any time by by running `cf dev telemetry --on/off`.
+You can turn telemetry on or off at any time by by running:
+
+```
+cf dev telemetry --on/off
+```
 
 
 ## <a id='Telemetry Data'></a> Telemetry Data
@@ -65,9 +69,9 @@ The following user events are captured:
 
 ## <a id='Collection of Data'></a> Collection of Data
 
-Pivotal collects data locally and periodically sends it to a public data store.  If telemetry is turned off, no attempt to capture or send data will be made.
+Pivotal collects data locally and periodically sends it to a public data store. If telemetry is turned off, no attempt to capture or send data will be made.
 
 
 ## <a id='Use of Data'></a> Use of Data
 
-Our goal is to use this data to better understand how our users use the product. We are not using it to track user behavior. We plan to release aggregate usage statistics to the developer community every quarter so users can get a better understanding of how the tool is being used in the community.
+Pivotal's goal is to use this data to better understand how <%= vars.platform_name %> Dev users use the product. Pivotal does not use it to track user behavior. Pivotal releases aggregate usage statistics to the developer community every quarter so users can get a better understanding of how the tool is being used in the community.
