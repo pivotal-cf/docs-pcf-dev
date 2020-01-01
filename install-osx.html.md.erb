@@ -1,18 +1,19 @@
 ---
-breadcrumb: PCF Dev Documentation
-title: Installing PCF Dev on Mac OS X
-owner: PCF Dev
+breadcrumb: Pivotal Platform Dev Documentation
+title: Installing Pivotal Platform Dev on Mac OS X
+owner: Pivotal Platform Dev
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to install PCF Dev on Mac OS X.
+This topic describes how to install <%= vars.platform_name %> Dev on Mac OS X.
 
-## <a id="prerequisites"></a>Prerequisites
 
-### <a id="cf-cli"></a>Cloud Foundry Command Line Interface
+## <a id="prerequisites"></a> Prerequisites
 
-PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
+### <a id="cf-cli"></a> Cloud Foundry Command Line Interface
+
+<%= vars.platform_name %> Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
 
 1. [Download](https://cli.run.pivotal.io/stable?release=macosx64&source=github) the cf CLI for Mac OS X (64 bit). If you previously used the cf CLI v5 Ruby gem, you must uninstall the gem first.
 
@@ -26,29 +27,32 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 
 1. To verify your installation, open a terminal window and enter `cf`. If your installation was successful, the cf CLI help listing appears.
 
-## <a id="install-pcf-dev"></a>Install PCF Dev
 
-1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/).
-1. Install the CF Dev plugin required to run PCF Dev:
+## <a id="install-pcf-dev"></a> Install <%= vars.platform_name %> Dev
+
+1. Download the latest version of <%= vars.platform_name %> Dev from the [Pivotal Network](https://network.pivotal.io/).
+
+1. Install the <%= vars.platform_name %> Dev plugin required to run <%= vars.platform_name %> Dev:
 <pre class="terminal">$ cf install-plugin cfdev</pre>
-1. Start PCF Dev. Enter the following command, replacing `FILEPATH/FILE` with the filepath of the .iso or .tgz file you downloaded:
+
+1. Start <%= vars.platform_name %> Dev. Enter the following command, replacing `FILEPATH/FILE` with the filepath of the .iso or .tgz file you downloaded:
 
 	```
 	cf dev start -f FILEPATH/FILE
 	```
-  It may take several minutes for the PCF Dev VM and its services to start.
+  It may take several minutes for the <%= vars.platform_name %> Dev VM and its services to start.
 
-After the **PCF Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
+After the **<%= vars.platform_name %> Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
 
 
-## <a id="stopping"></a>Stop PCF Dev
+## <a id="stopping"></a> Stop <%= vars.platform_name %> Dev
 
-To stop PCF Dev, run the following command:
+To stop <%= vars.platform_name %> Dev, run the following command:
 
 <pre class="terminal">$ cf dev stop</pre>
 
-## <a id="uninstall"></a>Uninstall PCF Dev
+## <a id="uninstall"></a> Uninstall <%= vars.platform_name %> Dev
 
-To remove PCF Dev, run the following command:
+To remove <%= vars.platform_name %> Dev, run the following command:
 
 <pre class="terminal">$ cf uninstall-plugin cfdev</pre>

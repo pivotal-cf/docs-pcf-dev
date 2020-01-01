@@ -1,24 +1,25 @@
 ---
-breadcrumb: PCF Dev Documentation
-title: Using Spring Cloud Services in PCF Dev
-owner: PCF Dev
+breadcrumb: Pivotal Platform Dev Documentation
+title: Using Spring Cloud Services in Pivotal Platform Dev
+owner: Pivotal Platform Dev
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to deploy and use the [Spring Cloud® Services (SCS)](http://docs.pivotal.io/spring-cloud-services/) suite within PCF Dev.
+This topic describes how to deploy and use the [Spring Cloud® Services (SCS)](http://docs.pivotal.io/spring-cloud-services/) suite within <%= vars.platform_name %> Dev.
 
-When configured to use SCS, PCF Dev provides the following services:
+When configured to use SCS, <%= vars.platform_name %> Dev provides the following services:
 
 * [Config Server](http://docs.pivotal.io/spring-cloud-services/common/config-server/index.html)
 * [Service Registry](http://docs.pivotal.io/spring-cloud-services/common/service-registry/index.html)
 * [Circuit Breaker Dashboard](http://docs.pivotal.io/spring-cloud-services/common/circuit-breaker/index.html)
 
-The sections below describe how to launch SCS and use the Config Server. The Service Registry and Circuit Breaker Dashboard work by default when PCF Dev is launched with SCS enabled.
+The sections below describe how to launch SCS and use the Config Server. The Service Registry and Circuit Breaker Dashboard work by default when <%= vars.platform_name %> Dev is launched with SCS enabled.
 
-## <a id='launch-scs'></a> Launch Spring Cloud Services ##
 
-To launch PCF Dev using SCS, run `cf dev start` using the `-s scs` flag:
+## <a id='launch-scs'></a> Launch Spring Cloud Services
+
+To launch <%= vars.platform_name %> Dev using SCS, run `cf dev start` using the `-s scs` flag:
 
 <pre class='terminal'>
 $ cf dev start -s scs
@@ -32,7 +33,7 @@ Waiting for services to start...
 ...
 </pre>
 
-<p class="note"><strong>Note</strong>: Due to the increased demands of SCS, PCF Dev allocates more memory than usual.</p>
+<p class="note"><strong>Note</strong>: Due to the increased demands of SCS, <%= vars.platform_name %> Dev allocates more memory than usual.</p>
 
 Alternatively, you can deploy SCS after start by running the following command:
 
@@ -43,13 +44,14 @@ OK
 
 </pre>
 
-To undeploy SCS, stop PCF Dev:
+To undeploy SCS, stop <%= vars.platform_name %> Dev:
+
 <pre class="terminal">$ cf dev stop</pre>
 
 
-## <a id='use-scs'></a>Use Spring Cloud Services ##
+## <a id='use-scs'></a> Use Spring Cloud Services
 
-To create a service instance of the Config Server using the cook sample app, perform the following:
+To create a service instance of the Config Server using the cook sample app:
 
 1. Clone the [cook sample app](https://github.com/spring-cloud-services-samples/cook/tree/1.1) to your workspace.
 
@@ -76,7 +78,7 @@ To create a service instance of the Config Server using the cook sample app, per
 	BUILD SUCCESSFUL
 	</pre>
 
-1. Run `cf login` to log in to PCF Dev and target your local domain using user/pass as the credentials. To avoid SSL validation errors, use the `--skip-ssl-validation` flag. See [SSL Validation Errors](./faq.html#ssl_cert).
+1. Run `cf login` to log in to <%= vars.platform_name %> Dev and target your local domain using user/pass as the credentials. To avoid SSL validation errors, use the `--skip-ssl-validation` flag. See [SSL Validation Errors](./faq.html#ssl_cert).
 
 	<pre class='terminal'>
 	$ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
@@ -126,10 +128,11 @@ To create a service instance of the Config Server using the cook sample app, per
 
 1. Navigate to [http://cookie.local.pcfdev.io/restaurant](http://cookie.local.pcfdev.io/restaurant) to view the cook app.
 
-<p class="note"><strong>Note</strong>: PCF Dev uses an unverified certificate. When a PCF Dev SCS service makes use of an unverified certificate, the pushed apps must have the environment variable <code>CF_TARGET</code> set to the api URL of the PCF Dev instance: <code>https://api.local.pcfdev.io</code>. PCF Dev does this by default for all pushed apps.</p>
+<p class="note"><strong>Note:</strong> <%= vars.platform_name %> Dev uses an unverified certificate. When a <%= vars.platform_name %> Dev SCS service makes use of an unverified certificate, the pushed apps must have the environment variable <code>CF_TARGET</code> set to the api URL of the <%= vars.platform_name %> Dev instance: <code>https://api.local.pcfdev.io</code>. <%= vars.platform_name %> Dev does this by default for all pushed apps.</p>
 
-## <a id='manage-scs'></a>Manage Spring Cloud Services ##
 
-To manage an SCS instance within PCF Dev, navigate to [Apps Manager](https://apps.local.pcfdev.io) and log in using the admin credentials, `admin/admin`. Instances of the SCS services are displayed in the **instances** space of the **p-spring-cloud-services** org. See the [Use Apps Manager](./usage.html#apps-manager) topic for more information.
+## <a id='manage-scs'></a> Manage Spring Cloud Services
 
- <img src="images/scs-apps-manager.png" alt="SCS Apps Manager"/>
+To manage an SCS instance within <%= vars.platform_name %> Dev, navigate to [Apps Manager](https://apps.local.pcfdev.io) and log in using the admin credentials, `admin/admin`. Instances of the SCS services are displayed in the **instances** space of the **p-spring-cloud-services** org. See the [Use Apps Manager](./usage.html#apps-manager) topic for more information.
+
+<img src="images/scs-apps-manager.png" alt="SCS Apps Manager"/>

@@ -1,26 +1,29 @@
 ---
-breadcrumb: PCF Dev Documentation
-title: Telemetry in PCF Dev
-owner: PCF Dev
+breadcrumb: Pivotal Platform Dev Documentation
+title: Telemetry in Pivotal Platform Dev
+owner: Pivotal Platform Dev
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic describes telemetry in PCF Dev.
+This topic describes telemetry in <%= vars.platform_name %> Dev.
 
-## <a id='Overview'></a>Overview
 
-Pivotal uses telemetry to help us understand how PCF Dev is being used. We value our users privacy, and all telemetry is completely anonymous. In addition, users must opt in to telemetry collection from the CF Dev tool.
+## <a id='Overview'></a> Overview
+
+Pivotal uses telemetry to help us understand how <%= vars.platform_name %> Dev is being used. We value our users privacy, and all telemetry is completely anonymous. In addition, users must opt in to telemetry collection from the CF Dev tool.
 
 There is no way for anyone with the telemetry to identify who is using the CF Dev tool. In an effort to make our data as transparent as possible, we will be publishing aggregated anonymous usage data to this topic periodically to help our user community understand how the tool is being used.
 
-## <a id='opt-in'></a>Opt In to Telemetry Collection
+
+## <a id='opt-in'></a> Opt In to Telemetry Collection
 
 When you run `cf dev start` for the first time, you will be prompted to opt in to capturing analytics.
 
 You can turn telemetry on or off at any time by by running `cf dev telemetry --on/off`.
 
-## <a id='Telemetry Data'></a>Telemetry Data
+
+## <a id='Telemetry Data'></a> Telemetry Data
 
 Pivotal collects anonymous usage telemetry in order to better understand what features are most frequently used. This will in turn help us improve those features, or provide new features, moving forward.
 
@@ -35,7 +38,7 @@ Every usage event that we capture includes the following eight data points:
 
 We store this data locally until we push it to our servers for storage and analysis.
 
-### <a id='event-data'></a>Event Data Point
+### <a id='event-data'></a> Event Data Point
 
 The event data point is collected to understand how the CLI is used. We only capture events if they are entered by a user or when they encounter an error with the tool.
 
@@ -59,10 +62,12 @@ The following user events are captured:
 * **Bosh**: When a user accesses the BOSH director using `cf dev bosh`
 * **Telemetry Off**: When a user turns telemetry off using `cf dev telemetry --off`
 
-##<a id='Collection of Data'></a>Collection of Data
+
+## <a id='Collection of Data'></a> Collection of Data
 
 Pivotal collects data locally and periodically sends it to a public data store.  If telemetry is turned off, no attempt to capture or send data will be made.
 
-##<a id='Use of Data'></a>Use of Data
+
+## <a id='Use of Data'></a> Use of Data
 
 Our goal is to use this data to better understand how our users use the product. We are not using it to track user behavior. We plan to release aggregate usage statistics to the developer community every quarter so users can get a better understanding of how the tool is being used in the community.

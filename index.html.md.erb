@@ -1,71 +1,75 @@
 ---
-breadcrumb: PCF Dev Documentation
-title: PCF Dev Overview
-owner: PCF Dev
+breadcrumb: Pivotal Platform Dev Documentation
+title: Pivotal Platform Dev Overview
+owner: Pivotal Platform Dev
 ---
 
 <strong><%= modified_date %></strong>
 
-This guide describes how to install and use PCF Dev, a fully featured Pivotal Cloud Foundry (PCF) installation that runs on your workstation's native hypervisor.
+This guide describes how to install and use <%= vars.platform_name %> Dev, a fully-featured <%= vars.platform_name %> installation that runs on your workstation's native hypervisor.
 
-PCF Dev enables application developers to test and debug their app on a local PCF deployment, and enables operators to test out features of PCF in their local environment.
+<%= vars.platform_name %> Dev enables application developers to test and debug their app on a local <%= vars.platform_name %> deployment, and enables operators to test out features of <%= vars.platform_name %> in their local environment.
 
-PCF Dev includes Pivotal Application Service (PAS), Spring Cloud Services, Redis, RabbitMQ, and MySQL. It also supports all Cloud Foundry Command Line Interface (cf CLI) functionality. See the [Comparing PCF Dev to Pivotal Cloud Foundry](#comparison-to-pcf) table below for more product details.
+<%= vars.platform_name %> Dev includes Pivotal Application Service (PAS), Spring Cloud Services, Redis, RabbitMQ, and MySQL. It also supports all Cloud Foundry Command Line Interface (cf CLI) functionality. See the [Comparing <%= vars.platform_name %> Dev to <%= vars.platform_name %>](#comparison-to-pcf) table below for more product details.
 
-## <a id="prerequisites"></a>Prerequisites ##
 
-Before you can install PCF Dev, you must have the following:
+## <a id="prerequisites"></a> Prerequisites
+
+Before you can install <%= vars.platform_name %> Dev, you must have:
 
 * The latest version of the [cf CLI](http://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html): Use the cf CLI to push and scale apps.
 * You must have an Internet connection for DNS.
 * At least 8 GB of available memory on your host machine. Pivotal recommends running on a host system with at least 16 GB of total RAM.
 * Virtualization permissions.
 
-## <a id="installing"></a>Installing PCF Dev ##
 
-* <a href="./install-osx.html">Installing PCF Dev on Mac OS X</a>
-* <a href="./install-windows.html">Installing PCF Dev on Microsoft Windows</a>
-* <a href="./install-linux.html">Installing PCF Dev on Linux</a>
+## <a id="installing"></a> Installing <%= vars.platform_name %> Dev
 
-## <a id="using-pcf-dev"></a>Configuring and Using PCF Dev ##
+* <a href="./install-osx.html">Installing <%= vars.platform_name %> Dev on Mac OS X</a>
+* <a href="./install-windows.html">Installing <%= vars.platform_name %> Dev on Microsoft Windows</a>
+* <a href="./install-linux.html">Installing <%= vars.platform_name %> Dev on Linux</a>
 
-* <a href="./configuring.html">Configuring PCF Dev</a>
-* <a href="./usage.html">Using PCF Dev</a>
-* <a href="./dev-services.html">Using Services in PCF Dev</a>
-* <a href="./usage-scs.html">Using Spring Cloud Services in PCF Dev</a>
-* <a href="./proxy.html">Using PCF Dev Behind a Proxy</a>
-* <a href="./work-offline.html">Using PCF Dev Offline</a>
-* <a href="./import-ova.html">Using a Local OVA with PCF Dev</a>
-* <a href="./aws.html">PCF Dev on AWS</a>
+
+## <a id="using-pcf-dev"></a> Configuring and Using <%= vars.platform_name %> Dev
+
+* <a href="./configuring.html">Configuring <%= vars.platform_name %> Dev</a>
+* <a href="./usage.html">Using <%= vars.platform_name %> Dev</a>
+* <a href="./dev-services.html">Using Services in <%= vars.platform_name %> Dev</a>
+* <a href="./usage-scs.html">Using Spring Cloud Services in <%= vars.platform_name %> Dev</a>
+* <a href="./proxy.html">Using <%= vars.platform_name %> Dev Behind a Proxy</a>
+* <a href="./work-offline.html">Using <%= vars.platform_name %> Dev Offline</a>
+* <a href="./import-ova.html">Using a Local OVA with <%= vars.platform_name %> Dev</a>
+* <a href="./aws.html"><%= vars.platform_name %> Dev on AWS</a>
 * <a href="./telemetry.html">Telemetry</a>
 * <a href="./faq.html">Frequently Asked Questions</a>
 
-## <a id="comparison-to-pcf"></a>Comparing PCF Dev to Pivotal Cloud Foundry
 
-PCF Dev mirrors [PCF](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html) in its key product offerings. If an application runs on PCF Dev, it runs on PCF with no modification in almost all cases. Review the table below for key product details.
+## <a id="comparison-to-pcf"></a> Comparing <%= vars.platform_name %> Dev to <%= vars.platform_name %>
 
-|                                                                           | PCF Dev                    | PCF                                   | CF            |
-| ---                                                                       | ---                        | ---                                   | ---           |
-| Space required                                                            | 100 GB                      | 100GB+                                | 50GB+         |
-| Memory required                                                           | 8 GB                       | 50GB+                                 | variable      |
-| Deployment                                                                | `cf dev start`             | Ops Manager                           | `<%= vars.bosh_deploy  %>` |
-| Estimated time-to-deploy                                                  | 30 Minutes                 | Hour+                                 | Hour+         |
-| Out-of-the-Box Services                                                   | Redis<br>MySQL<br>RabbitMQ<br>Spring Cloud | Redis<br>MySQL<br>RabbitMQ<br>GemFire | N/A           |
-| PAS                                                           | ✓                          | ✓                                     | ✓             |
-| Logging/Metrics                                                           | ✓                          | ✓                                     | ✓             |
-| Routing                                                                   | ✓                          | ✓                                     | ✓             |
-| Compatible with CF CLI                                                    | ✓                          | ✓                                     | ✓             |
-| Deploy apps with any supported buildpack                                  | ✓                          | ✓                                     | ✓             |
-| Supports Multi-Tenancy                                                    | ✓                          | ✓                                     | ✓             |
-| Diego Support                                                             | ✓                          | ✓                                     | ✓             |
-| Docker Support                                                            | ✓                          | ✓                                     | ✓             |
-| User-Provided Services                                                    | ✓                          | ✓                                     | ✓             |
-| High Availability                                                         |                            | ✓                                     | ✓             |
-| Integration with 3rd party Authorization                                  |                            | ✓                                     | ✓             |
-| BOSH Director<br>(i.e., can perform additional BOSH deployments)           | ✓                            | ✓                                     | ✓             |
-| Day Two Lifecycle Operations<br>(e.g., rolling upgrades, security patches) |                            | ✓                                     | ✓             |
-| Ops Manager                                                               |                            | ✓                                     |               |
-| Apps Manager                                                              | ✓                          | ✓                                     |               |
-| Tile Support                                                              |                            | ✓                                     |               |
-| Developers have root-level access across cluster                          | ✓                          |                                       |               |
-| Pre-provisioned                                                           | ✓                          |                                       |               |
+<%= vars.platform_name %> Dev mirrors [<%= vars.platform_name %>](http://docs.pivotal.io/pivotalcf/installing/pcf-docs.html) in its key product offerings. If an app runs on <%= vars.platform_name %> Dev, it runs on <%= vars.platform_name %> with no modification in almost all cases. Review the table below for key product details.
+
+|     | <%= vars.platform_name %> Dev | <%= vars.platform_name %>  | Cloud Foundry |
+| --- | ----------------------------- | ---------------------------| ------------- |
+| Space required | 100&nbsp;GB | 100&nbsp;GB or greater | 50&nbsp;GB or greater |
+| Memory required | 8&nbsp;GB | 50&nbsp;GB or greater | variable |
+| Deployment | `cf dev start` | Ops Manager | `<%= vars.bosh_deploy  %>` |
+| Estimated time-to-deploy | 30 minutes | 1 hour or more | 1 hour or more |
+| Out-of-the-box services | Redis<br>MySQL<br>RabbitMQ<br>Spring Cloud | Redis<br>MySQL<br>RabbitMQ<br>GemFire | N/A |
+| PAS | ✓ | ✓ | ✓ |
+| Logging/metrics | ✓ | ✓ | ✓ |
+| Routing | ✓ | ✓ | ✓ |
+| Compatible with cf CLI | ✓ | ✓ | ✓ |
+| Deploy apps with any supported buildpack | ✓ | ✓ | ✓ |
+| Supports multi-tenancy | ✓ | ✓ | ✓ |
+| Diego support | ✓ | ✓ | ✓ |
+| Docker support | ✓ | ✓ | ✓ |
+| User-provided services | ✓ | ✓ | ✓ |
+| High availability |   | ✓ | ✓ |
+| Integration with third-party authorization |   | ✓ | ✓ |
+| BOSH Director<br>(i.e., can perform additional BOSH deployments) | ✓ | ✓ | ✓ |
+| Day two lifecycle operations<br>(e.g., rolling upgrades, security patches) |   | ✓ | ✓ |
+| Ops Manager |   | ✓ |   |
+| Apps Manager | ✓ | ✓ |   |
+| Tile support |   | ✓ |   |
+| Developers have root-level access across cluster | ✓ |   |   |
+| Pre-provisioned | ✓ |   |   |

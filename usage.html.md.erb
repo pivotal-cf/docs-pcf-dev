@@ -1,18 +1,20 @@
 ---
-breadcrumb: PCF Dev Documentation
-title: Using PCF Dev
-owner: PCF Dev
+breadcrumb: Pivotal Platform Dev Documentation
+title: Using Pivotal Platform Dev
+owner: Pivotal Platform Dev
 ---
 
 <strong><%= modified_date %></strong>
 
-<p class="note"><strong>Note</strong>: If you are using PCF Dev v0.30 or earlier, see <a href="usage-legacy.html">Using PCF Dev (Legacy)</a>.</p>
+<p class="note"><strong>Note:</strong> If you are using <%= vars.platform_name %> Dev v0.30 or earlier, see <a href="usage-legacy.html">Using <%= vars.platform_name %> Dev (Legacy)</a>.</p>
 
-This topic describes how to use PCF Dev to target instances, push an application, and list available marketplace services.
+This topic describes how to use <%= vars.platform_name %> Dev to target instances, push an application, and list available marketplace services.
 
-## <a id="pcf-dev"></a>Log in to Your PCF Dev Instance
 
-After starting your PCF Dev instance, use the `cf login` command with the `-a` flag to target its API:
+## <a id="pcf-dev"></a> Log In to Your <%= vars.platform_name %> Dev Instance
+
+After starting your <%= vars.platform_name %> Dev instance, use the `cf login` command with the `-a` flag to target its API:
+
 <pre class='terminal'>
 $ cf login -a https<span>:</span>//api.dev.cfdev.sh --skip-ssl-validation
 </pre>
@@ -29,9 +31,10 @@ To log in as an admin user, enter the following credentials when prompted by the
 
 The terminal displays your API system domain when you run `cf dev start`. In most cases, your API system domain is `api.dev.cfdev.sh`, but it may differ slightly depending on your host system configuration.
 
-## <a id="push"></a>Push an App
 
-Follow the procedure below to push an app to your PCF Dev instance.
+## <a id="push"></a> Push an App
+
+Follow the procedure below to push an app to your <%= vars.platform_name %> Dev instance.
 
 1. Navigate to your app directory.
 
@@ -41,9 +44,10 @@ For more information about pushing apps to your deployment, see the [Pushing an 
 
 For more information about using the cf CLI, see the [Getting Started with the cf CLI](http://docs.pivotal.io/pivotalcf/cf-cli/getting-started.html) topic.
 
-## <a id="marketplace"></a>List Marketplace Services
 
-PCF Dev supports marketplace services, giving developers access to Spring Cloud Services, Redis, RabbitMQ, and MySQL.
+## <a id="marketplace"></a> List Marketplace Services
+
+<%= vars.platform_name %> Dev supports marketplace services, giving developers access to Spring Cloud Services, Redis, RabbitMQ, and MySQL.
 
 In order to view the list of available services, run `cf marketplace` in a terminal window. Services that are not started will not appear in marketplace.
 
@@ -56,26 +60,22 @@ service      plans        description
 p-mysql      512mb, 1gb   MySQL databases on demand
 p-rabbitmq   standard     RabbitMQ is a robust and scalable high-performance multi-protocol messaging broker.
 p-redis      shared-vm    Redis service to provide a key-value store
-
 </pre>
 
 To undeploy a service run `cf dev stop` and redeploy the services of your choosing.
 
-For more information about using marketplace services, see the [Using Services in PCF Dev](dev-services.html) topic.
+For more information about using marketplace services, see the [Using Services in <%= vars.platform_name %> Dev](dev-services.html) topic.
 
-## <a id="apps-manager"></a>Use Apps Manager
 
-When you start PCF Dev, Apps Manager starts automatically.
-Follow the procedure below to access Apps Manager.
+## <a id="apps-manager"></a> Use Apps Manager
+
+When you start <%= vars.platform_name %> Dev, Apps Manager starts automatically. Follow the procedure below to access Apps Manager.
 
 1. Navigate to `https://apps.dev.cfdev.sh/`
+	<p class="note"><strong>Note:</strong> If <%= vars.platform_name %> Dev started on a domain other than <code>dev.cfdev.sh</code>, then the Apps Manager URL is different. For example, if you log in to <%= vars.platform_name %> Dev at <code>api.local.pcfdev.io</code>, then navigate to <a href="https://apps.local.pcfdev.io/">https://apps.local.pcfdev.io/</a> to access Apps Manager.</p>
 
-    <p class="note"><strong>Note</strong>: If PCF Dev started on a domain other than <code>dev.cfdev.sh</code>, then the Apps Manager URL is different.
-For example, if you log in to PCF Dev at <code>api.local.pcfdev.io</code>, then navigate to <a href="https://apps.local.pcfdev.io/">https://apps.local.pcfdev.io/</a> to access Apps Manager.</p>
+1. The first time you open Apps Manager after starting the <%= vars.platform_name %> Dev, your browser shows a dialog or page about the security certificate. Choose to connect to the Apps Manager URL. Alternatively, you can run `cf dev trust` to add the <%= vars.platform_name %> Dev certificate to your OS certificate store. See [here](./configuring.html#trust) for more details.
 
-2. The first time you open Apps Manager after starting the PCF Dev, your browser shows a dialog or page about the security certificate.
-Choose to connect to the Apps Manager URL. Alternatively, you can run `cf dev trust` to add the PCF Dev certificate to your OS certificate store. See [here](./configuring.html#trust) for more details.
-
-3. Log in using admin/admin or user/pass. The Pivotal PCF Dev page appears:
+1. Log in using admin/admin or user/pass. The Pivotal <%= vars.platform_name %> Dev page appears:
 
     <img src="images/apps-manager.png" alt="Apps Manager"/>

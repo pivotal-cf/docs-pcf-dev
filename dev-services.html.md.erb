@@ -1,20 +1,27 @@
 ---
-breadcrumb: PCF Dev Documentation
-title: Using Services in PCF Dev
-owner: PCF Dev
+breadcrumb: Pivotal Platform Dev Documentation
+title: Using Services in Pivotal Platform Dev
+owner: Pivotal Platform Dev
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to deploy, create, delete, update, and bind Marketplace services in PCF Dev.
+This topic describes how to deploy, create, delete, update, and bind Marketplace services in <%= vars.platform_name %> Dev.
 
-PCF Dev provides access to three Marketplace services: Redis, RabbitMQ, and MySQL. You can create instances of these services and bind them to your applications to generate and deliver credentials to the applications.
+<%= vars.platform_name %> Dev provides access to three Marketplace services: Redis, RabbitMQ, and MySQL. You can create instances of these services and bind them to your apps to generate and deliver credentials to your apps.
 
-<p class="note"><strong>Note</strong>: To manage and bind service instances you must be running the PCF Dev .iso or .tgz and you must be logged in to your PCF Dev instance. Complete the steps in the <a href="usage.html">Using PCF Dev</a> topic before following the procedures below.</p>
+<p class="note"><strong>Note:</strong> To manage and bind service instances, you must be running the <%= vars.platform_name %> Dev .iso or .tgz, and you must be logged in to your <%= vars.platform_name %> Dev instance. Complete the procedure in <a href="usage.html">Using <%= vars.platform_name %> Dev</a> before following the procedures below.</p>
 
-## <a id='marketplace'></a> List Marketplace Services ##
 
-Run the command `cf marketplace` to display information about the Marketplace services available in PCF Dev. Services that are not started do not appear in Marketplace.
+## <a id='marketplace'></a> List Marketplace Services
+
+To display information about the Marketplace services available in <%= vars.platform_name %> Dev, run:
+
+```
+cf marketplace
+```
+
+Services that are not started do not appear in Marketplace.
 
 <pre class='terminal'>
 $ cf marketplace
@@ -25,60 +32,63 @@ service      plans        description
 p-mysql      512mb, 1gb   MySQL databases on demand
 p-rabbitmq   standard     RabbitMQ is a robust and scalable high-performance multi-protocol messaging broker.
 p-redis      shared-vm    Redis service to provide a key-value store
-
 </pre>
 
-## <a id='marketplace'></a> Deploy Services ##
 
-<p class="note"><strong>Note</strong>: Ad hoc service deployment requires PCF Dev v1.0.0 or later.</p>
+## <a id='marketplace'></a> Deploy Services
 
-Run the command `cf dev deploy-service SERVICE NAME` to deploy a service.
+<p class="note"><strong>Note:</strong> Ad hoc service deployment requires <%= vars.platform_name %> Dev v1.0.0 or later.</p>
 
-<pre class='terminal'>
-$ cf dev deploy-service redis
-Deploying redis...
-OK
-</pre>
+To deploy a service, run:
 
-PCF Dev supports Marketplace services, giving developers access to Spring Cloud Services, Redis, RabbitMQ, and MySQL.
+```
+cf dev deploy-service SERVICE-NAME
+```
 
-| flag |  description |
-|---|---|---|---|
+Where `SERVICE-NAME` is the name of the service you want to deploy.
+
+<%= vars.platform_name %> Dev supports Marketplace services, giving developers access to Spring Cloud Services, Redis, RabbitMQ, and MySQL.
+
+| flag | description |
+| ---- | ----------- |
 | `scs`  | Server-side components for Spring Cloud projects. |
 | `redis` |  Redis service provides a key-value store. |
-| `rabbitmq`  | RabbitMQ is a robust and scalable high-performance multi-protocol messaging broker. |
-| `mysql`  | MySQL databases on demand. |
+| `rabbitmq` | RabbitMQ is a robust and scalable high-performance multi-protocol messaging broker. |
+| `mysql` | MySQL databases on demand. |
 
-## <a id='create'></a>Create Service Instances ##
 
-You can create a service instance with the command: `cf create-service SERVICE PLAN SERVICE_INSTANCE`
+## <a id='create'></a> Create Service Instances
 
-  * `SERVICE` The service you choose.
-  * `PLAN` Service plans are a way for providers to offer varying levels
-  of resources or features for the same service.
-  * `SERVICE_INSTANCE` A name you provide for your service instance. This is an alias for the instance which is meaningful to you. Use any series of alpha-numeric characters, hyphens (-), and underscores (\_). You can rename the instance at any time.
+To create a service instance, run:
 
-Example:
+```
+cf create-service SERVICE PLAN SERVICE-INSTANCE
+```
+
+Where:
+
+* `SERVICE` is the service for which you want to create service instances.
+* `PLAN` is the service plan you want to use. Service plans are a way for providers to offer varying levels of resources or features for the same service.
+* `SERVICE-INSTANCE` is the name you provide for your service instance. You can use any series of alpha-numeric characters, hyphens (-), and underscores (\_). You can rename the instance at any time.
+
+For example:
+
 <pre class="terminal">
 $ cf create-service p-mysql 512mb my\_mysql
 Creating service my_mysql in org pcfdev-org / space pcfdev-space as admin...
 OK
 </pre>
 
-<p class="note"><strong>Note</strong>: The <a href="http://docs.pivotal.io/pivotalcf/devguide/services/user-provided.html">User Provided Service Instances</a> topic provides a way for developers to bind applications with services that are not available in their Cloud Foundry Marketplace.</p>
+<p class="note"><strong>Note:</strong> For more information about how developers can bind apps with services that are not available in their Pivotal Marketplace, see <a href="http://docs.pivotal.io/pivotalcf/devguide/services/user-provided.html">User Provided Service Instances</a>.</p>
 
 ### <a id='arbitrary-params-create'></a> Arbitrary Parameters  ###
 
 <p class="note"><strong>Note</strong>: Arbitrary parameters require cf CLI v6.12.1 or later.</p>
 
-Some services support additional configuration parameters with the provision
-request.
-These parameters are passed in a valid JSON object containing service-specific
-configuration parameters, provided either in-line or in a file.
-For a list of supported configuration parameters, see the documentation for the
-particular service offering.
+Some services support additional configuration parameters with the provision request. These parameters are passed in a valid JSON object containing service-specific configuration parameters, provided either in-line or in a file. For a list of supported configuration parameters, see the documentation for the particular service offering.
 
 Example providing parameters in-line:
+
 <pre class="terminal">
 $ cf create-service my-db-service small-plan my-db -c '{"storage_gb":4}'
 Creating service my-db in org pcfdev-org / space pcfdev-space as admin...
@@ -86,36 +96,38 @@ OK
 </pre>
 
 Example providing parameters in a file:
+
 <pre class="terminal">
 $ cf create-service my-db-service small-plan my-db -c /tmp/config.json
 Creating service my-db in org pcfdev-org / space pcfdev-space as admin...
 OK
 </pre>
 
-### <a id='instance-tags-create'></a> Instance Tags  ###
+### <a id='instance-tags-create'></a> Instance Tags
 
-<p class="note"><strong>Note</strong>: Instance tags require cf CLI v6.12.1+</p>
+<p class="note"><strong>Note:</strong> Instance tags require cf CLI v6.12.1+</p>
 
-Some services provide a list of tags that Cloud Foundry delivers in the
-[VCAP_SERVICES Environment Variable](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES).
-These tags provide developers with a more generic way for applications to parse
-`VCAP_SERVICES` for credentials.
-Developers can provide their own tags when creating a service instance by including a comma-separated list of tags with the `-t` flag.
+Some services provide a list of tags that <%= vars.platform_name %> delivers in the VCAP_SERVICES environment variable. These tags provide developers with a more generic way for apps to parse `VCAP_SERVICES` for credentials. Developers can provide their own tags when creating a service instance by including a comma-separated list of tags with the `-t` flag. For more information, see the [VCAP_SERVICES](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) section of the _PAS Environment Variables_ topic.
 
-Example:
+For example:
 <pre class="terminal">
 $ cf create-service my-db-service small-plan my-db -t "prod, workers"
 Creating service my-db in org pcfdev-org / space pcfdev-space as admin...
 OK
 </pre>
 
-## <a id='list'></a>List Service Instances ##
 
-You can list the service instances in your targeted space with the command `cf services`.
-The output includes any bound apps, along with the state of the last requested
-operation for the service instance.
+## <a id='list'></a> List Service Instances
 
-Example:
+You can list the service instances in your targeted space by running:
+
+```
+cf services
+```
+
+The output includes any bound apps, along with the state of the last requested operation for the service instance.
+
+For example:
 <pre class="terminal">
 $ cf services
 Getting services in org pcfdev-org / space pcfdev-space as admin...
@@ -124,11 +136,11 @@ name       service         plan        bound apps              last operation
 my_mysql   p-mysql         512mb       myapp                   create succeeded
 </pre>
 
-### <a id='get-details'></a>Get Details for a Particular Service Instance ###
+### <a id='get-details'></a> Get Details for a Particular Service Instance
 
 Details include dashboard URLs, if applicable, and operation start and last updated timestamps.
 
-Example:
+For example:
 <pre class='terminal'>
 $ cf service my\_mysql
 Service instance: my\_mysql
@@ -144,86 +156,74 @@ Started: 2016-04-14T17:47:44Z
 Updated:
 </pre>
 
-## <a id='rename_service'></a>Rename a Service Instance ##
 
-You can change the name given to a service instance.
-When restarting any bound applications, the name of the instance changes in the [VCAP_SERVICES](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) environment variable.
-If your application depends on the instance name for discovering credentials, changing the name could break your application's use of the service instance.
+## <a id='rename_service'></a> Rename a Service Instance
 
-Example:
+You can change the name given to a service instance. When restarting any bound apps, the name of the instance changes in the VCAP_SERVICES environment variable. If your app depends on the instance name for discovering credentials, changing the name could break your app's use of the service instance.
+
+For example:
 <pre class="terminal">
 $ cf rename-service my\_mysql my\_mysql1
 Renaming service my\_mysql to my\_mysql1 in org pcfdev-org / space pcfdev-space as admin...
 OK
 </pre>
 
-## <a id='update_service'></a>Update a Service Instance ##
 
-### Upgrade/Downgrade Service Plan
-<p class="note"><strong>Note</strong>: Changing a plan requires cf CLI v6.7+ and cf-release v192+</p>
+## <a id='update_service'></a> Update a Service Instance
 
-By updating the service plan for an instance, users can effectively upgrade and
-downgrade their service instance to other service plans.
-Though the platform and CLI support this feature, services must expressly
-implement support for it, and not all services do.
-Furthermore, a service might support updating between some plans but not
-others.
-For example, a service might support updating a plan where only a logical
-change is required, but not where data migration is necessary.
-In either case, users can expect to see a meaningful error when plan update is not supported.
+### <a id='upgrade-downgrade'></a> Upgrade or Downgrade Service Plan
 
-Example:
+<p class="note"><strong>Note:</strong> Changing a plan requires cf CLI v6.7 or later and cf-release v192 or later.</p>
+
+By updating the service plan for an instance, users can effectively upgrade and downgrade their service instance to other service plans. Though the platform and CLI support this feature, services must expressly implement support for it, and not all services do. Furthermore, a service might support updating between some plans but not others. For example, a service might support updating a plan where only a logical change is required, but not where data migration is necessary. In either case, users can expect to see a meaningful error when plan update is not supported.
+
+For example:
 <pre class="terminal">
 $ cf update-service my\_mysql -p 1gb
 Updating service instance my\_mysql as admin...
 OK
 </pre>
 
-### <a id='arbitrary-params-update'></a> Arbitrary Parameters  ###
+### <a id='arbitrary-params-update'></a> Arbitrary Parameters
 
-<p class="note"><strong>Note</strong>: Arbitrary parameters require cf CLI v6.12.1+</p>
+<p class="note"><strong>Note:</strong> Arbitrary parameters require cf CLI v6.12.1 or later.</p>
 
-Some services support additional configuration parameters with the update
-request.
-These parameters are passed in a valid JSON object containing service-specific
-configuration parameters, provided either in-line or in a file.
-For a list of supported configuration parameters, see the documentation for the
-particular service offering.
+Some services support additional configuration parameters with the update request. These parameters are passed in a valid JSON object containing service-specific configuration parameters, provided either in-line or in a file. For a list of supported configuration parameters, see the documentation for the particular service offering.
 
 Example providing parameters in-line:
+
 <pre class="terminal">
 $ cf update-service mydb -c '{"storage_gb":4}'
 Updating service instance mydb as admin...
 </pre>
 
 Example providing parameters in a file:
+
 <pre class="terminal">
 $ cf update-service mydb -c /tmp/config.json
 Updating service instance mydb as admin...
 </pre>
 
-### <a id='instance-tags-update'></a> Instance Tags  ###
-<p class="note"><strong>Note</strong>: Instance tags require cf CLI v6.12.1+</p>
+### <a id='instance-tags-update'></a> Instance Tags
 
-Some services provide a list of tags that Cloud Foundry delivers in the
-[VCAP_SERVICES Environment Variable](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES).
-These tags provide developers with a more generic way for applications to parse
-`VCAP_SERVICES` for credentials.
-Developers can provide their own tags when creating a service instance by
-including a comma-separated list of tags with the `-t` flag.
+<p class="note"><strong>Note:</strong> Instance tags require cf CLI v6.12.1 or later.</p>
 
-Example:
+Some services provide a list of tags that <%= vars.platform_name %> delivers in the VCAP_SERVICES environment variable. These tags provide developers with a more generic way for apps to parse `VCAP_SERVICES` for credentials. Developers can provide their own tags when creating a service instance by including a comma-separated list of tags with the `-t` flag.
+
+For example:
 <pre class="terminal">
 $ cf update-service my-db -t "staging, web"
 Updating service my-db in org org pcfdev-org / space pcfdev-space as admin...
 OK
 </pre>
 
-## <a id='delete'></a>Delete a Service Instance ##
+
+## <a id='delete'></a> Delete a Service Instance
 
 Deleting a service instance deprovisions the service instance and deletes all data associated with the service instance.
 
-Example:
+For example:
+
 <pre class="terminal">
 $ cf delete-service my_mysql
 Really delete the service my\_mysql?> y
@@ -231,16 +231,13 @@ Deleting service my\_mysql in org pcfdev-org / space pcfdev-space as admin...
 OK
 </pre>
 
-## <a id='bind'></a>Bind a Service Instance ##
 
-Binding a service instance to your application triggers credentials to be
-provisioned for the service instance and delivered to the application runtime
-in the [VCAP_SERVICES](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) environment variable.
-For details on consuming these credentials with your application, see [Using Bound Service Instances](#use).
-Not all services support binding, as some services deliver value to users
-directly without integration with an application.
+## <a id='bind'></a> Bind a Service Instance
 
-Example:
+Binding a service instance to your app triggers credentials to be provisioned for the service instance and delivered to the app runtime in the VCAP_SERVICES environment variable. For details on consuming these credentials with your app, see [Using Bound Service Instances](#use). Not all services support binding, as some services deliver value to users directly without integration with an app.
+
+For example:
+
 <pre class="terminal">
 $ cf bind-service my-app my\_mysql
 Binding service my\_mysql to app my_app in org pcfdev-org / space pcfdev-space as admin...
@@ -249,20 +246,16 @@ TIP: Use 'cf restage my\_app' to ensure your env <%# "environment" is preferred 
 $ cf restage my-app
 </pre>
 
-<p class="note"><strong>Note</strong>: You must restart or in some cases re-push your application for changes to be applied to the <a href="http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES">VCAP_SERVICES</a> environment variable and for the application to recognize these changes.</p>
+<p class="note"><strong>Note:</strong> You must restart or in some cases re-push your app for changes to be applied to the VCAP_SERVICES environment variable and for the app to recognize these changes.</p>
 
-### <a id='arbitrary-params-binding'></a> Arbitrary Parameters  ###
+### <a id='arbitrary-params-binding'></a> Arbitrary Parameters
 
-<p class="note"><strong>Note</strong>: Arbitrary parameters require cf CLI v6.12.1+</p>
+<p class="note"><strong>Note:</strong> Arbitrary parameters require cf CLI v6.12.1 or later.</p>
 
-Some services support additional configuration parameters with the bind
-request.
-These parameters are passed in a valid JSON object containing service-specific
-configuration parameters, provided either in-line or in a file.
-For a list of supported configuration parameters, see the documentation for the
-particular service offering.
+Some services support additional configuration parameters with the bind request. These parameters are passed in a valid JSON object containing service-specific configuration parameters, provided either in-line or in a file. For a list of supported configuration parameters, see the documentation for the particular service offering.
 
 Example providing parameters in-line:
+
 <pre class="terminal">
 $ cf bind-service rails-sample my-db -c '{"role":"read-only"}'
 Binding service my-db to app rails-sample in org pcfdev-org / space pcfdev-space as admin...
@@ -270,24 +263,25 @@ OK
 </pre>
 
 Example providing parameters in a file:
+
 <pre class="terminal">
 $ cf bind-service rails-sample my-db -c /tmp/config.json
 Binding service my-db to app rails-sample in org pcfdev-org / space pcfdev-space as admin...
 OK
 </pre>
 
-### <a id='bind-with-manifest'></a> Binding with Application Manifest ###
+### <a id='bind-with-manifest'></a> Binding with App Manifest
 
-As an alternative to binding a service instance after pushing an application, you can use the application manifest to bind the service instance during push. As of cf CLI v6.12.1, [Arbitrary Parameters](#arbitrary-params-binding) are not supported in application manifests.
+As an alternative to binding a service instance after pushing an app, you can use the app manifest to bind the service instance during push. As of cf CLI v6.12.1, arbitrary parameters are not supported in app manifests.
 
-The following excerpt from an application manifest would bind a service instance called `test-mysql-01` to the application on push.
+The following excerpt from an app manifest binds a service instance called `test-mysql-01` to the app on push.
 
 ```
 services:
  - test-mysql-01
 ```
 
-The following excerpt from the `cf push` command and response demonstrates that the cf CLI reads the manifest and binds the service instance to an app called `test-msg-app`.
+The following excerpt from the `cf push` command and response demonstrates that the cf CLI reads the manifest and binds the service instance to an app called `test-msg-app`:
 
 <pre class="terminal">
 $ cf push
@@ -297,42 +291,57 @@ Binding service test-mysql-01 to test-msg-app in org pcfdev-org / space pcfdev-s
 OK
 </pre>
 
-For more information about application manifests, see [Deploying with Application Manifests](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/manifest.html#services-block).
+For more information about app manifests, see [Deploying with App Manifests](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/manifest.html).
 
-### <a id='use'></a>Using Bound Service Instance<%# Only capitalize "service instance" when it is part of a title %>s ###
+### <a id='use'></a> Using Bound Service Instances
 
-Once you have a service instance created and bound to your application, you need to configure the application to dynamically fetch the credentials for your service instance. The [VCAP_SERVICES](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) environment variable contains credentials and additional metadata for all bound service instances. There are two methods developers can leverage to have their applications consume binding credentials.
+Once you have a service instance created and bound to your app, you must configure the app to dynamically fetch the credentials for your service instance. The VCAP_SERVICES environment variable contains credentials and additional metadata for all bound service instances. There are two methods developers can leverage to have their apps consume binding credentials:
 
-* **Parse the JSON yourself:** See the documentation for [VCAP_SERVICES](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES). Helper libraries are available for some frameworks.
+* **Parse the JSON yourself:** For more information, see the [VCAP_SERVICES](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) section of the _PAS Environment Variables_ topic. Helper libraries are available for some frameworks.
+
 * **Auto-configuration:** Some buildpacks create a service connection for you by creating additional environment variables, updating config files, or passing system parameters to the JVM.
 
-For details on consuming credentials specific to your development framework, refer <%# "see" is preferred. %>to the Service Binding section in the documentation for [your framework's buildpack](http://docs.pivotal.io/pivotalcf/buildpacks/index.html).
+For details on consuming credentials specific to your development framework, see the _Service Binding_ section in [the documentation for your framework's buildpack](https://docs.pivotal.io/platform/application-service/buildpacks/index.html).
 
-## <a id='update-credentials'></a>Update Service Credentials
 
-To update your service credentials, perform the following steps:
+## <a id='update-credentials'></a> Update Service Credentials
 
-  1. [Unbind the service instance](#unbind) using the credentials you are updating with the following command:
+To update your service credentials:
 
-    <pre class='terminal'>
-    $ cf unbind-service YOUR-APP YOUR-SERVICE-INSTANCE
-    </pre>
+1. Unbind the service instance using the credentials you are updating by running:
 
-  1. [Bind the service instance](#bind) with the following command. This adds your credentials to the [VCAP_SERVICES](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) environment variable.
+  ```
+  cf unbind-service YOUR-APP YOUR-SERVICE-INSTANCE
+  ```
+  Where:
+  * `YOUR-APP` is the name of your app.
+  * `YOUR-SERVICE-INSTANCE` is the name of your service instance.
 
-    <pre class='terminal'>
-    $ cf bind-service YOUR-APP YOUR-SERVICE-INSTANCE
-    </pre>
+1. Bind the service instance by running:
 
-  1. Restart or re-push the application bound to the service instance so that the application recognizes your environment variable updates.
+  ```
+  cf bind-service YOUR-APP YOUR-SERVICE-INSTANCE
+  ```
+  Where:
+  * `YOUR-APP` is the name of your app.
+  * `YOUR-SERVICE-INSTANCE` is the name of your service instance.
+  <br>
+  <br>
+  This adds your credentials to the VCAP_SERVICES environment variable.
 
-## <a id='unbind'></a>Unbind a Service Instance<%# Only capitalize "service instance" when it is part of a title %> ##
+1. Restart or re-push the app bound to the service instance so that the app recognizes your environment variable updates.
 
-Unbinding a service removes the credentials created for your application from the [VCAP_SERVICES](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) environment variable.
+
+## <a id='unbind'></a> Unbind a Service Instance
+
+Unbinding a service removes the credentials created for your app from the VCAP_SERVICES environment variable.
+
+For example:
+
 <pre class="terminal">
 $ cf unbind-service my-app my\_mysql
 Unbinding app my-app from service my\_mysql in org pcfdev-org / space pcfdev-space as admin...
 OK
 </pre>
 
-<p class="note"><strong>Note</strong>: You must restart or in some cases re-push your application for changes to be applied to the <a href="http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES">VCAP_SERVICES</a> environment variable and for the application to recognize these changes.</p>
+<p class="note"><strong>Note:</strong> You must restart or in some cases re-push your app for changes to be applied to the VCAP_SERVICES environment variable and for the app to recognize these changes.</p>

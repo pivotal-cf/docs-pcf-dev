@@ -1,26 +1,27 @@
 ---
-breadcrumb: PCF Dev Documentation
-title: Installing PCF Dev on Microsoft Windows 10
-owner: PCF Dev
+breadcrumb: Pivotal Platform Dev Documentation
+title: Installing Pivotal Platform Dev on Microsoft Windows 10
+owner: Pivotal Platform Dev
 ---
 
 <strong><%= modified_date %></strong>
 
-<p class="note"><strong>Note</strong>: To run PCF Dev on Windows without Hyper-V, see <a href="install-windows-legacy.html">Installing PCF Dev on Microsoft Windows 7 and 8</a>.</p>
+<p class="note"><strong>Note</strong>: To run <%= vars.platform_name %> Dev on Windows without Hyper-V, see <a href="install-windows-legacy.html">Installing <%= vars.platform_name %> Dev on Microsoft Windows 7 and 8</a>.</p>
 
-This topic describes how to install PCF Dev on Windows 10.
+This topic describes how to install <%= vars.platform_name %> Dev on Windows 10.
 
-## <a id="prerequisites"></a>Prerequisites
 
-### <a id="virtualbox"></a>Hyper-V
+## <a id="prerequisites"></a> Prerequisites
 
-PCF Dev uses Hyper-V on Windows 10 to run on native hypervisors.
+### <a id="virtualbox"></a> Hyper-V
 
-To enable Hyper-V on your machine before starting PCF Dev, follow the steps in [Install Hyper-V on Windows 10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) in the Microsoft documentation
+<%= vars.platform_name %> Dev uses Hyper-V on Windows 10 to run on native hypervisors.
 
-### <a id="cf-cli"></a>Cloud Foundry Command Line Interface
+To enable Hyper-V on your machine before starting <%= vars.platform_name %> Dev, follow the steps in [Install Hyper-V on Windows 10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) in the Microsoft documentation
 
-PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
+### <a id="cf-cli"></a> Cloud Foundry Command Line Interface
+
+<%= vars.platform_name %> Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
 
 1. [Download](https://cli.run.pivotal.io/stable?release=windows64&source=github-rel) the cf CLI for Windows (64 bit). If you previously used the cf CLI v5 Ruby gem, you must uninstall the gem first.
 
@@ -30,29 +31,34 @@ PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloud
 
 1. To verify your installation, open a terminal window and enter `cf`. If your installation was successful, the cf CLI help listing appears.
 
-## <a id="install-pcf-dev"></a>Install PCF Dev
 
-1. Download the latest version of PCF Dev from the [Pivotal Network](https://network.pivotal.io/).
-1. In PowerShell, install the CF Dev plugin required to run PCF Dev:
+## <a id="install-pcf-dev"></a>Install <%= vars.platform_name %> Dev
+
+1. Download the latest version of <%= vars.platform_name %> Dev from the [Pivotal Network](https://network.pivotal.io/).
+
+1. In PowerShell, install the CF Dev plugin required to run <%= vars.platform_name %> Dev:
 <pre class="terminal">$ cf install-plugin cfdev</pre>
-1. Start PCF Dev. Enter the following command, replacing `FILEPATH/FILE` with the location and name of the .iso or .tgz file you downloaded:
+
+1. Start <%= vars.platform_name %> Dev. Enter the following command, replacing `FILEPATH/FILE` with the location and name of the .iso or .tgz file you downloaded:
 
 	```
 	cf dev start -f FILEPATH/FILE
 	```
-  It may take several minutes for the PCF Dev VM and its services to start.
-  <p class="note"><strong>Note</strong>: You must run PowerShell in Administrator mode with PCF Dev.</p>
-After the **PCF Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
+  It may take several minutes for the <%= vars.platform_name %> Dev VM and its services to start.
+  <p class="note"><strong>Note</strong>: You must run PowerShell in Administrator mode with <%= vars.platform_name %> Dev.</p>
+
+After the **<%= vars.platform_name %> Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
 
 
-## <a id="stopping"></a>Stop PCF Dev
+## <a id="stopping"></a> Stop <%= vars.platform_name %> Dev
 
-To stop PCF Dev, run the following command:
+To stop <%= vars.platform_name %> Dev, run the following command:
 
 <pre class="terminal">$ cf dev stop</pre>
 
-## <a id="uninstall"></a>Uninstall PCF Dev
 
-To remove PCF Dev, run the following command:
+## <a id="uninstall"></a> Uninstall <%= vars.platform_name %> Dev
+
+To remove <%= vars.platform_name %> Dev, run the following command:
 
 <pre class="terminal">$ cf uninstall-plugin cfdev</pre>
