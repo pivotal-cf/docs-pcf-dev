@@ -70,23 +70,33 @@ After the **<%= vars.platform_name %> Dev is now running** banner appears, you c
 
 ## <a id="stopping"></a> Stop <%= vars.platform_name %> Dev
 
-To temporarily stop <%= vars.platform_name %> Dev, run:
+To temporarily stop <%= vars.platform_name %> Dev:
 
-```
-cf dev stop
-```
+1. Navigate to your app directory.
+
+1. Run:
+
+	```
+	cf dev stop
+	```
 
 
 ## <a id="uninstall"></a> Uninstall <%= vars.platform_name %> Dev
 
-To destroy the <%= vars.platform_name %> Dev VM, run:
+To destroy the <%= vars.platform_name %> Dev VM:
 
-```
-cf dev destroy
-```
+1. Navigate to your app directory.
 
-To remove the <%= vars.platform_name %> Dev, run:
+1. Run:
 
-```
-cf uninstall-plugin pcfdev
-```
+	```
+	cf dev destroy
+	```
+
+To remove the <%= vars.platform_name %> Dev:
+
+1. Run:
+
+	```
+	cf uninstall-plugin pcfdev
+	```

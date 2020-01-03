@@ -16,11 +16,13 @@ These sections describe the prerequisites you must have before installing <%= va
 
 <%= vars.platform_name %> Dev uses [QEMU](https://www.qemu.org/) and [libvirt](https://libvirt.org/) for virtualization. 
 
-To install QEMU and libvirt on Ubuntu systems, run:
+To install QEMU and libvirt on Ubuntu systems:
 
-```
-sudo apt install qemu-kvm libvirt-bin libvirt-doc
-```
+1. Run:
+
+	```
+	sudo apt install qemu-kvm libvirt-bin libvirt-doc
+	```
 
 ### <a id="cf-cli"></a> Cloud Foundry Command Line Interface
 
@@ -39,7 +41,7 @@ To install the cf CLI:
 
 To install <%= vars.platform_name %> Dev:
 
-1. Download the latest version of <%= vars.platform_name %> Dev from the [<%= vars.platform_name %> Dev](https://network.pivotal.io/products/pcfdev#/releases/1622) page on Pivotal Network..
+1. Download the latest version of <%= vars.platform_name %> Dev from the [<%= vars.platform_name %> Dev](https://network.pivotal.io/products/pcfdev#/releases/1622) page on Pivotal Network.
 
 1. Install the CF Dev plugin required to run <%= vars.platform_name %> Dev by running:
 
@@ -60,17 +62,25 @@ After the **<%= vars.platform_name %> Dev is now running** banner appears, you c
 
 ## <a id="stopping"></a> Stop <%= vars.platform_name %> Dev
 
-To stop <%= vars.platform_name %> Dev, run:
+To stop <%= vars.platform_name %> Dev:
 
-```
-cf dev stop
-```
+1. Navigate to your app directory.
+
+1. Run:
+
+	```
+	cf dev stop
+	```
 
 
 ## <a id="uninstall"></a> Uninstall <%= vars.platform_name %> Dev
 
-To remove <%= vars.platform_name %> Dev, run:
+To remove <%= vars.platform_name %> Dev:
 
-```
-cf uninstall-plugin pcfdev
-```
+1. Navigate to your app directory.
+
+1. Run:
+
+	```
+	cf uninstall-plugin pcfdev
+	```

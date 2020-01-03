@@ -22,25 +22,27 @@ The sections below describe how to launch SCS and use the Config Server. The Ser
 
 ## <a id='launch-scs'></a> Launch Spring Cloud Services
 
-To launch <%= vars.platform_name %> Dev using SCS, run:
+To launch <%= vars.platform_name %> Dev using SCS:
 
-```
-cf dev start -s scs
-```
+1. Run:
 
-<p class="note"><strong>Note:</strong> Due to the increased demands of SCS, <%= vars.platform_name %> Dev allocates more memory than usual.</p>
+	```
+	cf dev start -s scs
+	```
+	<p class="note"><strong>Note:</strong> Due to the increased demands of SCS, <%= vars.platform_name %> Dev allocates more memory than usual.</p>
+	Alternatively, you can deploy SCS after start by running:
 
-Alternatively, you can deploy SCS after start by running:
+	```
+	cf dev deploy-service scs
+	```
 
-```
-cf dev deploy-service scs
-```
+To undeploy SCS:
 
-To undeploy SCS, stop <%= vars.platform_name %> Dev by running:
+1. Stop <%= vars.platform_name %> Dev by running:
 
-```
-cf dev stop
-```
+	```
+	cf dev stop
+	```
 
 
 ## <a id='use-scs'></a> Use Spring Cloud Services
@@ -52,31 +54,31 @@ To create a service instance of the Config Server using the cook sample app:
 1. In a terminal window, navigate to the root repository of the cook sample app.
 
 1. To compile the cook sample app, run one of the following commands:
-  * Mac OS X or Linux:
+	* For Mac OS X or Linux:
 
-  	```
-  	./gradlew build
-  	```
-  * Windows:
+		```
+	 	./gradlew build
+	 	```
+	* For Windows:
 
-  	```
-  	gradlew.bat build
-  	```
-	The output on Mac OS X appears as in the example below:
-	<pre class='terminal'>
-	$ ./gradlew build
-	...
-	:compileTestJava
-	:processTestResources UP-TO-DATE
-	:testClasses
-	:test
-	2016-08-23 12:02:07.900  INFO 79148 --- [       Thread-5] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e: startup date [Tue Aug 23 12:02:04 EDT 2016]; root of context hierarchy
-	2016-08-23 12:02:07.903  INFO 79148 --- [       Thread-5] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@4ef3f6da: startup date [Tue Aug 23 12:02:05 EDT 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e
-	:check
-	:build
+		```
+	  	gradlew.bat build
+	  	```
+		The output on Mac OS X appears as in the example below:
+		<pre class='terminal'>
+		$ ./gradlew build
+		...
+		:compileTestJava
+		:processTestResources UP-TO-DATE
+		:testClasses
+		:test
+		2016-08-23 12:02:07.900  INFO 79148 --- [       Thread-5] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e: startup date [Tue Aug 23 12:02:04 EDT 2016]; root of context hierarchy
+		2016-08-23 12:02:07.903  INFO 79148 --- [       Thread-5] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@4ef3f6da: startup date [Tue Aug 23 12:02:05 EDT 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e
+		:check
+		:build
 
-	BUILD SUCCESSFUL
-	</pre>
+		BUILD SUCCESSFUL
+		</pre>
 
 1. Log in to <%= vars.platform_name %> Dev and target your local domain. To avoid SSL validation errors, use the `--skip-ssl-validation` flag. For more information, see the [Why do I receive a "Invalid SSL Cert" error?](./faq.html#ssl_cert) section of the _Frequently Asked Questions_ topic. Run:
 
