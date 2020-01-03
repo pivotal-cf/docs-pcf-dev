@@ -10,11 +10,13 @@ This topic describes how to install <%= vars.platform_name %> Dev on Linux.
 
 ## <a id="prerequisites"></a> Prerequisites
 
+These sections describe the prerequisites you must have before installing <%= vars.platform_name %> Dev on Linux.
+
 ### <a id='qemu-libvirt'></a> QEMU + libvirt
 
 <%= vars.platform_name %> Dev uses [QEMU](https://www.qemu.org/) and [libvirt](https://libvirt.org/) for virtualization. 
 
-To install on Ubuntu systems, run:
+To install QEMU and libvirt on Ubuntu systems, run:
 
 ```
 sudo apt install qemu-kvm libvirt-bin libvirt-doc
@@ -22,9 +24,11 @@ sudo apt install qemu-kvm libvirt-bin libvirt-doc
 
 ### <a id="cf-cli"></a> Cloud Foundry Command Line Interface
 
-<%= vars.platform_name %> Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
+<%= vars.platform_name %> Dev uses the Cloud Foundry Command Line Interface (cf CLI) to push and scale apps.
 
-1. Download the cf CLI for your Linux distribution from the [cf CLI](https://github.com/cloudfoundry/cli#downloads) repository on GitHub. If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
+To install the cf CLI:
+
+1. Download the cf CLI for your Linux distribution from the [Downloads](https://github.com/cloudfoundry/cli#downloads) section of the cf CLI repository on GitHub. If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
 
 1. Install the downloaded package using the package manager for your distribution.
 
@@ -33,7 +37,9 @@ sudo apt install qemu-kvm libvirt-bin libvirt-doc
 
 ## <a id="install-pcf-dev"></a> Install <%= vars.platform_name %> Dev
 
-1. Download the latest version of <%= vars.platform_name %> Dev from [Pivotal Network](https://network.pivotal.io/).
+To install <%= vars.platform_name %> Dev:
+
+1. Download the latest version of <%= vars.platform_name %> Dev from the [<%= vars.platform_name %> Dev](https://network.pivotal.io/products/pcfdev#/releases/1622) page on Pivotal Network..
 
 1. Install the CF Dev plugin required to run <%= vars.platform_name %> Dev by running:
 

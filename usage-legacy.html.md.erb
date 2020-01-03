@@ -6,66 +6,66 @@ owner: Pivotal Platform Dev
 
 <p class="note"><strong>Note:</strong> This topic applies only to <%= vars.platform_name %> Dev v0.30 or earlier. If you are using a later version of <%= vars.platform_name %> Dev, see <a href="usage.html">Using <%= vars.platform_name %> Dev</a>.</p>
 
-This topic describes how to use <%= vars.platform_name %> Dev to target instances, push an application, and list available marketplace services.
+This topic describes how to use <%= vars.platform_name %> Dev to target instances, push an app, and list available marketplace services.
 
 <p class="note"><strong>Note:</strong> To use your <%= vars.platform_name %> Dev instance, you must be running the <%= vars.platform_name %> Dev VM. In a terminal window, run <code>cf dev start</code> to boot the VM.</p>
 
 
 ## <a id="pcf-dev"></a> Log In to Your <%= vars.platform_name %> Dev Instance
 
-After launching your <%= vars.platform_name %> Dev instance, use the `cf login` command with the `-a` flag to target its API:
+To log in to your <%= vars.platform_name %> Dev instance:
 
-<pre class='terminal'>
-$ cf login -a https<span>:</span>//api.local.pcfdev.io --skip-ssl-validation
-Email: user
-Password: pass
-</pre>
+1. Start your <%= vars.platform_name %> Dev instance.
+
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+	```
+	cf login -a https<span>:</span>//api.local.pcfdev.io --skip-ssl-validation
+	```
 
 The terminal displays your API system domain when you run `cf dev start`. In most cases, your API system domain is `api.local.pcfdev.io`, but it may differ slightly depending on your host system configuration.
 
 
 ## <a id="push"></a> Push an App
 
-Follow the procedure below to push an app to your <%= vars.platform_name %> Dev instance.
+To push an app to your <%= vars.platform_name %> Dev instance:
 
 1. Navigate to your app directory.
 
-1. Run `cf push APP-NAME`. Replace `APP-NAME` with a name of your choice.
+1. Run:
 
-For more information about pushing apps to your deployment, see the [Pushing an App](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/deploy-app.html) topic.
+	```
+	cf push APP-NAME
+	```
+	Where `APP-NAME` is the name of the app you want to push.
 
-For more information about using the cf CLI, see the [Getting Started with the cf CLI](http://docs.pivotal.io/pivotalcf/cf-cli/getting-started.html) topic.
+For more information about pushing apps to your deployment, see [Pushing an App](http://docs.pivotal.io/platform/application-service/devguide/deploy-apps/deploy-app.html).
+
+For more information about using the cf CLI, see [Getting Started with the cf CLI](http://docs.pivotal.io/platform/application-service/cf-cli/getting-started.html).
 
 
 ## <a id="marketplace"></a> List Marketplace Services
 
 <%= vars.platform_name %> Dev supports marketplace services, giving developers access to Redis, RabbitMQ, and MySQL.
 
-In order to view the list of available services, run `cf marketplace` in a terminal window.
+To view the list of available services, run:
 
-<pre class='terminal'>
-$ cf marketplace
-Getting services from marketplace in org pcfdev-org / space pcfdev-space as admin...
-OK
+```
+cf marketplace
+```
 
-service      plans        description
-p-mysql      512mb, 1gb   MySQL databases on demand
-p-rabbitmq   standard     RabbitMQ is a robust and scalable high-performance multi-protocol messaging broker.
-p-redis      shared-vm    Redis service to provide a key-value store
-</pre>
-
-For more information about using marketplace services, see the [Using Services in <%= vars.platform_name %> Dev](dev-services.html) topic.
+For more information about using marketplace services, see [Using Services in <%= vars.platform_name %> Dev](dev-services.html).
 
 
 ## <a id="apps-manager"></a> Use Apps Manager
 
-When you start <%= vars.platform_name %> Dev, Apps Manager starts automatically. Follow the procedure below to access Apps Manager.
+When you start <%= vars.platform_name %> Dev, Apps Manager starts automatically. To access Apps Manager:
 
-1. Navigate to `https://apps.local.pcfdev.io/`
-	<p class="note"><strong>Note</strong>: If <%= vars.platform_name %> Dev started on a domain other than <code>local.pcfdev.io</code>, then the Apps Manager URL is different. For example, if you log in to <%= vars.platform_name %> Dev at <code>api.local3.pcfdev.io</code>, then navigate to <a href="https://apps.local3.pcfdev.io/">https://apps.local3.pcfdev.io/</a> to access Apps Manager.</p>
+1. Navigate to `https://apps.local.pcfdev.io/` in your browser.
+	<p class="note"><strong>Note:</strong> If <%= vars.platform_name %> Dev started on a domain other than <code>local.pcfdev.io</code>, the Apps Manager URL is different. For example, if you log in to <%= vars.platform_name %> Dev at <code>api.local3.pcfdev.io</code>, navigate to <code>https://apps.local3.pcfdev.io/</code> to access Apps Manager.</p>
 
-1. The first time you open Apps Manager after starting the <%= vars.platform_name %> Dev, your browser shows a dialog or page about the security certificate. Choose to connect to the Apps Manager URL. Alternatively, you can run `cf dev trust` to add the <%= vars.platform_name %> Dev certificate to your OS certificate store. See [here](./configuring.html#trust) for more details.
+1. The first time you open Apps Manager after starting the <%= vars.platform_name %> Dev, your browser shows a dialog or page about the security certificate. Choose to connect to the Apps Manager URL. Alternatively, you can run `cf dev trust` to add the <%= vars.platform_name %> Dev certificate to your OS certificate store. For more information, see [Configuring <%= vars.platform_name %> Dev](./configuring.html).
 
-1. Log in using admin/admin or user/pass. The Pivotal <%= vars.platform_name %> Dev page appears:
+1. Log in using `admin/admin` or `user/pass`. The <%= vars.platform_name %> Dev page appears:
 
-    <img src="images/apps-manager.png" alt="Apps Manager"/>
+    <img src="images/apps-manager.png" alt="There is a page with a dark blue header and subnav on the left. In the left corner of the header is the text 'Pivotal PCF Dev' in white letters. In the right corner of the header is the word 'user' in white letters with a white downward-pointing triangle to the right of 'user', indicating a dropdown. Below 'Pivotal PCF Dev' is a subnav with two main sections labeled 'Org' and 'Spaces'. Under 'Org' is the text 'pcfdev-org' with a downward-pointing arrow on a button to the right, indicating a dropdown. Under 'Spaces' is the text 'pcfdev-space'. To the right of the subnav is the org page, which has a white background. At the top are two sections labeled 'Org' and 'Quota'. Below 'Org' is the name of the org, 'pcfdev-org', in large black text. Below 'Quota' is an empty horizontal bar, below which is the text '0&nbsp;MB / 100&nbsp;GB on the left end and '0%' on the right end. Across from 'Quota' on the right side of the page is the text 'Usage Report' in blue letters, indicating a clickable link. Below the 'Org' and 'Quota' sections are four tabs: 'Space (1)', 'Domain (1)', 'Members (2)', and 'Settings'. 'Space (1)' is in black letters with a green line underneath to indicate it is selected; the other tab labels are in blue letters and are not underlined. Below these tabs are two large boxes: one on the left that is comprised of four smaller boxes, and one on the right that is a single box and contains the text '+ Add a Space' in blue letters. On the left, the four smaller boxes are a long, rectangular box on top labeled 'pcfdev-space'; two boxes underneath 'pcfdev-space' labeled 'Apps' and 'Services'; and another long, rectangular box underneath 'Apps' and 'Services' containing the text '0% of Org Quota'. 'Apps' contains the text '0' on the left and three small circle icons in a vertical row on the right, each with the number '0' next to them. The top circle icon is green, the middle circle icon is gray, and the bottom circle icon is red. 'Services' contains the text '0'."/>

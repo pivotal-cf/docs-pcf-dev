@@ -6,7 +6,12 @@ owner: Pivotal Platform Dev
 
 <p class="note"><strong>Note:</strong> This functionality is not supported in the current version of <%= vars.platform_name %> Dev. Use <%= vars.platform_name %> Dev v0.30 for <%= vars.platform_name %> v1.11 or earlier for this functionality.</p>
 
-This topic describes how to use <%= vars.platform_name %> Dev with a local Open Virtualization Appliance (OVA). By default, <%= vars.platform_name %> Dev tries to download a pre-determined OVA at startup. You can configure <%= vars.platform_name %> Dev to import an OVA instead when Internet access is restricted.
+This topic describes how to use <%= vars.platform_name %> Dev with a local Open Virtualization Appliance (OVA).
+
+
+## <a id='import-config'></a> Configure <%= vars.platform_name %> Dev to Import an OVA
+
+By default, <%= vars.platform_name %> Dev tries to download a pre-determined OVA at startup. You can configure <%= vars.platform_name %> Dev to import an OVA instead when Internet access is restricted.
 
 To configure <%= vars.platform_name %> Dev to import an OVA when Internet access is restricted:
 
@@ -17,9 +22,9 @@ To configure <%= vars.platform_name %> Dev to import an OVA when Internet access
 	```
 	This command outputs the CLI and OVA version and the Git SHA of the CLI. In this example, the OVA version is `0.234.0`.
 
-1. Download the OVA file from [Pivotal Network](https://network.pivotal.io/products/pcfdev#/releases/1622). To download the OVA, click on the corresponding file in the release, such as `pcfdev-v0.234.0.ova`. You must be signed in and accept the EULA to download the OVA.
+1. Download the OVA file from the [<%= vars.platform_name %> Dev](https://network.pivotal.io/products/pcfdev#/releases/1622) page on Pivotal Network. To download the OVA, click on the corresponding file in the release, such as `pcfdev-v0.234.0.ova`. You must be signed in and accept the EULA to download the OVA.
 
-1. To import the OVA file, run: Replace 
+1. To import the OVA file, run:
 
 	```
 	cf dev import PATH-TO-OVA-FILE

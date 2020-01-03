@@ -4,6 +4,9 @@ title: Frequently Asked Questions
 owner: Pivotal Platform Dev
 ---
 
+This topic provides guidance for common questions about configuring <%= vars.platform_name %> Dev.
+
+
 ## <a id="ssl_cert"></a> Why do I receive a "Invalid SSL Cert" error?
 
 <pre class='terminal'>
@@ -19,42 +22,38 @@ TIP: Use 'cf api --skip-ssl-validation' to continue with an insecure API endpoin
 
 ## <a id="host"></a> How can I connect apps running in <%= vars.platform_name %> Dev to services running on my workstation?
 
-<%= vars.platform_name %> Dev provides a special hostname for addressing the host from inside of application containers.
-If the <%= vars.platform_name %> Dev system domain is `dev.cfdev.sh`, then the host will be routable at `host.cfdev.sh`.
-Services running on the host must be listening on all network interfaces (not just `localhost`) for apps to access them.
+<%= vars.platform_name %> Dev provides a special hostname for addressing the host from inside of app containers. If the <%= vars.platform_name %> Dev system domain is `dev.cfdev.sh`, then the host is routable at `host.cfdev.sh`. Services running on the host must be listening on all network interfaces for apps to access them, not just `localhost`.
 
-<p class="note"><strong>Note:</strong> Using <code>localhost</code> inside of app containers will not refer to your workstation.</p>
+<p class="note"><strong>Note:</strong> Using <code>localhost</code> inside of app containers does not refer to your workstation.</p>
 
 
-## <a id="memory"></a> How can I customize the memory and CPU count used by <%= vars.platform_name %> Dev ?
+## <a id="memory"></a> How can I customize the memory and CPU count used by <%= vars.platform_name %> Dev?
 
-By default, <%= vars.platform_name %> Dev allocates 8GB of memory to run.
+By default, <%= vars.platform_name %> Dev allocates 8&nbsp;GB of memory to run.
 
-To change the allocated memory, run the following command, replacing `NEW-ALLOCATED-MEMORY` with the amount of memory you want to allocate in megabytes:
+To change the allocated memory, run:
 
 ```
 cf dev start -m NEW-ALLOCATED-MEMORY
 ```
 
-By default, <%= vars.platform_name %> Dev tries to use 4 cores. To change this setting, run the following command, replacing `DESIRED-NUMBER-OF-CORES` with the number of processor cores <%= vars.platform_name %> Dev should use:
+Where `NEW-ALLOCATED-MEMORY` is the amount of memory you want to allocate in MB.
+
+By default, <%= vars.platform_name %> Dev tries to use 4 cores. To change this setting, run:
 
 ```
 cf dev start -c DESIRED-NUMBER-OF-CORES
 ```
 
-## <a id="security_groups"></a> How are Application Security Groups (ASGs) configured in <%= vars.platform_name %> Dev?
+Where `DESIRED-NUMBER-OF-CORES` is the number of processor cores <%= vars.platform_name %> Dev should use.
 
-Unlike <%= vars.platform_name %>, <%= vars.platform_name %> Dev allows applications to access all private address ranges without the need for additional ASGs.
-This is because <%= vars.platform_name %> Dev is considered a trusted, local environment.
-You can remove the `all_pcfdev` security group:
 
-<pre class='terminal'>
-$ cf unbind-running-security-group all_pcfdev
-Unbinding security group all_pcfdev from defaults for running as admin
-OK
-TIP: Changes will not apply to existing running applications until they are restarted.
-$ cf unbind-staging-security-group all_pcfdev
-Unbinding security group all_pcfdev from defaults for staging as admin
-OK
-TIP: Changes will not apply to existing running applications until they are restarted.
-</pre>
+## <a id="security_groups"></a> How are App Security Groups (ASGs) configured in <%= vars.platform_name %> Dev?
+
+Unlike <%= vars.platform_name %>, <%= vars.platform_name %> Dev allows applications to access all private address ranges without the need for additional ASGs. This is because <%= vars.platform_name %> Dev is considered a trusted, local environment. You can remove the `all_pcfdev` security group by running:
+
+```
+cf unbind-running-security-group all_pcfdev
+```
+
+Changes do not apply to existing running apps until they are restarted.

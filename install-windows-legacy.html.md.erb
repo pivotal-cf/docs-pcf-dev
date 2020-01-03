@@ -11,9 +11,13 @@ This topic describes how to install <%= vars.platform_name %> Dev on Windows 7 a
 
 ## <a id="prerequisites"></a> Prerequisites
 
+These sections describe the prerequisites you must have before installing <%= vars.platform_name %> Dev on Windows 7 and 8.
+
 ### <a id="virtualbox"></a> VirtualBox
 
-<%= vars.platform_name %> Dev uses [VirtualBox](https://www.virtualbox.org) v5.0 and above as its virtualizer.
+<%= vars.platform_name %> Dev uses [VirtualBox](https://www.virtualbox.org) v5.0 or later as its virtualizer.
+
+To install VirtualBox:
 
 1. Download VirtualBox v5.0.14 for Windows hosts from [VirtualBox](http://download.virtualbox.org/virtualbox/5.0.14/VirtualBox-5.0.14-105127-Win.exe).
 
@@ -21,9 +25,11 @@ This topic describes how to install <%= vars.platform_name %> Dev on Windows 7 a
 
 ### <a id="cf-cli"></a> Cloud Foundry Command Line Interface
 
-<%= vars.platform_name %> Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
+<%= vars.platform_name %> Dev uses the Cloud Foundry Command Line Interface (cf CLI) to push and scale apps.
 
-1. To install the cf CLI for Windows (64 bit), download it [here](https://cli.run.pivotal.io/stable?release=windows64&source=github-rel). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
+To install the cf CLI:
+
+1. Download the [cf CLI for Windows (64 bit)](https://cli.run.pivotal.io/stable?release=windows64&source=github-rel). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
 
 1. Unpack the ZIP file and open the `cf_installer` app.
 
@@ -34,13 +40,15 @@ This topic describes how to install <%= vars.platform_name %> Dev on Windows 7 a
 
 ## <a id="install-pcf-dev"></a> Install <%= vars.platform_name %> Dev
 
-1. Download <%= vars.platform_name %> Dev v0.30 from the [Pivotal Network](https://network.pivotal.io/).
+To install <%= vars.platform_name %> Dev:
+
+1. Download <%= vars.platform_name %> Dev v0.30 from the [<%= vars.platform_name %> Dev](https://network.pivotal.io/products/pcfdev#/releases/1622) page on Pivotal Network.
 
 1. Unzip the downloaded ZIP file.
 
 1. Using PowerShell, navigate to the directory containing the unzipped plugin file.
 
-1. Install the <%= vars.platform_name %> Dev plugin by running
+1. Install the CF Dev plugin by running:
 
 	```
 	.\pcfdev-VERSION-windows.exe

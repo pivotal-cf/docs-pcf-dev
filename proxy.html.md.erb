@@ -13,48 +13,58 @@ This topic describes how to use <%= vars.platform_name %> Dev with a proxy.
 
 In a restricted network environment, configuring <%= vars.platform_name %> Dev to connect to an HTTP proxy permits app-to-Internet connectivity, access to custom buildpacks, and the use of Docker images from the public Internet.
 
-To run <%= vars.platform_name %> Dev behind a proxy, set the standard proxy environment variables for your platform before you start <%= vars.platform_name %> Dev:
+To run <%= vars.platform_name %> Dev behind a proxy, you must set the standard proxy environment variables for your platform before you start <%= vars.platform_name %> Dev.
 
-<p class="note"><strong>Note:</strong> Proxy Support is not currently supported on Linux. That means the environment variables `HTTP_PROXY, HTTPS_PROXY, NO_PROXY`, are not fully supported. Proxy Support on Linux is only supported in <%= vars.platform_name %> Dev v0.30 or earlier.</p>
+<p class="note"><strong>Note:</strong> Proxy Support is not currently supported on Linux. That means the environment variables `HTTP_PROXY, HTTPS_PROXY, NO_PROXY`, are not fully supported. Proxy Support on Linux is only supported in <%= vars.platform_name %> Dev v0.30 and earlier.</p>
+
+To set the standard proxy environment variables for your platform, run:
 
 * Using Mac OS X:
-  <pre class="terminal">
-  $ HTTP\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
-  > HTTPS\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
-  > cf dev start
-  </pre>
+
+  ```
+  HTTP\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
+  HTTPS\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
+  cf dev start
+  ```
 
 * Using Windows PowerShell:
-  <pre class="terminal">
-  >> $env:HTTP\_PROXY = "<span>http</span>://PROXY\_IP:PROXY\_PORT"
-  >> $env:HTTPS\_PROXY = "<span>http</span>://PROXY\_IP:PROXY\_PORT"
-  >> cf dev start
-  </pre>
+
+  ```
+  $env:HTTP\_PROXY = "<span>http</span>://PROXY\_IP:PROXY\_PORT"
+  $env:HTTPS\_PROXY = "<span>http</span>://PROXY\_IP:PROXY\_PORT"
+  cf dev start
+  ```
 
 <p class="note"><strong>Note:</strong> Do not use <code>localhost</code> for <code>PROXY_IP</code> or as the proxy server hostname, because <code>localhost</code> refers to the <%= vars.platform_name %> Dev VM itself. If <%= vars.platform_name %> Dev needs to use a locally-running HTTP proxy, the proxy must be listening on all network interfaces, and you must address it as <code>host.cfdev.sh</code>. For a system domain <code>dev.cfdev.sh</code>, address the proxy as <code>host.cfdev.sh</code>, and so on.</p>
 
 
 ## <a id="allow-cf-cli-behind-proxy"></a> Use the cf CLI Behind an HTTP Proxy
 
-You must configure the cf CLI to bypass your HTTP proxy for addresses that end in `local.pcfdev.io`, which is your system domain:
+You must configure the cf CLI to bypass your HTTP proxy for addresses that end in `local.pcfdev.io`, which is your system domain. To configure the cf CLI, run:
 
 * For Mac OS X:
-  <pre class="terminal">
-  $ export NO\_PROXY=.dev.cfdev.sh,dev.cfdev.sh,$NO_PROXY
-  $ cf login -a http<span>s</span>://api.dev.cfdev.sh --skip-ssl-validation
-  </pre>
+  
+  ```
+  export NO\_PROXY=.dev.cfdev.sh,dev.cfdev.sh,$NO_PROXY
+  cf login -a http<span>s</span>://api.dev.cfdev.sh --skip-ssl-validation
+  ```
+
 * For Windows PowerShell:
-  <pre class="terminal">
-  >> $env:NO\_PROXY = ".dev.cfdev.sh,dev.cfdev.sh,OTHER-DOMAINS"
-  >> cf login -a http<span>s</span>://api.ldev.cfdev.sh --skip-ssl-validation
-  </pre>
+
+  ```
+  $env:NO\_PROXY = ".dev.cfdev.sh,dev.cfdev.sh,OTHER-DOMAINS"
+  cf login -a http<span>s</span>://api.ldev.cfdev.sh --skip-ssl-validation
+  ```
 
 
 ## <a id="allow-traffic-behind-proxy"></a> Allow App Traffic to Bypass the Proxy
 
 You can configure your apps to connect to other addresses without using the proxy. For example, you can connect apps to user-provided services on a private network.
 
-* Set the `NO_PROXY` environment variable to a comma-separated list of hosts:
-   <pre class="terminal">
-   $ cf set-env APP\_NAME NO\_PROXY=192.0.2.54,198.51.100.34
-   </pre>
+To configure your apps to connect to other addresses without a proxy:
+
+1. Set the `NO_PROXY` environment variable to a comma-separated list of hosts by running:
+
+  ```
+  cf set-env APP\_NAME NO\_PROXY=192.0.2.54,198.51.100.34
+  ```
