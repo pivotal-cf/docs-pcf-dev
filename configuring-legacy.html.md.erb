@@ -136,10 +136,10 @@ These certificates are automatically removed when you run `cf dev destroy`.
 
 <p class="note"><strong>Note:</strong> If you run <code>cf dev destroy</code> and are prompted to enter your password, the plugin is attempting to remove <%= vars.platform_name %> Dev-specific certificates from your certificate store.</p>
 
-The following table shows conditions where `cf dev trust` is expected to remove SSL validation warnings:
+The following table shows conditions where `cf dev trust` removes SSL validation warnings:
 
 | OS | cf CLI | Chrome | Firefox | Internet Explorer |
 | -- | ------ | ------ | ------- | ----------------- |
 | Mac | ✓ | ✓ | X | - |
-| Windows | ✓ | ✓ | X| ✓ |
+| Windows | ✓ | ✓ | X | ✓ |
 | Linux | ✓ | X | X | - |
