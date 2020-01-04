@@ -22,9 +22,9 @@ To display information about the Marketplace services available in <%= vars.plat
 
 1. Run:
 
-  ```
-  cf marketplace
-  ```
+    ```
+    cf marketplace
+    ```
 
 Services that are not started do not appear in Marketplace.
 
@@ -37,10 +37,10 @@ To deploy a service:
 
 1. Run:
 
-  ```
-  cf dev deploy-service SERVICE-NAME
-  ```
-  Where `SERVICE-NAME` is the name of the service you want to deploy: `scs`, `redis`, `rabbitmq`, or `mysql`.
+    ```
+    cf dev deploy-service SERVICE-NAME
+    ```
+    Where `SERVICE-NAME` is the name of the service you want to deploy: `scs`, `redis`, `rabbitmq`, or `mysql`.
 
 <%= vars.platform_name %> Dev supports Marketplace services, giving developers access to Spring Cloud Services, Redis, RabbitMQ, and MySQL. The table below includes flags and descriptions for each service:
 
@@ -62,13 +62,13 @@ To create a service instance:
 
 1. Run:
 
-  ```
-  cf create-service SERVICE PLAN SERVICE-INSTANCE
-  ```
-  Where:
-  * `SERVICE` is the service for which you want to create service instances.
-  * `PLAN` is the service plan you want to use. Service plans are a way for providers to offer varying levels of resources or features for the same service.
-  * `SERVICE-INSTANCE` is the name you provide for your service instance. You can use any series of alpha-numeric characters, hyphens (-), and underscores (\_). You can rename the instance at any time.
+    ```
+    cf create-service SERVICE PLAN SERVICE-INSTANCE
+    ```
+    Where:
+    * `SERVICE` is the service for which you want to create service instances.
+    * `PLAN` is the service plan you want to use. Service plans are a way for providers to offer varying levels of resources or features for the same service.
+    * `SERVICE-INSTANCE` is the name you provide for your service instance. You can use any series of alpha-numeric characters, hyphens (-), and underscores (\_). You can rename the instance at any time.
 
 <p class="note"><strong>Note:</strong> For more information about how developers can bind apps with services that are not available in their Pivotal Marketplace, see <a href="http://docs.pivotal.io/pivotalcf/devguide/services/user-provided.html">User Provided Service Instances</a>.</p>
 
@@ -82,27 +82,27 @@ To provide parameters in-line:
 
 1. Run:
 
-  ```
-  cf create-service SERVICE PLAN SERVICE-INSTANCE -c 'PARAMETERS-JSON-OBJECT'
-  ```
-  Where:
-  * `SERVICE` is the service for which you want to create service instances.
-  * `PLAN` is the service plan you want to use.
-  * `SERVICE-INSTANCE` is the name you provide for your service instance.
-  * `PARAMETERS` is the JSON object containing the parameters you want to configure.
+    ```
+    cf create-service SERVICE PLAN SERVICE-INSTANCE -c 'PARAMETERS-JSON-OBJECT'
+    ```
+    Where:
+    * `SERVICE` is the service for which you want to create service instances.
+    * `PLAN` is the service plan you want to use.
+    * `SERVICE-INSTANCE` is the name you provide for your service instance.
+    * `PARAMETERS` is the JSON object containing the parameters you want to configure.
 
 To provide parameters in a JSON file:
 
 1. Run:
 
-  ```
-  cf create-service SERVICE PLAN SERVICE-INSTANCE -c PARAMETERS-JSON-FILE-PATH
-  ```
-  Where:
-  * `SERVICE` is the service for which you want to create service instances.
-  * `PLAN` is the service plan you want to use.
-  * `SERVICE-INSTANCE` is the name you provide for your service instance.
-  * `PARAMETERS-JSON-FILE-PATH` is the file path of the JSON file containing the parameters you want to configure.
+    ```
+    cf create-service SERVICE PLAN SERVICE-INSTANCE -c PARAMETERS-JSON-FILE-PATH
+    ```
+    Where:
+    * `SERVICE` is the service for which you want to create service instances.
+    * `PLAN` is the service plan you want to use.
+    * `SERVICE-INSTANCE` is the name you provide for your service instance.
+    * `PARAMETERS-JSON-FILE-PATH` is the file path of the JSON file containing the parameters you want to configure.
 
 ### <a id='instance-tags-create'></a> Instance Tags
 
@@ -114,14 +114,14 @@ To provide tags when creating a service instance:
 
 1. Run:
 
-  ```
-  cf create-service SERVICE PLAN SERVICE-INSTANCE -t "TAG-1, TAG-2"
-  ```
-  Where:
-  * `SERVICE` is the service for which you want to create service instances.
-  * `PLAN` is the service plan you want to use.
-  * `SERVICE-INSTANCE` is the name you provide for your service instance.
-  * `TAG-1` and `TAG-2` are the tags you want to provide the service instance.
+    ```
+    cf create-service SERVICE PLAN SERVICE-INSTANCE -t "TAG-1, TAG-2"
+    ```
+    Where:
+    * `SERVICE` is the service for which you want to create service instances.
+    * `PLAN` is the service plan you want to use.
+    * `SERVICE-INSTANCE` is the name you provide for your service instance.
+    * `TAG-1` and `TAG-2` are the tags you want to provide the service instance.
 
 
 ## <a id='examine'></a> Examine Service Instances
@@ -134,9 +134,9 @@ To list the service instances in your targeted space:
 
 1. Run:
 
-  ```
-  cf services
-  ```
+    ```
+    cf services
+    ```
 
 The output includes any bound apps, along with the state of the last requested operation for the service instance.
 
@@ -146,10 +146,10 @@ To get details about a particular service instance:
 
 1. Run:
 
-  ```
-  cf service SERVICE-INSTANCE
-  ```
-  Where `SERVICE-INSTANCE` is the name of the service instance you want to examine.
+    ```
+    cf service SERVICE-INSTANCE
+    ```
+    Where `SERVICE-INSTANCE` is the name of the service instance you want to examine.
 
 Details include dashboard URLs, if applicable, and operation start and last updated timestamps.
 
@@ -162,12 +162,12 @@ To rename a service instance:
 
 1. Run:
 
-  ```
-  cf rename-service OLD-SERVICE-INSTANCE-NAME NEW-SERVICE-INSTANCE-NAME
-  ```
-  Where:
-  * `OLD-SERVICE-INSTANCE-NAME` is the current name of the service instance.
-  * `NEW-SERVICE-INSTANCE-NAME` is the new name you want to give the service instance.
+    ```
+    cf rename-service OLD-SERVICE-INSTANCE-NAME NEW-SERVICE-INSTANCE-NAME
+    ```
+    Where:
+    * `OLD-SERVICE-INSTANCE-NAME` is the current name of the service instance.
+    * `NEW-SERVICE-INSTANCE-NAME` is the new name you want to give the service instance.
 
 
 ## <a id='update_service'></a> Update a Service Instance
@@ -184,12 +184,12 @@ To update the service plan for a service instance:
 
 1. Run:
 
-  ```
-  cf update-service SERVICE-INSTANCE -p SERVICE-PLAN
-  ```
-  Where:
-  * `SERVICE-INSTANCE` is the name of the service instance.
-  * `SERVICE-PLAN` is the name of the service plan you want to update.
+    ```
+    cf update-service SERVICE-INSTANCE -p SERVICE-PLAN
+    ```
+    Where:
+    * `SERVICE-INSTANCE` is the name of the service instance.
+    * `SERVICE-PLAN` is the name of the service plan you want to update.
 
 ### <a id='arbitrary-params-update'></a> Arbitrary Parameters
 
@@ -201,23 +201,23 @@ To update the parameters of a service instance in-line:
 
 1. Run:
 
-  ```
-  cf update-service SERVICE-INSTANCE -c 'PARAMETERS-JSON-OBJECT'
-  ```
-  Where:
-  * `SERVICE-INSTANCE` is the name of your service instance.
-  * `PARAMETERS` is the JSON object containing the parameters you want to update.
+    ```
+    cf update-service SERVICE-INSTANCE -c 'PARAMETERS-JSON-OBJECT'
+    ```
+    Where:
+    * `SERVICE-INSTANCE` is the name of your service instance.
+    * `PARAMETERS` is the JSON object containing the parameters you want to update.
 
 To update the parameters of a service instance with a JSON file:
 
 1. Run:
 
-  ```
-  cf update-service SERVICE-INSTANCE -c PARAMETERS-JSON-FILE-PATH
-  ```
-  Where:
-  * `SERVICE-INSTANCE` is the name of your service instance.
-  * `PARAMETERS-JSON-FILE-PATH` is the file path of the JSON file containing the parameters you want to update.
+    ```
+    cf update-service SERVICE-INSTANCE -c PARAMETERS-JSON-FILE-PATH
+    ```
+    Where:
+    * `SERVICE-INSTANCE` is the name of your service instance.
+    * `PARAMETERS-JSON-FILE-PATH` is the file path of the JSON file containing the parameters you want to update.
 
 ### <a id='instance-tags-update'></a> Instance Tags
 
@@ -229,12 +229,12 @@ To update the tags of a service instance:
 
 1. Run:
 
-  ```
-  cf update-service SERVICE-INSTANCE -t "TAG-1, TAG-2"
-  ```
-  Where:
-  * `SERVICE-INSTANCE` is the name of your service instance.
-  * `TAG-1` and `TAG-2` are the tags you want to update.
+    ```
+    cf update-service SERVICE-INSTANCE -t "TAG-1, TAG-2"
+    ```
+    Where:
+    * `SERVICE-INSTANCE` is the name of your service instance.
+    * `TAG-1` and `TAG-2` are the tags you want to update.
 
 
 ## <a id='delete'></a> Delete a Service Instance
@@ -245,10 +245,10 @@ To delete a service instance:
 
 1. Run:
 
-  ```
-  cf delete-service my_mysql
-  ```
-  Where `SERVICE-INSTANCE` is the name of the service instance you want to delete.
+    ```
+    cf delete-service SERVICE-INSTANCE
+    ```
+    Where `SERVICE-INSTANCE` is the name of the service instance you want to delete.
 
 1. When you are prompted to confirm that you want to delete the service instance, enter `y`.
 
@@ -265,19 +265,19 @@ To bind a service instance to your app:
 
 1. Run:
 
-  ```
-  cf bind-service APP-NAME SERVICE-INSTANCE
-  ```
-  Where:
-  * `APP-NAME` is the name of your app.
-  * `SERVICE-INSTANCE` is the name of the service instance you want to bind to your app.
+    ```
+    cf bind-service APP-NAME SERVICE-INSTANCE
+    ```
+    Where:
+    * `APP-NAME` is the name of your app.
+    * `SERVICE-INSTANCE` is the name of the service instance you want to bind to your app.
 
 1. Restage your app by running:
 
-  ```
-  cf restage APP-NAME
-  ```
-  Where `APP-NAME` is the name of your app.
+    ```
+    cf restage APP-NAME
+    ```
+    Where `APP-NAME` is the name of your app.
 
 <p class="note"><strong>Note:</strong> You must restart or in some cases re-push your app for changes to be applied to the VCAP_SERVICES environment variable and for the app to recognize these changes.</p>
 
@@ -291,39 +291,39 @@ To bind a service instance to your app with parameters in-line:
 
 1. Run:
 
-  ```
-  cf APP-NAME SERVICE-INSTANCE -c 'PARAMETERS-JSON-OBJECT'
-  ```
-  Where:
-  * `APP-NAME` is the name of your app.
-  * `SERVICE-INSTANCE` is the name of the service instance you want to bind to your app.
-  * `PARAMETERS-JSON-OBJECT` is the JSON object containing the parameters you want to configure.
+    ```
+    cf APP-NAME SERVICE-INSTANCE -c 'PARAMETERS-JSON-OBJECT'
+    ```
+    Where:
+    * `APP-NAME` is the name of your app.
+    * `SERVICE-INSTANCE` is the name of the service instance you want to bind to your app.
+    * `PARAMETERS-JSON-OBJECT` is the JSON object containing the parameters you want to configure.
 
 1. Restage your app by running:
 
-  ```
-  cf restage APP-NAME
-  ```
-  Where `APP-NAME` is the name of your app.
+    ```
+    cf restage APP-NAME
+    ```
+    Where `APP-NAME` is the name of your app.
 
 To bind a service instance to your app with in a JSON file:
 
 1. Run:
 
-  ```
-  cf bind-service APP-NAME SERVICE-INSTANCE -c PARAMETERS-JSON-FILE-PATH
-  ```
-  Where:
-  * `APP-NAME` is the name of your app.
-  * `SERVICE-INSTANCE` is the name of the service instance you want to bind to your app.
-  * `PARAMETERS-JSON-FILE-PATH` is the file path of the JSON file containing the parameters you want to configure.
+    ```
+    cf bind-service APP-NAME SERVICE-INSTANCE -c PARAMETERS-JSON-FILE-PATH
+    ```
+    Where:
+    * `APP-NAME` is the name of your app.
+    * `SERVICE-INSTANCE` is the name of the service instance you want to bind to your app.
+    * `PARAMETERS-JSON-FILE-PATH` is the file path of the JSON file containing the parameters you want to configure.
 
 1. Restage your app by running:
 
-  ```
-  cf restage APP-NAME
-  ```
-  Where `APP-NAME` is the name of your app.
+    ```
+    cf restage APP-NAME
+    ```
+    Where `APP-NAME` is the name of your app.
 
 ### <a id='bind-with-manifest'></a> Binding with App Manifest
 
@@ -333,11 +333,11 @@ To bind a service instance to your app on push:
 
 1. Add the following to your app manifest:
 
-  ```
-  services:
-   - SERVICE-INSTANCE
-  ```
-  Where `SERVICE-INSTANCE` is the name of the service instance you want to bind to your app.
+    ```
+    services:
+     - SERVICE-INSTANCE
+    ```
+    Where `SERVICE-INSTANCE` is the name of the service instance you want to bind to your app.
 
 For more information about app manifests, see [Deploying with App Manifests](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/manifest.html).
 
@@ -358,22 +358,22 @@ To update your service credentials:
 
 1. Unbind the service instance using the credentials you are updating by running:
 
-  ```
-  cf unbind-service APP-NAME SERVICE-INSTANCE
-  ```
-  Where:
-  * `APP-NAME` is the name of your app.
-  * `SERVICE-INSTANCE` is the name of the service instance for which you want to update credentials.
+    ```
+    cf unbind-service APP-NAME SERVICE-INSTANCE
+    ```
+    Where:
+    * `APP-NAME` is the name of your app.
+    * `SERVICE-INSTANCE` is the name of the service instance for which you want to update credentials.
 
 1. Re-bind the service instance by running:
 
-  ```
-  cf bind-service APP-NAME SERVICE-INSTANCE
-  ```
-  Where:
-  * `APP-NAME` is the name of your app.
-  * `SERVICE-INSTANCE` is the name of the service instance for which you want to update credentials.
-  This adds your credentials to the VCAP_SERVICES environment variable.
+    ```
+    cf bind-service APP-NAME SERVICE-INSTANCE
+    ```
+    Where:
+    * `APP-NAME` is the name of your app.
+    * `SERVICE-INSTANCE` is the name of the service instance for which you want to update credentials.
+    This adds your credentials to the VCAP_SERVICES environment variable.
 
 1. Restart or re-push the app bound to the service instance so the app recognizes your environment variable updates.
 
@@ -384,13 +384,13 @@ Unbinding a service instance removes the credentials created for your app from t
 
 To unbind a service instance from your app:
 
-  1. Run:
+1. Run:
 
-  ```
-  cf unbind-service APP-NAME SERVICE-INSTANCE
-  ```
-  Where:
-  * `APP-NAME` is the name of your app.
-  * `SERVICE-INSTANCE` is the name of the service instance you want to unbind from your app.
+    ```
+    cf unbind-service APP-NAME SERVICE-INSTANCE
+    ```
+    Where:
+    * `APP-NAME` is the name of your app.
+    * `SERVICE-INSTANCE` is the name of the service instance you want to unbind from your app.
 
 1. Restart or re-push the app bound to the service instance so the app recognizes your environment variable updates.

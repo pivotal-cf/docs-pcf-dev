@@ -17,11 +17,11 @@ The `cf dev start` command supports the following configuration-specific flags a
 
 | flag | description |
 | ---- | ----------- |
-| `-c number-of-cores` | Specify the number of processor cores used by VM. Default: 4. |
-| `-f filepath/file` | Specify the path to the .dev file containing the `bosh` and `cf` bits to start with. |
-| `-m  memory-in-mb` |  Specify memory to allocate for VM. Default: 8&nbsp;GB. |
-| `-r registry1,registry2,...` | Specify Docker registries for <%= vars.platform_name %> Dev to use without SSL validation. Use `host:port` format. |
-| `-s service1,service2,...` | Specify services to start with. Accepts `-scs,redis,mysql,rabbitmq,all`. Default: none. You can deploy services ad hoc after start.|
+| `-c NUMBER-OF-CORES` | Specify the number of processor cores used by VM. Default: 4. |
+| `-f FILEPATH` | Specify the path to the .dev file containing the `bosh` and `cf` bits to start with. |
+| `-m  MEMORY-IN-MB` |  Specify memory to allocate for VM. Default: 8&nbsp;GB. |
+| `-r REGISTRY-1,REGISTRY-2,...` | Specify Docker registries for <%= vars.platform_name %> Dev to use without SSL validation. Use `host:port` format. |
+| `-s SERVICE-1,SERVICE-2,...` | Specify services to start with. Options: `scs`, `redis`, `mysql`, `rabbitmq`, `all`. Default: `none`. You can deploy services ad hoc after start. |
 
 ### <a id="insecure-docker-registries"></a> Insecure Docker Registries
 
@@ -29,12 +29,10 @@ You can push apps to <%= vars.platform_name %> Dev from Docker images.
 
 By default, these images must be hosted on Docker Hub. Use the `-r` flag to specify Docker registries that <%= vars.platform_name %> Dev should allow you to push from, even if those registries do not have valid SSL certificates.
 
-The following example shows how to start <%= vars.platform_name %> Dev and push an app using an existing insecure Docker registry on your host running on port 5000:
+For example, to start <%= vars.platform_name %> Dev and push an app using an existing insecure Docker registry on your host running on port 5000, run:
 
-<pre class='terminal'>
-$ cf dev start -r host.pcfdev.io:5000
-...
-$ cf dev target
-Successfully logged in to api.local.pcfdev.io as user.
-$ cf push -o host.pcfdev.io:5000/repository/image
-</pre>
+```
+cf dev start -r host.pcfdev.io:5000
+cf dev target
+cf push -o host.pcfdev.io:5000/repository/image
+```

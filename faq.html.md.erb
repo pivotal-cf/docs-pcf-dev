@@ -4,20 +4,28 @@ title: Frequently Asked Questions
 owner: Pivotal Platform Dev
 ---
 
-This topic provides guidance for common questions about configuring <%= vars.platform_name %> Dev.
+This topic provides guidance for common questions about running and configuring <%= vars.platform_name %> Dev.
 
 
 ## <a id="ssl_cert"></a> Why do I receive a "Invalid SSL Cert" error?
 
+When targeting your API with `cf api api.dev.cfdev.sh`, you may receive the following error:
+
 <pre class='terminal'>
-$ cf api api.dev.cfdev.sh
 Setting api endpoint to api.dev.cfdev.sh...
 FAILED
 Invalid SSL Cert for api.dev.cfdev.sh
-TIP: Use 'cf api --skip-ssl-validation' to continue with an insecure API endpoint
 </pre>
 
-<%= vars.platform_name %> Dev comes with a self-signed SSL certificate for its API. The self-signed SSL certificate causes an `Invalid SSL Cert` error when using the cf CLI. To avoid the error, use the `--skip-ssl-validation` option.
+<%= vars.platform_name %> Dev comes with a self-signed SSL certificate for its API. The self-signed SSL certificate causes an `Invalid SSL Cert` error when using the cf CLI.
+
+To avoid the error:
+
+1. Run:
+
+	```
+	cf api api.dev.cfdev.sh --skip-ssl-validation
+	```
 
 
 ## <a id="host"></a> How can I connect apps running in <%= vars.platform_name %> Dev to services running on my workstation?
@@ -31,29 +39,35 @@ TIP: Use 'cf api --skip-ssl-validation' to continue with an insecure API endpoin
 
 By default, <%= vars.platform_name %> Dev allocates 8&nbsp;GB of memory to run.
 
-To change the allocated memory, run:
+To change the allocated memory:
 
-```
-cf dev start -m NEW-ALLOCATED-MEMORY
-```
+1. Run:
 
-Where `NEW-ALLOCATED-MEMORY` is the amount of memory you want to allocate in MB.
+	```
+	cf dev start -m NEW-ALLOCATED-MEMORY
+	```
+	Where `NEW-ALLOCATED-MEMORY` is the amount of memory you want to allocate in MB.
 
-By default, <%= vars.platform_name %> Dev tries to use 4 cores. To change this setting, run:
+By default, <%= vars.platform_name %> Dev tries to use 4 cores. To change this setting:
 
-```
-cf dev start -c DESIRED-NUMBER-OF-CORES
-```
+1. Run:
 
-Where `DESIRED-NUMBER-OF-CORES` is the number of processor cores <%= vars.platform_name %> Dev should use.
+	```
+	cf dev start -c DESIRED-NUMBER-OF-CORES
+	```
+	Where `DESIRED-NUMBER-OF-CORES` is the number of processor cores <%= vars.platform_name %> Dev should use.
 
 
 ## <a id="security_groups"></a> How are App Security Groups (ASGs) configured in <%= vars.platform_name %> Dev?
 
-Unlike <%= vars.platform_name %>, <%= vars.platform_name %> Dev allows applications to access all private address ranges without the need for additional ASGs. This is because <%= vars.platform_name %> Dev is considered a trusted, local environment. You can remove the `all_pcfdev` security group by running:
+Unlike <%= vars.platform_name %>, <%= vars.platform_name %> Dev allows apps to access all private address ranges without the need for additional ASGs. This is because <%= vars.platform_name %> Dev is considered a trusted, local environment.
 
-```
-cf unbind-running-security-group all_pcfdev
-```
+To remove the `all_pcfdev` security group:
 
-Changes do not apply to existing running apps until they are restarted.
+1. Run:
+
+	```
+	cf unbind-running-security-group all_pcfdev
+	```
+
+Changes do not apply to existing running apps until you restart them.

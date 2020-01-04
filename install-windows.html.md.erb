@@ -29,7 +29,7 @@ To install the cf CLI:
 
 1. Download the [cf CLI for Windows (64 bit)](https://cli.run.pivotal.io/stable?release=windows64&source=github-rel). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
 
-1. Unpack the zip file and open the `cf_installer` app.
+1. Unpack the ZIP file and open the `cf_installer` app.
 
 1. Follow the installer wizard to install.
 
@@ -48,10 +48,10 @@ To install <%= vars.platform_name %> Dev:
 	cf install-plugin cfdev
 	```
 
-1. Start <%= vars.platform_name %> Dev. Enter the following command, replacing `FILEPATH/FILE` with the location and name of the .iso or .tgz file you downloaded:
+1. Start <%= vars.platform_name %> Dev by running:
 
 	```
-	cf dev start -f FILEPATH/FILE
+	cf dev start -f FILEPATH
 	```
   	Where `FILEPATH/FILE` is the filepath of the .iso or .tgz file you downloaded. It may take several minutes for the <%= vars.platform_name %> Dev VM and its services to start.
   	<p class="note"><strong>Note:</strong> You must run PowerShell in Administrator mode with <%= vars.platform_name %> Dev.</p>

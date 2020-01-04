@@ -20,7 +20,7 @@ To log in to your <%= vars.platform_name %> Dev instance:
 1. Target your <%= vars.platform_name %> Dev instance's API by running:
 
 	```
-	cf login -a https<span>:</span>//api.local.pcfdev.io --skip-ssl-validation
+	cf login -a https://api.local.pcfdev.io --skip-ssl-validation
 	```
 
 The terminal displays your API system domain when you run `cf dev start`. In most cases, your API system domain is `api.local.pcfdev.io`, but it may differ slightly depending on your host system configuration.
@@ -46,11 +46,9 @@ For more information about using the cf CLI, see [Getting Started with the cf CL
 
 ## <a id="marketplace"></a> List Marketplace Services
 
-<%= vars.platform_name %> Dev supports marketplace services, giving developers access to Redis, RabbitMQ, and MySQL.
+<%= vars.platform_name %> Dev supports Marketplace services, giving developers access to Redis, RabbitMQ, and MySQL.
 
 To view the list of available services:
-
-1. Navigate to your app directory.
 
 1. Run:
 
@@ -58,7 +56,7 @@ To view the list of available services:
 	cf marketplace
 	```
 
-For more information about using marketplace services, see [Using Services in <%= vars.platform_name %> Dev](dev-services.html).
+For more information about using Marketplace services, see [Using Services in <%= vars.platform_name %> Dev](dev-services.html).
 
 
 ## <a id="apps-manager"></a> Use Apps Manager
@@ -66,9 +64,14 @@ For more information about using marketplace services, see [Using Services in <%
 When you start <%= vars.platform_name %> Dev, Apps Manager starts automatically. To access Apps Manager:
 
 1. Navigate to `https://apps.local.pcfdev.io/` in your browser.
-	<p class="note"><strong>Note:</strong> If <%= vars.platform_name %> Dev started on a domain other than <code>local.pcfdev.io</code>, the Apps Manager URL is different. For example, if you log in to <%= vars.platform_name %> Dev at <code>api.local3.pcfdev.io</code>, navigate to <code>https://apps.local3.pcfdev.io/</code> to access Apps Manager.</p>
+	<p class="note"><strong>Note:</strong> If <%= vars.platform_name %> Dev started on a domain other than <code>local.pcfdev.io</code>, the Apps Manager URL is different. For example, if you log in to <%= vars.platform_name %> Dev at <code>api.local3.pcfdev.io</code>, navigate to <code>https://apps.local3.pcfdev.io/</code> in your browser to access Apps Manager.</p>
 
-1. The first time you open Apps Manager after starting the <%= vars.platform_name %> Dev, your browser shows a dialog or page about the security certificate. Choose to connect to the Apps Manager URL. Alternatively, you can run `cf dev trust` to add the <%= vars.platform_name %> Dev certificate to your OS certificate store. For more information, see [Configuring <%= vars.platform_name %> Dev](./configuring.html).
+1. The first time you open Apps Manager after starting the <%= vars.platform_name %> Dev, your browser shows a dialog or page about the security certificate. Choose to connect to the Apps Manager URL. Alternatively, you can add the <%= vars.platform_name %> Dev certificate to your OS certificate store by running:
+
+	```
+	cf dev trust
+	```
+	For more information, see [Configuring <%= vars.platform_name %> Dev](./configuring.html).
 
 1. Log in using `admin/admin` or `user/pass`. The <%= vars.platform_name %> Dev page appears:
 

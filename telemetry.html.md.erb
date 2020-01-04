@@ -18,58 +18,89 @@ There is no way for anyone with the telemetry to identify who is using the CF De
 
 ## <a id='opt-in'></a> Opt In to Telemetry Collection
 
-When you run `cf dev start` for the first time, you will be prompted to opt in to capturing analytics.
+When you run `cf dev start` for the first time, you are prompted to opt in to capturing analytics.
 
-You can turn telemetry on or off at any time by by running:
+You can turn telemetry on or off at any time. To turn telemetry on:
 
-```
-cf dev telemetry --on/off
-```
+1. Run:
+
+	```
+	cf dev telemetry --on
+	```
+
+To turn telemetry off:
+
+1. Run:
+
+	```
+	cf dev telemetry --off
+	```
 
 
 ## <a id='Telemetry Data'></a> Telemetry Data
 
-Pivotal collects anonymous usage telemetry in order to better understand what features are most frequently used. This will in turn help us improve those features, or provide new features, moving forward.
+Pivotal collects anonymous usage telemetry in order to better understand what features are most frequently used. This helps Pivotal improve those features or provide new features in later releases.
 
 Every usage event that we capture includes the following eight data points:
 
 * **Event**: For more information about the event data point, see [Event Data Point](#event-data).
+
 * **Data**: Anonymous metadata associated with events.
+
 * **Timestamp**: The UTC timestamp when the event occurred.
-* **Anonymous ID**: A cryptographically (SHA256) anonymous and unique ID for a machine. This metric will not be published.
+
+* **Anonymous ID**: A cryptographically (SHA256) anonymous and unique ID for a machine. This metric is not published.
+
 * **Operating System**: The operating system where the event occurred.
+
 * **Build**: The build of the CLI tool in which the event occurred.
 
-We store this data locally until we push it to our servers for storage and analysis.
+Pivotal stores this data locally until pushing it to Pivotal servers for storage and analysis.
 
 ### <a id='event-data'></a> Event Data Point
 
-The event data point is collected to understand how the CLI is used. We only capture events if they are entered by a user or when they encounter an error with the tool.
+The event data point is collected to understand how the CLI is used. Pivotal only captures events if they are entered by a user or when they encounter an error with the tool.
 
-The following user events are captured:
+Pivotal captures the following user events:
 
-* **Start Begin**: When a user runs `cf dev start`
-* **Start End**: When `cf dev` finishes starting up
-* **Error**: When a user encounters an error while using the tool
-* **Stop**: When a user runs `cf dev stop`
-* **Uninstall**: When a user uninstalls the cf CLI plugin by running `cf uninstall-plugin cfdev`
-* **App Created**: When a user pushes an app using `cf push APP-NAME`
-* **Route Created**: When a user creates a route using `cf create-route ROUTE-NAME`
-* **Deployed Service**: When a user deploys a service after start using `cf deploy-service SERVICE-NAME`
-* **Service Created**: When a user creates a service instance using `cf create-service SERVICE-PLAN SERVICE-INSTANCE-NAME`
-* **User Provided Service Created**: When a user creates a user provided service using `cf create-user-provided-service SERVICE-NAME`
-* **App Bound To Service**: When a user binds an app to a service using `$ cf bind-service APP-NAME SERVICE-INSTANCE-NAME`
-* **App Restage**: When a user restages an app using `cf restage APP-NAME`
-* **Org Created**: When a user creates an org using `cf create-org ORG-NAME`
-* **Space Created**: When a user creates a space using `cf create-space SPACE-NAME`
-* **User Created**: When a user creates a user using `cf create-user USERNAME PASSWORD`
-* **Bosh**: When a user accesses the BOSH director using `cf dev bosh`
-* **Telemetry Off**: When a user turns telemetry off using `cf dev telemetry --off`
+* **Start Begin**: When a user runs `cf dev start`.
+
+* **Start End**: When `cf dev` finishes starting up.
+
+* **Error**: When a user encounters an error while using the tool.
+
+* **Stop**: When a user runs `cf dev stop`.
+
+* **Uninstall**: When a user uninstalls the cf CLI plugin by running `cf uninstall-plugin cfdev`.
+
+* **App Created**: When a user pushes an app by running `cf push`.
+
+* **Route Created**: When a user creates a route using `cf create-route`.
+
+* **Deployed Service**: When a user deploys a service after start by running `cf deploy-service`.
+
+* **Service Created**: When a user creates a service instance by running `cf create-service`.
+
+* **User Provided Service Created**: When a user creates a user provided service by running `cf create-user-provided-service`.
+
+* **App Bound To Service**: When a user binds an app to a service by running `cf bind-service`.
+
+* **App Restage**: When a user restages an app by running `cf restage`.
+
+* **Org Created**: When a user creates an org by running `cf create-org`.
+
+* **Space Created**: When a user creates a space by running `cf create-space`.
+
+* **User Created**: When a user creates a user by running `cf create-user`.
+
+* **Bosh**: When a user accesses the BOSH director by running `cf dev bosh`.
+
+* **Telemetry Off**: When a user turns telemetry off by running `cf dev telemetry --off`.
 
 
 ## <a id='Collection of Data'></a> Collection of Data
 
-Pivotal collects data locally and periodically sends it to a public data store. If telemetry is turned off, no attempt to capture or send data will be made.
+Pivotal collects data locally and periodically sends it to a public data store. If telemetry is turned off, no attempt to capture or send data is made.
 
 
 ## <a id='Use of Data'></a> Use of Data

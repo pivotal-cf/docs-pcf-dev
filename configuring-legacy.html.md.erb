@@ -15,22 +15,22 @@ The `cf dev start` command supports the following configuration-specific flags a
 
 | flag | description |
 | ---- | ----------- |
-| `-c number-of-cores` | Specify the number of processor cores used by VM. Default: Number of physical cores. |
-| `-d domain` |  Specify the domain that the <%= vars.platform_name %> Dev VM occupies. |
-| `-i ip-address` |  Specify the IP address that the <%= vars.platform_name %> Dev VM occupies. |
+| `-c NUMBER-OF-CORES` | Specify the number of processor cores used by VM. Default: Number of physical cores. |
+| `-d DOMAIN` |  Specify the domain that the <%= vars.platform_name %> Dev VM occupies. |
+| `-i IP-ADDRESS` |  Specify the IP address that the <%= vars.platform_name %> Dev VM occupies. |
 | `-k` |  Import VM certificates into host's trusted certificate store. |
-| `-m  memory-in-mb` |  Specify memory to allocate for VM. Default: Half of total memory, with a maximum of 4&nbsp;GB, or 8&nbsp;GB with SCS. |
-| `-r registry1,registry2,...` | Specify Docker registries that <%= vars.platform_name %> Dev uses without SSL validation. Use `host:port` format. |
-| `-s  service1,service2` | Specify the services started with <%= vars.platform_name %> Dev. <br>Options: redis, rabbitmq, spring-cloud-services (scs), default, all, none <br> Default: redis, rabbitmq <br> (MySQL is always available and cannot be disabled.) |
+| `-m  MEMORY-IN-MB` |  Specify memory to allocate for VM. Default: Half of total memory, with a maximum of 4&nbsp;GB, or 8&nbsp;GB with SCS. |
+| `-r REGISTRY-1,REGISTRY-2,...` | Specify Docker registries that <%= vars.platform_name %> Dev uses without SSL validation. Use `host:port` format. |
+| `-s SERVICE-1,SERVICE-2,...` | Specify the services started with <%= vars.platform_name %> Dev. Options: `redis`, `rabbitmq`, `spring-cloud-services` (`scs`), `default`, `all`, `none`. Default: `redis`, `rabbitmq`. (MySQL is always available and cannot be disabled.) |
 | `-t` | Specify to perform `cf login` to <%= vars.platform_name %> Dev after starting, as the 'user' user. |
 
 ### <a id="domain-and-ip"></a> Domain and IP Address
 
 The `-d` and `-i` flags specify a custom domain and IP address that <%= vars.platform_name %> Dev uses. Specify a domain and IP address if you have your own domain that you want to access using <%= vars.platform_name %> Dev.
 
-If you specify an IP address without a domain, the domain is assumed to be `<ip>.xip.io`.
+If you specify an IP address without a domain, the domain is assumed to be `IP-ADDRESS.xip.io`.
 
-If you specify a domain, you must also specify an IP address unless the domain is a standard <%= vars.platform_name %> Dev domain. For example, the following are valid domains: `local.pcfdev.io`, `local2.pcfdev.io`.
+If you specify a domain, you must also specify an IP address unless the domain is a standard <%= vars.platform_name %> Dev domain. For example, `local.pcfdev.io` and `local2.pcfdev.io` are valid domains.
 
 When you specify both a domain and IP address, no validation occurs.
 
@@ -46,55 +46,95 @@ However, the following is not a valid configuration:
 
 ### <a id="insecure-docker-registries"></a> Insecure Docker Registries
 
-<%= vars.platform_name %> Dev allows apps to be pushed from Docker images. By default, these images must be hosted on Docker Hub. The `-r` flag allows you to specify Docker registries that <%= vars.platform_name %> Dev should allow you to push from, even if those registries do not have valid SSL certificates. The following example shows how to start <%= vars.platform_name %> Dev and push an app using an existing insecure docker registry on your host running on port 5000.
+<%= vars.platform_name %> Dev allows apps to be pushed from Docker images. By default, these images must be hosted on Docker Hub. The `-r` flag allows you to specify Docker registries that <%= vars.platform_name %> Dev should allow you to push from, even if those registries do not have valid SSL certificates.
 
-<pre class='terminal'>
-$ cf dev start -r host.pcfdev.io:5000
-...
-$ cf dev target
-Successfully logged in to api.local.pcfdev.io as user.
-$ cf push -o host.pcfdev.io:5000/repository/image
-</pre>
+For example, to start <%= vars.platform_name %> Dev and push an app using an existing insecure Docker registry on your host running on port 5000, run:
+
+```
+cf dev start -r host.pcfdev.io:5000
+cf dev target
+cf push -o host.pcfdev.io:5000/repository/image
+```
 
 ### <a id="service-brokers"></a> Service Brokers
 
 By default, <%= vars.platform_name %> Dev starts with the MySQL, Redis, and RabbitMQ service brokers running. The service brokers that are started with <%= vars.platform_name %> Dev can be changed with the `-s` flag.
 
-* `cf dev start -s all` starts all of the service brokers: MySQL, Redis, RabbitMQ, and Spring Cloud Services
-* `cf dev start -s none` starts with no additional service brokers, except for the mandatory service broker, MySQL 
-* `cf dev start -s redis,scs` starts with Redis and Spring Cloud Services
+To start <%= vars.platform_name %> Dev with all of the available service brokers, including Spring Cloud Services (SCS):
+
+1. Run:
+
+	```
+	cf dev start -s all
+	```
+
+To start <%= vars.platform_name %> Dev with no additional service brokers, except for the mandatory service broker, MySQL:
+
+1. Run:
+
+	```
+	cf dev start -s none
+	```
+
+To start <%= vars.platform_name %> Dev with Redis and SCS:
+
+1. Run:
+
+	```
+	cf dev start -s redis,scs
+	```
 
 
-## <a id="target"></a>Target <%= vars.platform_name %> Dev
+## <a id="target"></a> Target <%= vars.platform_name %> Dev
 
-To perform a `cf target` on your running <%= vars.platform_name %> Dev instance, regardless of the domain is it currently configured to use, run:
+To perform a `cf target` on your running <%= vars.platform_name %> Dev instance, regardless of the domain is it currently configured to use:
 
-```
-cf dev target
-```
+1. Run:
+
+	```
+	cf dev target
+	```
  
-The `cf dev target` command works if the <%= vars.platform_name %> domain is `local.pcfdev.io` (default) or a custom value, such as `cf dev start -d pcfdev.example.com`. Running `cf dev target` performs `cf login` as the user `user` into the 'pcfdev-org' org and 'pcfdev-space' space. The `-t` option to `cf dev start` also performs this operation following the provisioning of the VM. 
+The `cf dev target` command works if the <%= vars.platform_name %> domain is the default `local.pcfdev.io` or a custom value, such as `cf dev start -d pcfdev.example.com`. Running `cf dev target` performs `cf login` as the user `user` into the 'pcfdev-org' org and 'pcfdev-space' space. The `-t` option to `cf dev start` also performs this operation following the provisioning of the VM. 
 
 
 ## <a id="trust"></a> Trust <%= vars.platform_name %> Dev
 
-Provisioning dynamically creates self-signed certificates used within its components. However, this results in various SSL validation warnings both from the Cloud Foundry Command Line interface (cf CLI), and when using Apps Manager in a browser. To remove these SSL validation warning errors, you can insert this self-signed certificate into your OS certificate store by running:
+Provisioning dynamically creates self-signed certificates used within its components. However, this results in various SSL validation warnings both from the Cloud Foundry Command Line interface (cf CLI), and when using Apps Manager in a browser. To remove these SSL validation warning errors, you can insert this self-signed certificate into your OS certificate store.
 
-```
-cf dev trust
-```
+To insert a self-signed certificate into your OS certificate store:
+
+1. Run:
+
+	```
+	cf dev trust
+	```
 
 <p class="note"><strong>Note:</strong> Due to the nature of this operation, you may need to provide your system password to successfully insert the certificate.</p>
 
-After running `cf dev trust`, you can log in to <%= vars.platform_name %> Dev without skipping SSL validation by running:
+After running `cf dev trust`, you can log in to <%= vars.platform_name %> Dev without skipping SSL validation.
 
-```
-cf login -a https://api.local.pcfdev.io # --skip-ssl-validation
-```
+To log in without skipping SSL validation:
 
-Adding the `-k` option to `cf dev start` also performs this operation following the provisioning of the VM. To remove these certificates from your certificate store, run: `cf dev untrust`. These certificates are automatically removed as part of a `cf dev destroy`.
+1. Run:
 
-<p class="note"><strong>Note:</strong> If you run <code>cf dev destroy</code> and are prompted to enter your password, this is because the plugin is attempting to remove <%= vars.platform_name %> Dev-specific certificates from your certificate store. </p>
+	```
+	cf login -a https://api.local.pcfdev.io # --skip-ssl-validation
+	```
+
+Adding the `-k` option to `cf dev start` also performs this operation following the provisioning of the VM.
+
+To remove these certificates from your certificate store:
+
+1. Run:
+
+	```
+	cf dev untrust
+	```
+
+These certificates are automatically removed when you run `cf dev destroy`.
+
+<p class="note"><strong>Note:</strong> If you run <code>cf dev destroy</code> and are prompted to enter your password, the plugin is attempting to remove <%= vars.platform_name %> Dev-specific certificates from your certificate store.</p>
 
 The following table shows conditions where `cf dev trust` is expected to remove SSL validation warnings:
 
