@@ -25,24 +25,25 @@ To set the standard proxy environment variables for your platform:
 1. Run one of the following sets of commands:
     * For Mac OS X:
 
-      ```
-      HTTP_PROXY=http://PROXY-IP:PROXY-PORT \
-      HTTPS_PROXY=http://PROXY-IP:PROXY-PORT \
-      cf dev start
-      ```
-      Where:
-      * `PROXY-IP` is the IP address of your proxy.
-      * `PROXY-PORT` is the port of your proxy.
+        ```
+        HTTP_PROXY=http://PROXY-IP:PROXY-PORT \
+        HTTPS_PROXY=http://PROXY-IP:PROXY-PORT \
+        cf dev start
+        ```
+        Where:
+        * `PROXY-IP` is the IP address of your proxy.
+        * `PROXY-PORT` is the port of your proxy.
+    
     * For Windows PowerShell:
 
-      ```
-      $env:HTTP_PROXY = "http://PROXY-IP:PROXY-PORT"
-      $env:HTTPS_PROXY = "http://PROXY-IP:PROXY-PORT"
-      cf dev start
-      ```
-      Where:
-      * `PROXY-IP` is the IP address of your proxy.
-      * `PROXY-PORT` is the port of your proxy.
+        ```
+        $env:HTTP_PROXY = "http://PROXY-IP:PROXY-PORT"
+        $env:HTTPS_PROXY = "http://PROXY-IP:PROXY-PORT"
+        cf dev start
+        ```
+        Where:
+        * `PROXY-IP` is the IP address of your proxy.
+        * `PROXY-PORT` is the port of your proxy.
 
 <p class="note"><strong>Note:</strong> Do not use <code>localhost</code> for <code>PROXY-IP</code> or as the proxy server hostname, because <code>localhost</code> refers to the <%= vars.platform_name %> Dev VM itself. If <%= vars.platform_name %> Dev needs to use a locally-running HTTP proxy, the proxy must be listening on all network interfaces, and you must address it as <code>host.cfdev.sh</code>. For a system domain <code>dev.cfdev.sh</code>, address the proxy as <code>host.cfdev.sh</code>, and so on.</p>
 
@@ -74,7 +75,7 @@ To configure your apps to connect to other addresses without a proxy:
 
 1. Set the `NO_PROXY` environment variable to a comma-separated list of hosts by running:
 
-  ```
-  cf set-env APP-NAME NO\_PROXY=192.0.2.54,198.51.100.34
-  ```
-  Where `APP-NAME` is the name of the app you want to configure to connect to other addresses without a proxy.
+    ```
+    cf set-env APP-NAME NO\_PROXY=192.0.2.54,198.51.100.34
+    ```
+    Where `APP-NAME` is the name of the app you want to configure to connect to other addresses without a proxy.

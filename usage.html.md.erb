@@ -20,12 +20,13 @@ To log in to your <%= vars.platform_name %> Dev instance:
 1. Target your <%= vars.platform_name %> Dev instance's API by running:
 
 	```
-	cf login -a https<span>:</span>//api.dev.cfdev.sh --skip-ssl-validation
+	cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
 	```
 
 1. To log in as a regular user, enter the following credentials when prompted:
 	* **Email:** `user`
 	* **Password:** `pass`
+	<br>
 	<br>
 	To log in as an admin user, enter the following credentials when prompted:
 	* **Email:** `admin`
@@ -37,8 +38,6 @@ The terminal displays your API system domain when you run `cf dev start`. In mos
 ## <a id="push"></a> Push an App
 
 To push an app to your <%= vars.platform_name %> Dev instance:
-
-1. Navigate to your app directory.
 
 1. Run:
 
