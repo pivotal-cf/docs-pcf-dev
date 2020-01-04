@@ -23,6 +23,7 @@ To run <%= vars.platform_name %> Dev behind a proxy, you must set the standard p
 To set the standard proxy environment variables for your platform:
 
 1. Run one of the following sets of commands:
+
     * For Mac OS X:
 
         ```
@@ -30,6 +31,7 @@ To set the standard proxy environment variables for your platform:
         HTTPS_PROXY=http://PROXY-IP:PROXY-PORT \
         cf dev start
         ```
+        
         Where:
         * `PROXY-IP` is the IP address of your proxy.
         * `PROXY-PORT` is the port of your proxy.
@@ -41,6 +43,7 @@ To set the standard proxy environment variables for your platform:
         $env:HTTPS_PROXY = "http://PROXY-IP:PROXY-PORT"
         cf dev start
         ```
+        
         Where:
         * `PROXY-IP` is the IP address of your proxy.
         * `PROXY-PORT` is the port of your proxy.
