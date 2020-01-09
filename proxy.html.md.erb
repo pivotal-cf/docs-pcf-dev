@@ -18,7 +18,7 @@ In a restricted network environment, configuring <%= vars.platform_name %> Dev t
 
 To run <%= vars.platform_name %> Dev behind a proxy, you must set the standard proxy environment variables for your platform before you start <%= vars.platform_name %> Dev.
 
-<p class="note"><strong>Note:</strong> Proxy Support is not currently supported on Linux. That means the environment variables `HTTP_PROXY, HTTPS_PROXY, NO_PROXY`, are not fully supported. Proxy Support on Linux is only supported in <%= vars.platform_name %> Dev v0.30 and earlier.</p>
+<p class="note"><strong>Note:</strong> Proxy Support is not currently supported on Linux. That means the environment variables <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, and <code>NO_PROXY</code>, are not fully supported. Proxy Support on Linux is only supported in <%= vars.platform_name %> Dev v0.30 and earlier.</p>
 
 To set the standard proxy environment variables for your platform:
 
@@ -44,12 +44,20 @@ To set the standard proxy environment variables for your platform:
           * `PROXY-IP` is the IP address of your proxy.
           * `PROXY-PORT` is the port of your proxy.
 
+1. Run:
+
+    ```
+    cf dev start
+    ```
+
 <p class="note"><strong>Note:</strong> Do not use <code>localhost</code> for <code>PROXY-IP</code> or as the proxy server hostname, because <code>localhost</code> refers to the <%= vars.platform_name %> Dev VM itself. If <%= vars.platform_name %> Dev needs to use a locally-running HTTP proxy, the proxy must be listening on all network interfaces, and you must address it as <code>host.cfdev.sh</code>. For a system domain <code>dev.cfdev.sh</code>, address the proxy as <code>host.cfdev.sh</code>, and so on.</p>
 
 
 ## <a id="allow-cf-cli-behind-proxy"></a> Use the cf CLI Behind an HTTP Proxy
 
-You must configure the cf CLI to bypass your HTTP proxy for addresses that end in `local.pcfdev.io`, which is your system domain. To configure the cf CLI:
+You must configure the Cloud Foundry Command-Line Interface (cf CLI) to bypass your HTTP proxy for addresses that end in `local.pcfdev.io`, which is your system domain. To configure the cf CLI:
+
+1. Ensure you have the latest version of the cf CLI installed from the [Releases](https://github.com/cloudfoundry/cli/releases) page of the cf CLI repository on GitHub.
 
 1. Run one of the following sets of commands:
     * For Mac OS X:
@@ -71,6 +79,8 @@ You must configure the cf CLI to bypass your HTTP proxy for addresses that end i
 You can configure your apps to connect to other addresses without using the proxy. For example, you can connect apps to user-provided services on a private network.
 
 To configure your apps to connect to other addresses without a proxy:
+
+1. Navigate to your app directory.
 
 1. Set the `NO_PROXY` environment variable to a comma-separated list of hosts by running:
 

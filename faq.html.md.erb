@@ -21,6 +21,12 @@ Invalid SSL Cert for api.dev.cfdev.sh
 
 To avoid the error:
 
+1. Start your <%= vars.platform_name %> Dev instance by running:
+
+	```
+	cf dev start
+	```
+
 1. Run:
 
 	```
@@ -41,6 +47,8 @@ By default, <%= vars.platform_name %> Dev allocates 8&nbsp;GB of memory to run.
 
 To change the allocated memory:
 
+1. Navigate to your workspace.
+
 1. Run:
 
 	```
@@ -49,6 +57,8 @@ To change the allocated memory:
 	Where `NEW-ALLOCATED-MEMORY` is the amount of memory you want to allocate in MB.
 
 By default, <%= vars.platform_name %> Dev tries to use four cores. To change this setting:
+
+1. Navigate to your workspace.
 
 1. Run:
 
@@ -63,6 +73,8 @@ By default, <%= vars.platform_name %> Dev tries to use four cores. To change thi
 Unlike <%= vars.platform_name %>, <%= vars.platform_name %> Dev allows apps to access all private address ranges without the need for additional ASGs. This is because <%= vars.platform_name %> Dev is considered a trusted, local environment.
 
 To remove the `all_pcfdev` security group:
+
+1. Navigate to your app directory.
 
 1. Run:
 

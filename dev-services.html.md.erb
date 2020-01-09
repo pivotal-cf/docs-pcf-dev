@@ -20,6 +20,12 @@ This topic describes how to deploy, create, delete, update, and bind Marketplace
 
 To display information about the Marketplace services available in <%= vars.platform_name %> Dev:
 
+1. Start your <%= vars.platform_name %> Dev instance by running:
+
+    ```
+    cf dev start
+    ```
+
 1. Run:
 
     ```
@@ -34,6 +40,12 @@ Services that are not started do not appear in Marketplace.
 <p class="note"><strong>Note:</strong> Ad hoc service deployment requires <%= vars.platform_name %> Dev v1.0.0 or later.</p>
 
 To deploy a service:
+
+1. Start your <%= vars.platform_name %> Dev instance by running:
+
+    ```
+    cf dev start
+    ```
 
 1. Run:
 
@@ -60,6 +72,12 @@ These sections describe how to create a service instance alone, with arbitrary p
 
 To create a service instance:
 
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
+
 1. Run:
 
     ```
@@ -80,6 +98,12 @@ Some services support additional configuration parameters with the provision req
 
 To provide parameters in-line:
 
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
+
 1. Run:
 
     ```
@@ -92,6 +116,12 @@ To provide parameters in-line:
     * `PARAMETERS` is the JSON object containing the parameters you want to configure.
 
 To provide parameters in a JSON file:
+
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
 
 1. Run:
 
@@ -111,6 +141,12 @@ To provide parameters in a JSON file:
 Some services provide a list of tags that <%= vars.platform_name %> delivers in the VCAP_SERVICES environment variable. These tags provide developers with a more generic way for apps to parse `VCAP_SERVICES` for credentials. Developers can provide their own tags when creating a service instance by including a comma-separated list of tags with the `-t` flag. For more information, see the [VCAP_SERVICES](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) section of the _PAS Environment Variables_ topic.
 
 To provide tags when creating a service instance:
+
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
 
 1. Run:
 
@@ -132,6 +168,12 @@ These sections describe how to list the service instances in your targeted space
 
 To list the service instances in your targeted space:
 
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
+
 1. Run:
 
     ```
@@ -143,6 +185,12 @@ The output includes any bound apps, along with the state of the last requested o
 ### <a id='get-details'></a> Get Details for a Particular Service Instance
 
 To get details about a particular service instance:
+
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
 
 1. Run:
 
@@ -159,6 +207,12 @@ Details include dashboard URLs, if applicable, and operation start and last upda
 You can change the name given to a service instance. When restarting any bound apps, the name of the instance changes in the VCAP_SERVICES environment variable. If your app depends on the instance name for discovering credentials, changing the name could break your app's use of the service instance.
 
 To rename a service instance:
+
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
 
 1. Run:
 
@@ -182,6 +236,12 @@ By updating the service plan for a service instance, users can effectively upgra
 
 To update the service plan for a service instance:
 
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
+
 1. Run:
 
     ```
@@ -199,6 +259,12 @@ Some services support additional configuration parameters with the update reques
 
 To update the parameters of a service instance in-line:
 
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
+
 1. Run:
 
     ```
@@ -209,6 +275,12 @@ To update the parameters of a service instance in-line:
     * `PARAMETERS` is the JSON object containing the parameters you want to update.
 
 To update the parameters of a service instance with a JSON file:
+
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
 
 1. Run:
 
@@ -227,6 +299,12 @@ Some services provide a list of tags that <%= vars.platform_name %> delivers in 
 
 To update the tags of a service instance:
 
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
+
 1. Run:
 
     ```
@@ -242,6 +320,12 @@ To update the tags of a service instance:
 Deleting a service instance deprovisions the service instance and deletes all data associated with the service instance.
 
 To delete a service instance:
+
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+    ```
+    cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+    ```
 
 1. Run:
 
@@ -338,6 +422,13 @@ To bind a service instance to your app on push:
      - SERVICE-INSTANCE
     ```
     Where `SERVICE-INSTANCE` is the name of the service instance you want to bind to your app.
+
+1. Run:
+
+    ```
+    cf push APP-NAME
+    ```
+    Where `APP-NAME` is the name of your app.
 
 For more information about app manifests, see [Deploying with App Manifests](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/manifest.html).
 

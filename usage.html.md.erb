@@ -15,7 +15,11 @@ This topic describes how to use <%= vars.platform_name %> Dev to target instance
 
 To log in to your <%= vars.platform_name %> Dev instance:
 
-1. Start your <%= vars.platform_name %> Dev instance.
+1. Start your <%= vars.platform_name %> Dev instance by running:
+
+	```
+	cf dev start
+	```
 
 1. Target your <%= vars.platform_name %> Dev instance's API by running:
 
@@ -39,6 +43,18 @@ The terminal displays your API system domain when you run `cf dev start`. In mos
 
 To push an app to your <%= vars.platform_name %> Dev instance:
 
+1. Start your <%= vars.platform_name %> Dev instance by running:
+
+	```
+	cf dev start
+	```
+
+1. Target your <%= vars.platform_name %> Dev instance's API by running:
+
+	```
+	cf login -a https://api.dev.cfdev.sh --skip-ssl-validation
+	```
+
 1. Run:
 
 	```
@@ -57,6 +73,12 @@ For more information about using the cf CLI, see [Getting Started with the cf CL
 
 To view the list of available services:
 
+1. Start your <%= vars.platform_name %> Dev instance by running:
+
+	```
+	cf dev start
+	```
+
 1. Run:
 
 	```
@@ -65,6 +87,8 @@ To view the list of available services:
 	Services that are not started do not appear in this list.
 
 To undeploy a service:
+
+1. Navigate to your workspace.
 
 1. Run:
 
