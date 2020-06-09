@@ -1,104 +1,63 @@
 ---
-breadcrumb: Pivotal Platform Dev Documentation
-title: Installing Pivotal Platform Dev on Microsoft Windows 7 and 8
-owner: Pivotal Platform Dev
+breadcrumb: PCF Dev Documentation
+title: Installing PCF Dev on Microsoft Windows 7 and 8
+owner: PCF Dev
 ---
 
-<p class="note"><strong>Note</strong>: This topic applies only to <%= vars.platform_name %> Dev v0.30 or earlier. If you are using a later version of <%= vars.platform_name %> Dev, see <a href="install-windows.html">Installing <%= vars.platform_name %> Dev on Microsoft Windows 10</a>.</p>
+<p class="note"><strong>Note</strong>: This topic applies only to PCF Dev v0.30 or earlier. If you are using a later version of PCF Dev, see <a href="install-windows.html">Installing PCF Dev on Microsoft Windows 10</a>.</p>
 
-This topic describes how to install <%= vars.platform_name %> Dev on Windows 7 and 8.
+This topic describes how to install PCF Dev on Windows 7 and 8.
 
+## <a id="prerequisites"></a>Prerequisites
 
-## <a id="prerequisites"></a> Prerequisites
+### <a id="virtualbox"></a>VirtualBox
 
-These sections describe the prerequisites you must have before installing <%= vars.platform_name %> Dev on Windows 7 and 8.
-
-### <a id="virtualbox"></a> VirtualBox
-
-<%= vars.platform_name %> Dev uses VirtualBox v5.0 or later as its virtualizer.
-
-To install VirtualBox:
+PCF Dev uses [VirtualBox](https://www.virtualbox.org) v5.0 and above as its virtualizer.
 
 1. Download VirtualBox v5.0.14 for Windows hosts from [VirtualBox](http://download.virtualbox.org/virtualbox/5.0.14/VirtualBox-5.0.14-105127-Win.exe).
 
 1. Open the `.exe` file and install using the wizard.
 
-### <a id="cf-cli"></a> Cloud Foundry Command Line Interface
+### <a id="cf-cli"></a>Cloud Foundry Command Line Interface
 
-<%= vars.platform_name %> Dev uses the Cloud Foundry Command Line Interface (cf CLI) to push and scale apps.
+PCF Dev uses the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) (cf CLI) to push and scale apps.
 
-To install the cf CLI:
+1. To install the cf CLI for Windows (64 bit), download it [here](https://cli.run.pivotal.io/stable?release=windows64&source=github-rel). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
 
-1. Download the [cf CLI for Windows (64 bit)](https://cli.run.pivotal.io/stable?release=windows64&source=github-rel). If you previously used the cf CLI v5 Ruby gem, uninstall this gem first.
-
-1. Unpack the ZIP file and open the `cf_installer` app.
+1. Unpack the zip file and open the `cf_installer` application.
 
 1. Follow the installer wizard to install.
 
 1. To verify your installation, open a terminal window and enter `cf`. If your installation was successful, the cf CLI help listing appears.
 
+## <a id="install-pcf-dev"></a>Install PCF Dev
 
-## <a id="install-pcf-dev"></a> Install <%= vars.platform_name %> Dev
-
-To install <%= vars.platform_name %> Dev:
-
-1. Download <%= vars.platform_name %> Dev v0.30 from the [<%= vars.platform_name %> Dev](https://network.pivotal.io/products/pcfdev#/releases/1622) page on Pivotal Network.
-
-1. Unzip the downloaded ZIP file.
-
+1. Download PCF Dev v0.30 from the [Pivotal Network](https://network.pivotal.io/).
+1. Unzip the downloaded zip file.
 1. Using PowerShell, navigate to the directory containing the unzipped plugin file.
+1. Install the PCF Dev plugin:
+<pre class="terminal"> >> .\pcfdev-VERSION-windows.exe</pre>
+1. Start PCF Dev:
+<pre class="terminal"> >> cf dev start</pre>
+  It may take several minutes for the PCF Dev virtual machine (VM) and its services to start.
+<p class="note"><strong>Note</strong>: You may be prompted to continue if your available memory is less than the recommended amount.</p>
 
-1. Install the CF Dev plugin by running:
+1. If prompted, enter your API token. This token is required for authentication and appears at the bottom of the **Edit Profile** tab in your [Pivotal Network account](https://network.pivotal.io/users/dashboard/edit-profile).
+<p class="note"><strong>Note</strong>: The API token does not appear in the terminal session when you enter it.</p>
 
-	```
-	.\pcfdev-VERSION-windows.exe
-	```
+After the **PCF Dev is now running** banner appears, you can [log in](./usage.html#pcf-dev).
 
-1. Start <%= vars.platform_name %> Dev by running:
+## <a id="stopping"></a>Stop PCF Dev
+To temporarily stop PCF Dev, run the following command:
 
-	```
-	cf dev start
-	```
-  	It may take several minutes for the <%= vars.platform_name %> Dev virtual machine (VM) and its services to start.
-	<p class="note"><strong>Note:</strong> You may be prompted to continue if your available memory is less than the recommended amount.</p>
+<pre class="terminal"> >> cf dev stop</pre>
 
-1. If prompted, enter your API token. This token is required for authentication and appears at the bottom of the **Edit Profile** tab in your Pivotal Network account.
-	<p class="note"><strong>Note:</strong> The API token does not appear in the terminal session when you enter it.</p>
+## <a id="uninstall"></a>Uninstall PCF Dev
 
-After the **<%= vars.platform_name %> Dev is now running** banner appears, you can log in. For more information about logging in, see the [Log In to Your <%= vars.platform_name %> Dev Instance](./usage.html#pcf-dev) section of the _Using <%= vars.platform_name %> Dev_ topic.
+To destroy the PCF Dev VM, run the following command:
 
+<pre class="terminal"> >> cf dev destroy</pre>
 
-## <a id="stopping"></a> Stop <%= vars.platform_name %> Dev
+To remove the PCF Dev, run the following command:
 
-To stop <%= vars.platform_name %> Dev:
-
-1. Navigate to your workspace.
-
-1. Run:
-
-	```
-	cf dev stop
-	```
-
-
-## <a id="uninstall"></a> Uninstall <%= vars.platform_name %> Dev
-
-To destroy the <%= vars.platform_name %> Dev VM:
-
-1. Navigate to your workspace.
-
-1. Run:
-
-	```
-	cf dev destroy
-	```
-
-To remove the <%= vars.platform_name %> Dev:
-
-1. Navigate to your workspace.
-
-1. Run:
-
-	```
-	cf uninstall-plugin pcfdev
-	```
+<pre class="terminal"> >> cf uninstall-plugin pcfdev</pre>
