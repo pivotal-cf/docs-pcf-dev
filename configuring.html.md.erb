@@ -1,38 +1,39 @@
 ---
-breadcrumb: Pivotal Platform Dev Documentation
-title: Configuring Pivotal Platform Dev
-owner: Pivotal Platform Dev
+breadcrumb: PCF Dev Documentation
+title: Configuring PCF Dev
+owner: PCF Dev
 ---
 
 <strong><%= modified_date %></strong>
 
-<p class="note"><strong>Note:</strong> If you are using <%= vars.platform_name %> Dev v0.30 or earlier, see <a href="configuring-legacy.html">Configuring <%= vars.platform_name %> Dev (Legacy)</a>.</p>
+<p class="note"><strong>Note</strong>: If you are using PCF Dev v0.30 or earlier, see <a href="configuring-legacy.html">Configuring PCF Dev (Legacy)</a>.</p>
 
-<%= vars.platform_name %> Dev supports several different configurations. This topic describes how to start <%= vars.platform_name %> Dev with specific memory usage, core count usage, custom startup .iso and .tgz files, and <%= vars.platform_name %> services, among others. It also describes ease-of-use functionality, including automatically targeting <%= vars.platform_name %> Dev and trusting <%= vars.platform_name %> Dev certificates.
+PCF Dev supports several different configurations. This topic describes how to start PCF Dev with specific memory usage, core count usage, custom startup .iso and .tgz files, and Cloud Foundry services, among others. It also describes ease-of-use functionality, including automatically targeting PCF Dev and trusting PCF Dev certificates.
 
-
-## <a id="start-options"></a> Configure <%= vars.platform_name %> Dev
+## <a id="start-options"></a>Configure PCF Dev
 
 The `cf dev start` command supports the following configuration-specific flags at startup:
 
-| flag | description |
-| ---- | ----------- |
-| `-c NUMBER-OF-CORES` | Specify the number of processor cores used by VM. Default: 4. |
-| `-f FILEPATH` | Specify the path to the .dev file containing the `bosh` and `cf` bits to start with. |
-| `-m  MEMORY-IN-MB` |  Specify memory to allocate for VM. Default: 8&nbsp;GB. |
-| `-r REGISTRY-1,REGISTRY-2,...` | Specify Docker registries for <%= vars.platform_name %> Dev to use without SSL validation. Use `host:port` format. |
-| `-s SERVICE-1,SERVICE-2,...` | Specify services to start with. Options: `scs`, `redis`, `mysql`, `rabbitmq`, `all`. Default: `none`. You can deploy services ad hoc after start. |
+| flag |  description |
+|---|---|---|---|
+| `-c number-of-cores`  | Specify the number of processor cores used by VM. Default: 4. |
+| `-f filepath/file`  | Specify the path to the .dev file containing the `bosh` and `cf` bits to start with. |
+| `-m  memory-in-mb` |  Specify memory to allocate for VM. Default: 8 GB. |
+| `-r registry1,registry2,...`  | Specify Docker registries for PCF Dev to use without SSL validation. Use `host:port` format. |
+| `-s service1,service2,...`  | Specify services to start with. Accepts `-scs,redis,mysql,rabbitmq,all`. Default: none. You can deploy services ad hoc after start.|
 
-### <a id="insecure-docker-registries"></a> Insecure Docker Registries
+### <a id="insecure-docker-registries"></a>Insecure Docker Registries
 
-You can push apps to <%= vars.platform_name %> Dev from Docker images.
+You can push applications to PCF Dev from Docker images.
 
-By default, these images must be hosted on Docker Hub. Use the `-r` flag to specify Docker registries that <%= vars.platform_name %> Dev should allow you to push from, even if those registries do not have valid SSL certificates.
+By default, these images must be hosted on Docker Hub. Use the `-r` flag to specify Docker registries that PCF Dev should allow you to push from, even if those registries do not have valid SSL certificates.
 
-For example, to start <%= vars.platform_name %> Dev and push an app using an existing insecure Docker registry on your host running on port 5000, run:
+The following example shows how to start PCF Dev and push an app using an existing insecure Docker registry on your host running on port 5000:
 
-```
-cf dev start -r host.pcfdev.io:5000
-cf dev target
-cf push -o host.pcfdev.io:5000/repository/image
-```
+<pre class='terminal'>
+$ cf dev start -r host.pcfdev.io:5000
+...
+$ cf dev target
+Successfully logged in to api.local.pcfdev.io as user.
+$ cf push -o host.pcfdev.io:5000/repository/image
+</pre>
