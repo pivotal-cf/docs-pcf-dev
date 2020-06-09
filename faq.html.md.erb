@@ -1,85 +1,58 @@
 ---
-breadcrumb: Pivotal Platform Dev Documentation
+breadcrumb: PCF Dev Documentation
 title: Frequently Asked Questions
-owner: Pivotal Platform Dev
+owner: PCF Dev
 ---
-
-This topic provides guidance for common questions about running and configuring <%= vars.platform_name %> Dev.
-
 
 ## <a id="ssl_cert"></a> Why do I receive a "Invalid SSL Cert" error?
 
-When targeting your API with `cf api api.dev.cfdev.sh`, you may receive the following error:
-
 <pre class='terminal'>
+$ cf api api.dev.cfdev.sh
 Setting api endpoint to api.dev.cfdev.sh...
 FAILED
 Invalid SSL Cert for api.dev.cfdev.sh
+TIP: Use 'cf api --skip-ssl-validation' to continue with an insecure API endpoint
 </pre>
 
-<%= vars.platform_name %> Dev comes with a self-signed SSL certificate for its API. The self-signed SSL certificate causes an `Invalid SSL Cert` error when using the cf CLI.
+PCF Dev comes with a self-signed SSL certificate for its API. The self-signed SSL certificate causes an `Invalid SSL Cert` error when using the cf CLI. To avoid the error, use the `--skip-ssl-validation` option.
 
-To avoid the error:
+## <a id="host"></a> How can I connect apps running in PCF Dev to services running on my workstation?
 
-1. Start your <%= vars.platform_name %> Dev instance by running:
+PCF Dev provides a special hostname for addressing the host from inside of application containers.
+If the PCF Dev system domain is `dev.cfdev.sh`, then the host will be routable at `host.cfdev.sh`.
+Services running on the host must be listening on all network interfaces (not just `localhost`) for apps to access them.
 
-	```
-	cf dev start
-	```
+<p class="note"><strong>Note</strong>: Using <code>localhost</code> inside of app containers will not refer to your workstation.</p>
 
-1. Run:
+## <a id="memory"></a> How can I customize the memory and CPU count used by PCF Dev ?
 
-	```
-	cf api api.dev.cfdev.sh --skip-ssl-validation
-	```
+By default, PCF Dev allocates 8GB of memory to run.
 
+To change the allocated memory, run the following command, replacing `NEW-ALLOCATED-MEMORY` with the amount of memory you want to allocate in megabytes:
 
-## <a id="host"></a> How can I connect apps running in <%= vars.platform_name %> Dev to services running on my workstation?
+```
+cf dev start -m NEW-ALLOCATED-MEMORY
+```
 
-<%= vars.platform_name %> Dev provides a special hostname for addressing the host from inside of app containers. If the <%= vars.platform_name %> Dev system domain is `dev.cfdev.sh`, then the host is routable at `host.cfdev.sh`. Services running on the host must be listening on all network interfaces for apps to access them, not just `localhost`.
+By default, PCF Dev tries to use 4 cores. To change this setting, run the following command, replacing `DESIRED-NUMBER-OF-CORES` with the number of processor cores PCF Dev should use:
 
-<p class="note"><strong>Note:</strong> Using <code>localhost</code> inside of app containers does not refer to your workstation.</p>
+```
+cf dev start -c DESIRED-NUMBER-OF-CORES
+```
 
+## <a id="security_groups"></a> How are Application Security Groups (ASGs) configured in PCF Dev?
 
-## <a id="memory"></a> How can I customize the memory and CPU count used by <%= vars.platform_name %> Dev?
+Unlike PCF, PCF Dev allows applications to access all private address ranges without the need for additional ASGs.
+This is because PCF Dev is considered a trusted, local environment.
+You can remove the `all_pcfdev` security group:
 
-By default, <%= vars.platform_name %> Dev allocates 8&nbsp;GB of memory to run.
-
-To change the allocated memory:
-
-1. Navigate to your workspace.
-
-1. Run:
-
-	```
-	cf dev start -m NEW-ALLOCATED-MEMORY
-	```
-	Where `NEW-ALLOCATED-MEMORY` is the amount of memory you want to allocate in MB.
-
-By default, <%= vars.platform_name %> Dev tries to use four cores. To change this setting:
-
-1. Navigate to your workspace.
-
-1. Run:
-
-	```
-	cf dev start -c DESIRED-NUMBER-OF-CORES
-	```
-	Where `DESIRED-NUMBER-OF-CORES` is the number of processor cores <%= vars.platform_name %> Dev should use.
-
-
-## <a id="security_groups"></a> How are App Security Groups (ASGs) configured in <%= vars.platform_name %> Dev?
-
-Unlike <%= vars.platform_name %>, <%= vars.platform_name %> Dev allows apps to access all private address ranges without the need for additional ASGs. This is because <%= vars.platform_name %> Dev is considered a trusted, local environment.
-
-To remove the `all_pcfdev` security group:
-
-1. Navigate to your app directory.
-
-1. Run:
-
-	```
-	cf unbind-running-security-group all_pcfdev
-	```
-
-Changes do not apply to existing running apps until you restart them.
+<pre class='terminal'>
+$ cf unbind-running-security-group all_pcfdev
+Unbinding security group all_pcfdev from defaults for running as admin
+OK
+TIP: Changes will not apply to existing running applications until they are restarted.
+$ cf unbind-staging-security-group all_pcfdev
+Unbinding security group all_pcfdev from defaults for staging as admin
+OK
+TIP: Changes will not apply to existing running applications until they are restarted.
+</pre>
