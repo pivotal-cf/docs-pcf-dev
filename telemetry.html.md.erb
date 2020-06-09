@@ -1,120 +1,68 @@
 ---
-breadcrumb: Pivotal Platform Dev Documentation
-title: Telemetry in Pivotal Platform Dev
-owner: Pivotal Platform Dev
+breadcrumb: PCF Dev Documentation
+title: Telemetry in PCF Dev
+owner: PCF Dev
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic describes telemetry in <%= vars.platform_name %> Dev.
+This topic describes telemetry in PCF Dev.
 
+## <a id='Overview'></a>Overview
 
-## <a id='Overview'></a> Overview
+Pivotal uses telemetry to help us understand how PCF Dev is being used. We value our users privacy, and all telemetry is completely anonymous. In addition, users must opt in to telemetry collection from the CF Dev tool.
 
-Pivotal uses telemetry to understand how <%= vars.platform_name %> Dev is being used. Pivotal values user privacy, and all telemetry is completely anonymous. In addition, users must opt in to telemetry collection from the CF Dev tool.
+There is no way for anyone with the telemetry to identify who is using the CF Dev tool. In an effort to make our data as transparent as possible, we will be publishing aggregated anonymous usage data to this topic periodically to help our user community understand how the tool is being used.
 
-There is no way for anyone with the telemetry to identify who is using the CF Dev tool. In an effort to make Pivotal's data as transparent as possible, Pivotal publishes aggregated anonymous usage data to this topic periodically to help the user community understand how the tool is being used.
+## <a id='opt-in'></a>Opt In to Telemetry Collection
 
+When you run `cf dev start` for the first time, you will be prompted to opt in to capturing analytics.
 
-## <a id='opt-in'></a> Opt In to Telemetry Collection
+You can turn telemetry on or off at any time by by running `cf dev telemetry --on/off`.
 
-When you run `cf dev start` for the first time, you are prompted to opt in to capturing analytics.
+## <a id='Telemetry Data'></a>Telemetry Data
 
-You can turn telemetry on or off at any time. To turn telemetry on:
-
-1. Start your <%= vars.platform_name %> Dev instance by running:
-
-	```
-	cf dev start
-	```
-
-1. Run:
-
-	```
-	cf dev telemetry --on
-	```
-
-To turn telemetry off:
-
-1. Start your <%= vars.platform_name %> Dev instance by running:
-
-	```
-	cf dev start
-	```
-
-1. Run:
-
-	```
-	cf dev telemetry --off
-	```
-
-
-## <a id='Telemetry Data'></a> Telemetry Data
-
-Pivotal collects anonymous usage telemetry in order to better understand what features are most frequently used. This helps Pivotal improve those features or provide new features in later releases.
+Pivotal collects anonymous usage telemetry in order to better understand what features are most frequently used. This will in turn help us improve those features, or provide new features, moving forward.
 
 Every usage event that we capture includes the following eight data points:
 
 * **Event**: For more information about the event data point, see [Event Data Point](#event-data).
-
 * **Data**: Anonymous metadata associated with events.
-
 * **Timestamp**: The UTC timestamp when the event occurred.
-
-* **Anonymous ID**: A cryptographically (SHA256) anonymous and unique ID for a machine. This metric is not published.
-
+* **Anonymous ID**: A cryptographically (SHA256) anonymous and unique ID for a machine. This metric will not be published.
 * **Operating System**: The operating system where the event occurred.
-
 * **Build**: The build of the CLI tool in which the event occurred.
 
-Pivotal stores this data locally until pushing it to Pivotal servers for storage and analysis.
+We store this data locally until we push it to our servers for storage and analysis.
 
-### <a id='event-data'></a> Event Data Point
+### <a id='event-data'></a>Event Data Point
 
-The event data point is collected to understand how the CLI is used. Pivotal only captures events if they are entered by a user or when they encounter an error with the tool.
+The event data point is collected to understand how the CLI is used. We only capture events if they are entered by a user or when they encounter an error with the tool.
 
-Pivotal captures the following user events:
+The following user events are captured:
 
-* **Start Begin**: When a user runs `cf dev start`.
+* **Start Begin**: When a user runs `cf dev start`
+* **Start End**: When `cf dev` finishes starting up
+* **Error**: When a user encounters an error while using the tool
+* **Stop**: When a user runs `cf dev stop`
+* **Uninstall**: When a user uninstalls the cf CLI plugin by running `cf uninstall-plugin cfdev`
+* **App Created**: When a user pushes an app using `cf push APP-NAME`
+* **Route Created**: When a user creates a route using `cf create-route ROUTE-NAME`
+* **Deployed Service**: When a user deploys a service after start using `cf deploy-service SERVICE-NAME`
+* **Service Created**: When a user creates a service instance using `cf create-service SERVICE-PLAN SERVICE-INSTANCE-NAME`
+* **User Provided Service Created**: When a user creates a user provided service using `cf create-user-provided-service SERVICE-NAME`
+* **App Bound To Service**: When a user binds an app to a service using `$ cf bind-service APP-NAME SERVICE-INSTANCE-NAME`
+* **App Restage**: When a user restages an app using `cf restage APP-NAME`
+* **Org Created**: When a user creates an org using `cf create-org ORG-NAME`
+* **Space Created**: When a user creates a space using `cf create-space SPACE-NAME`
+* **User Created**: When a user creates a user using `cf create-user USERNAME PASSWORD`
+* **Bosh**: When a user accesses the BOSH director using `cf dev bosh`
+* **Telemetry Off**: When a user turns telemetry off using `cf dev telemetry --off`
 
-* **Start End**: When `cf dev` finishes starting up.
+##<a id='Collection of Data'></a>Collection of Data
 
-* **Error**: When a user encounters an error while using the tool.
+Pivotal collects data locally and periodically sends it to a public data store.  If telemetry is turned off, no attempt to capture or send data will be made.
 
-* **Stop**: When a user runs `cf dev stop`.
+##<a id='Use of Data'></a>Use of Data
 
-* **Uninstall**: When a user uninstalls the cf CLI plugin by running `cf uninstall-plugin cfdev`.
-
-* **App Created**: When a user pushes an app by running `cf push`.
-
-* **Route Created**: When a user creates a route using `cf create-route`.
-
-* **Deployed Service**: When a user deploys a service after start by running `cf deploy-service`.
-
-* **Service Created**: When a user creates a service instance by running `cf create-service`.
-
-* **User Provided Service Created**: When a user creates a user provided service by running `cf create-user-provided-service`.
-
-* **App Bound To Service**: When a user binds an app to a service by running `cf bind-service`.
-
-* **App Restage**: When a user restages an app by running `cf restage`.
-
-* **Org Created**: When a user creates an org by running `cf create-org`.
-
-* **Space Created**: When a user creates a space by running `cf create-space`.
-
-* **User Created**: When a user creates a user by running `cf create-user`.
-
-* **Bosh**: When a user accesses the BOSH director by running `cf dev bosh`.
-
-* **Telemetry Off**: When a user turns telemetry off by running `cf dev telemetry --off`.
-
-
-## <a id='Collection of Data'></a> Collection of Data
-
-Pivotal collects data locally and periodically sends it to a public data store. If telemetry is turned off, no attempt to capture or send data is made.
-
-
-## <a id='Use of Data'></a> Use of Data
-
-Pivotal's goal is to use this data to better understand how <%= vars.platform_name %> Dev users use the product. Pivotal does not use it to track user behavior. Pivotal releases aggregate usage statistics to the developer community every quarter so users can get a better understanding of how the tool is being used in the community.
+Our goal is to use this data to better understand how our users use the product. We are not using it to track user behavior. We plan to release aggregate usage statistics to the developer community every quarter so users can get a better understanding of how the tool is being used in the community.
