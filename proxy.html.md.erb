@@ -15,18 +15,21 @@ In a restricted network environment, configuring PCF Dev to connect to an HTTP p
 To run PCF Dev behind a proxy, set the standard proxy environment variables for your platform before you start PCF Dev:
 
 <p class="note"><strong>Note</strong>:
-Proxy Support is not currently supported on Linux. That means the environment variables `HTTP_PROXY, HTTPS_PROXY, NO_PROXY`, are not fully supported. Proxy Support on Linux is only supported in PCF Dev v0.30 or earlier.</p>
+Proxy Support is not currently supported on Linux. That means the environment variables
+<code>HTTP_PROXY, HTTPS_PROXY, NO_PROXY</code> are not fully supported.
+Proxy Support on Linux is only supported in PCF Dev v0.30 or earlier.
+</p>
 
 * Using Mac OS X:
   <pre class="terminal">
-  $ HTTP\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
-  > HTTPS\_PROXY=<span>http</span>://PROXY\_IP:PROXY\_PORT \
+  $ HTTP_PROXY=<span>http</span>://PROXY_IP:PROXY_PORT \
+  > HTTPS_PROXY=<span>http</span>://PROXY_IP:PROXY_PORT \
   > cf dev start
   </pre>
 * Using Windows PowerShell:
   <pre class="terminal">
-  >> $env:HTTP\_PROXY = "<span>http</span>://PROXY\_IP:PROXY\_PORT"
-  >> $env:HTTPS\_PROXY = "<span>http</span>://PROXY\_IP:PROXY\_PORT"
+  >> $env:HTTP_PROXY = "<span>http</span>://PROXY_IP:PROXY_PORT"
+  >> $env:HTTPS_PROXY = "<span>http</span>://PROXY_IP:PROXY_PORT"
   >> cf dev start
   </pre>
 
