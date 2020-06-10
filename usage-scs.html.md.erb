@@ -1,106 +1,94 @@
 ---
-breadcrumb: Pivotal Platform Dev Documentation
-title: Using Spring Cloud Services in Pivotal Platform Dev
-owner: Pivotal Platform Dev
+breadcrumb: PCF Dev Documentation
+title: Using Spring Cloud Services in PCF Dev
+owner: PCF Dev
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to deploy and use the Spring Cloud® Services (SCS) suite within <%= vars.platform_name %> Dev. For more information about SCS, see the [Spring Cloud Services](http://docs.pivotal.io/spring-cloud-services/) documentation.
+This topic describes how to deploy and use the [Spring Cloud® Services (SCS)](http://docs.pivotal.io/spring-cloud-services/) suite within PCF Dev.
 
-
-## <a id='overview'></a> Overview
-
-When configured to use SCS, <%= vars.platform_name %> Dev provides the following services:
+When configured to use SCS, PCF Dev provides the following services:
 
 * [Config Server](http://docs.pivotal.io/spring-cloud-services/common/config-server/index.html)
 * [Service Registry](http://docs.pivotal.io/spring-cloud-services/common/service-registry/index.html)
 * [Circuit Breaker Dashboard](http://docs.pivotal.io/spring-cloud-services/common/circuit-breaker/index.html)
 
-The sections below describe how to launch SCS and use the Config Server. The Service Registry and Circuit Breaker Dashboard work by default when <%= vars.platform_name %> Dev is launched with SCS enabled.
+The sections below describe how to launch SCS and use the Config Server. The Service Registry and Circuit Breaker Dashboard work by default when PCF Dev is launched with SCS enabled.
+
+## <a id='launch-scs'></a> Launch Spring Cloud Services ##
+
+To launch PCF Dev using SCS, run `cf dev start` using the `-s scs` flag:
+
+<pre class='terminal'>
+$ cf dev start -s scs
+Downloading VM...
+Progress: |====================>| 100%
+Allocating 8192 MB out of 32768 MB total system memory (14387 MB free).
+Importing VM...
+Starting VM...
+Provisioning VM...
+Waiting for services to start...
+...
+</pre>
+
+<p class="note"><strong>Note</strong>: Due to the increased demands of SCS, PCF Dev allocates more memory than usual.</p>
+
+Alternatively, you can deploy SCS after start by running the following command:
+
+<pre class='terminal'>
+$ cf dev deploy-service scs
+Deploying scs...
+OK
+
+</pre>
+
+To undeploy SCS, stop PCF Dev:
+<pre class="terminal">$ cf dev stop</pre>
 
 
-## <a id='launch-scs'></a> Launch Spring Cloud Services
+## <a id='use-scs'></a>Use Spring Cloud Services ##
 
-To launch <%= vars.platform_name %> Dev using SCS:
+To create a service instance of the Config Server using the cook sample app, perform the following:
 
-1. Navigate to your workspace.
-
-1. Run:
-
-	```
-	cf dev start -s scs
-	```
-	<p class="note"><strong>Note:</strong> Due to the increased demands of SCS, <%= vars.platform_name %> Dev allocates more memory than usual.</p>
-	Alternatively, you can deploy SCS after start by running:
-
-	```
-	cf dev deploy-service scs
-	```
-
-To undeploy SCS:
-
-1. Navigate to your workspace.
-
-1. Stop <%= vars.platform_name %> Dev by running:
-
-	```
-	cf dev stop
-	```
-
-
-## <a id='use-scs'></a> Use Spring Cloud Services
-
-To create a service instance of the Config Server using the cook sample app:
-
-1. Clone the sample app from the [cook](https://github.com/spring-cloud-services-samples/cook/tree/1.1) repository on GitHub to your workspace.
+1. Clone the [cook sample app](https://github.com/spring-cloud-services-samples/cook/tree/1.1) to your workspace.
 
 1. In a terminal window, navigate to the root repository of the cook sample app.
 
 1. To compile the cook sample app, run one of the following commands:
-	* For Mac OS X or Linux:
+  * Mac OS X or Linux: `./gradlew build`
+  * Windows: `gradlew.bat build`
 
-		```
-	 	./gradlew build
-	 	```
-	* For Windows:
+	For example, the output on Mac OS X appears as follows:
 
-		```
-	  	gradlew.bat build
-	  	```
-		The output on Mac OS X appears as in the example below:
-		<pre class='terminal'>
-		$ ./gradlew build
-		...
-		:compileTestJava
-		:processTestResources UP-TO-DATE
-		:testClasses
-		:test
-		2016-08-23 12:02:07.900  INFO 79148 --- [       Thread-5] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e: startup date [Tue Aug 23 12:02:04 EDT 2016]; root of context hierarchy
-		2016-08-23 12:02:07.903  INFO 79148 --- [       Thread-5] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@4ef3f6da: startup date [Tue Aug 23 12:02:05 EDT 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e
-		:check
-		:build
+	<pre class='terminal'>
+	$ ./gradlew build
+	...
+	:compileTestJava
+	:processTestResources UP-TO-DATE
+	:testClasses
+	:test
+	2016-08-23 12:02:07.900  INFO 79148 --- [       Thread-5] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e: startup date [Tue Aug 23 12:02:04 EDT 2016]; root of context hierarchy
+	2016-08-23 12:02:07.903  INFO 79148 --- [       Thread-5] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@4ef3f6da: startup date [Tue Aug 23 12:02:05 EDT 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@5c2e9d5e
+	:check
+	:build
 
-		BUILD SUCCESSFUL
-		</pre>
+	BUILD SUCCESSFUL
+	</pre>
 
-1. Log in to <%= vars.platform_name %> Dev and target your local domain. To avoid SSL validation errors, use the `--skip-ssl-validation` flag. For more information, see the [Why do I receive a "Invalid SSL Cert" error?](./faq.html#ssl_cert) section of the _Frequently Asked Questions_ topic. Run:
+1. Run `cf login` to log in to PCF Dev and target your local domain using user/pass as the credentials. To avoid SSL validation errors, use the `--skip-ssl-validation` flag. See [SSL Validation Errors](./faq.html#ssl_cert).
 
-	```
-	cf login -a https://api.local.pcfdev.io --skip-ssl-validation
-	Email> USER-EMAIL
-	Password> PASSWORD
-	```
-	Where:
-	* `USER-EMAIL` is your user email.
-	* `PASSWORD` is your password.
+	<pre class='terminal'>
+	$ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
+	Email> user
+	Password>
+	Authenticating...
+	OK
+	...
+	</pre>
 
-1. Create a service instance of the config server by running:
+1. Run `cf create service` to create a service instance of the config server. Use the `-c` flag to specify a JSON object containing configuration parameters for the service as show in the following example:
 
-	```
-	cf create service
-	```
-	Use the `-c` flag to specify a JSON object containing configuration parameters for the service, as shown in the following example:
 	<pre class='terminal'>
 	$ cf create-service -c '{ "git": { "uri": "https://github.com/spring-cloud-services-samples/cook-config", "label": "master"  } }' p-config-server standard cook-config-server
  	Creating service instance config-server in org pcfdev-org / space pcfdev-space as user...
@@ -108,34 +96,40 @@ To create a service instance of the Config Server using the cook sample app:
  	...
 	</pre>
 
-1. To confirm that the service was created, run:
+1. Run `cf service config-server` to confirm that the service was created:
 
-	```
-	cf service config-server
-	```
+	<pre class='terminal'>
+	$ cf service config-server
+
+	Service instance: config-server
+	Service: p-config-server
+	Bound apps:
+	Tags:
+	Plan: standard
+	Description: Config Server for Spring Cloud Applications
+	Documentation url: http://docs.pivotal.io/spring-cloud-services/
+	Dashboard: https://spring-cloud-broker.local.pcfdev.io/dashboard/p-config-server/155f5ce5-82fb-42ba-adba-d7c569733c5c
+
+	Last Operation
+	Status: create succeeded
+	Message:
+	Started: 2016-08-23T16:19:29Z
+	Updated: 2016-08-23T16:20:31Z
+	</pre>
+
 	When finished, the status of the service instance displays `create succeeded`.
 
-1. Push the compiled JAR file by running:
-	
-	```
-	cf push -p ./build/libs/cook-0.0.1-SNAPSHOT.jar
-	```
+1. Push the compiled JAR file:
+	<pre class='terminal'>
+	$ cf push -p ./build/libs/cook-0.0.1-SNAPSHOT.jar
+	</pre>
 
-1. Navigate to [http://cookie.local.pcfdev.io/restaurant](http://cookie.local.pcfdev.io/restaurant) in your browser to view the cook app.
+1. Navigate to [http://cookie.local.pcfdev.io/restaurant](http://cookie.local.pcfdev.io/restaurant) to view the cook app.
 
-<p class="note"><strong>Note:</strong> <%= vars.platform_name %> Dev uses an unverified certificate. When a <%= vars.platform_name %> Dev SCS service makes use of an unverified certificate, the pushed apps must have the environment variable <code>CF_TARGET</code> set to the API URL of the <%= vars.platform_name %> Dev instance: <code>https://api.local.pcfdev.io</code>. <%= vars.platform_name %> Dev does this by default for all pushed apps.</p>
+<p class="note"><strong>Note</strong>: PCF Dev uses an unverified certificate. When a PCF Dev SCS service makes use of an unverified certificate, the pushed apps must have the environment variable <code>CF_TARGET</code> set to the api URL of the PCF Dev instance: <code>https://api.local.pcfdev.io</code>. PCF Dev does this by default for all pushed apps.</p>
 
+## <a id='manage-scs'></a>Manage Spring Cloud Services ##
 
-## <a id='manage-scs'></a> Manage Spring Cloud Services
+To manage an SCS instance within PCF Dev, navigate to [Apps Manager](https://apps.local.pcfdev.io) and log in using the admin credentials, `admin/admin`. Instances of the SCS services are displayed in the **instances** space of the **p-spring-cloud-services** org. See the [Use Apps Manager](./usage.html#apps-manager) topic for more information.
 
-To manage an SCS instance within <%= vars.platform_name %> Dev:
-
-1. Navigate to `https://apps.local.pcfdev.io` in your browser.
-
-1. Log in to Apps Manager using the admin credentials, `admin/admin`.
-
-1. Navigate to the **instances** space of the **p-spring-cloud-services** org to see instances of the SCS services.
-
-For more information, see the [Use Apps Manager](./usage.html#apps-manager) section of the _Using <%= vars.platform_name %> Dev_ topic.
-
-<img src="images/scs-apps-manager.png" alt="There is a page with a dark blue header and subnav on the left. In the left corner of the header is the text 'Pivotal PCF Dev' in white letters. In the right corner of the header is the word 'admin' in white letters with a white downward-pointing triangle to the right of 'admin', indicating a dropdown. Below 'Pivotal PCF Dev' is a subnav with two main sections labeled 'Org' and 'Spaces', as well as a link below 'Spaces' labeled 'Accounting Report'. Under 'Org' is the text 'p-spring-cloud-se...' with a downward-pointing arrow on a button to the right, indicating a dropdown. Under 'Spaces' is the text 'instances'. To the right of the subnav is the space page, which has a white background. At the top is a header labeled 'Space'. Below 'Space' is the name of the space, 'instances', in large black text. To the right of 'instances' are three small circle icons in a vertical row. The top circle icon is green, with the text '1 Running' to the right. The middle circle icon is gray, with the text '0 Stopped' to the right. The bottom circle icon is red, with the text '0 Crashed' to the right. Below these are three tabs: 'App (1)', 'Services', and 'Settings'. 'App (1)' is in black letters with a green line underneath to indicate it is selected; the other tab labels are in blue letters and are not underlined. Below these tabs is a table labeled 'Apps' in bold text. Below 'Apps' are five column headers labeled 'Name', 'Instances', 'Memory', 'Last Push', and 'Route'. Under 'Name' is the text 'config-155f5ce5-82fb-42ba-adba-d...' in blue letters, denoting a clickable link. Below this text is a small green circle icon, to the right of which is the text 'Running' in green letters. Under 'Instances' is the text '1'. Under 'Memory' is the text '1024MB'. Under 'Last Push' is the text '2 hours ago'. Under 'Route' is the text 'http://config-155f5ce5-82fb-42ba-adba...', to the right of which is a carat icon pointing to the right, indicating an expandable field."/>
+ <img src="images/scs-apps-manager.png" alt="SCS Apps Manager"/>
