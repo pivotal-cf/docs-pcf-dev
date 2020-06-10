@@ -1,114 +1,75 @@
 ---
-breadcrumb: Pivotal Platform Dev Documentation
-title: Using Pivotal Platform Dev Offline
-owner: Pivotal Platform Dev
+breadcrumb: PCF Dev Documentation
+title: Using PCF Dev Offline
+owner: PCF Dev
 ---
 
-<p class="note"><strong>Note:</strong> This functionality is not supported in the current version of <%= vars.platform_name %> Dev. Use <%= vars.platform_name %> Dev v0.30 for <%= vars.platform_name %> v1.11 or earlier for this functionality.</p>
+<p class="note"><strong>Note</strong>: This functionality is not supported in the current version of PCF Dev. Use PCF Dev v0.30 for PCF v1.11 or earlier for this functionality.</p>
 
-This topic describes how to use <%= vars.platform_name %> Dev offline.
+This topic describes how to use PCF Dev offline. By default, PCF Dev functions largely without a network connection. To use PCF Dev with no network connection, complete the following steps specific to your operating system.
 
+## <a id="mac-os-x"></a>Using PCF Dev Offline with Mac OS X
 
-## <a id='overview'></a> Overview
+For OS X, Pivotal recommends using [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) as your DNS forwarder. Perform the following steps to install and configure Dnsmasq.
 
-By default, <%= vars.platform_name %> Dev functions largely without a network connection. To use <%= vars.platform_name %> Dev with no network connection, complete the procedure in the following sections that is specific to your operating system.
+1. Check that you have Homebrew installed by running `brew -v` in your terminal. If you do not, follow [these instructions](http://brew.sh/) to install Homebrew.
+1. Run the following commands to update Homebrew and install Dnsmasq:
+<pre class="terminal">
+$ brew update
+$ brew install dnsmasq
+</pre>
+1. To have `launchd` start Dnsmasq and restart at startup, run the following command:
+<pre class="terminal">
+sudo brew services start dnsmasq
+</pre>
+1. Configure Dnsmasq by editing the default configuration file placed at `/usr/local/etc/dnsmasq.conf` to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS. To perform this redirection, add the line `address=/.local.pcfdev.io/192.168.11.11` to the `dnsmasq.conf` file:
+<pre class="terminal">
+$ echo "address=/.local.pcfdev.io/192.168.11.11" >> /usr/local/etc/dnsmasq.conf
+</pre>
+<p class="note"><strong>Note</strong>: If the subnet containing <code>192.168.11.11</code> is already in use, PCF Dev picks the next available IP address that adheres to the pattern <code>192.168.xx.11</code>, and a corresponding system domain. For example, <code>192.168.44.11</code> and <code>local4.pcfdev.io</code>. If your PCF Dev reports that it is using an alternate configuration when it comes up, use the appropriate combination in your <code>dnsmasq.conf</code> file.</p>
 
-
-## <a id="mac-os-x"></a> Using <%= vars.platform_name %> Dev Offline with Mac OS X
-
-For OS X, Pivotal recommends using Dnsmasq as your DNS forwarder. For more information about Dnsmasq, see the [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) documentation.
-
-To install and configure Dnsmasq:
-
-1. Check that you have Homebrew installed by running `brew -v` in your terminal. If you do not, see the [Homebrew](http://brew.sh/) webpage to install Homebrew.
-
-1. Update Homebrew and install Dnsmasq by running:
-
-	```
-	brew update
-	brew install dnsmasq
-	```
-
-1. To have `launchd` start Dnsmasq and restart at startup, run:
-
-	```
-	sudo brew services start dnsmasq
-	```
-
-1. Configure Dnsmasq by editing the default configuration file placed at `/usr/local/etc/dnsmasq.conf` to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS. To do this, add the line `address=/.local.pcfdev.io/192.168.11.11` to the `dnsmasq.conf` file by running:
-
-	```
-	echo "address=/.local.pcfdev.io/192.168.11.11" >> /usr/local/etc/dnsmasq.conf
-	```
-	<p class="note"><strong>Note:</strong> If the subnet containing <code>192.168.11.11</code> is already in use, <%= vars.platform_name %> Dev picks the next available IP address that adheres to the pattern <code>192.168.xx.11</code>, and a corresponding system domain. For example, <code>192.168.44.11</code> and <code>local4.pcfdev.io</code>. If your <%= vars.platform_name %> Dev reports that it is using an alternate configuration when it comes up, use the appropriate combination in your <code>dnsmasq.conf</code> file.</p>
-
-1. Restart Dnsmasq to ensure it recognizes your change by running:
-
-	```
-	sudo launchctl stop homebrew.mxcl.dnsmasq
-	sudo launchctl start homebrew.mxcl.dnsmasq
-	```
+1. Restart Dnsmasq to ensure it recognizes your change.
+<pre class="terminal">
+$ sudo launchctl stop homebrew.mxcl.dnsmasq
+$ sudo launchctl start homebrew.mxcl.dnsmasq
+</pre>
 
 1. To configure your system to use Dnsmasq, go to your network preferences and add `127.0.0.1` as your first DNS server.
 
+## <a id="windows"></a>Using PCF Dev Offline with Windows
 
-## <a id="windows"></a> Using <%= vars.platform_name %> Dev Offline with Windows
+For Windows, Pivotal recommends using Acrylic as your DNS proxy. Perform the following steps to install and configure Acrylic:
 
-For Windows, Pivotal recommends using Acrylic as your DNS proxy. To install and configure Acrylic:
-
-1. Download Acrylic from the [Acrylic DNS Proxy](http://mayakron.altervista.org/) website and follow the wizard to install it on your system.
-
-1. Navigate to **Start** > **Programs** > **Acrylic DNS Proxy** > **Config** and click **Edit Acrylic Hosts File**.
-
+1. Download Acrylic from [their site](http://mayakron.altervista.org/) and follow the wizard to install it on your system.
+1. Navigate to **Start** > **Programs** > **Acrylic DNS Proxy** > **Config** > **Edit Acrylic Hosts File**.
 1. Add the following text to the end of the file:
+```
+192.168.11.11 *.local.pcfdev.io
+```
+1. The Acrylic site has detailed instructions to configure your computer to use Acrylic as a DNS server for [Windows 7](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows7Configuration), [Windows 8](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows8Configuration), and [Windows 10](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows10Configuration).
+1. You may need to restart your DNS cache by navigating to **Start** > **Programs** > **Acrylic DNS Proxy** > **Config** > **Restart Acrylic Service**.
 
-	```
-	192.168.11.11 *.local.pcfdev.io
-	```
+## <a id="linux"></a>Using PCF Dev Offline with Linux
 
-1. To configure your computer to use Acrylic as a DNS server, see [Acrylic DNS Proxy Windows 7 Configuration](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows7Configuration), [Acrylic DNS Proxy Windows 8 Configuration](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows8Configuration), or [Acrylic DNS Proxy Windows 10 Configuration](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicWindows10Configuration) in the Acrylic documentation, depending on which version of Windows you use.
+### Option 1: Ubuntu 14.04+
 
-1. You may need to restart your DNS cache by navigating to **Start** > **Programs** > **Acrylic DNS Proxy** > **Config** and clicking **Restart Acrylic Service**.
+1. Configure Dnsmasq by editing the `dnsmasq.conf` file to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS.
+<br><br>To perform this redirection, add the line `address=/.local.pcfdev.io/192.168.11.11` to `/etc/NetworkManager/dnsmasq.d/pcfdev`:
+<pre class="terminal">
+$ echo "address=/.local.pcfdev.io/192.168.11.11" > /etc/NetworkManager/dnsmasq.d/pcfdev
+</pre>
 
+1. Reload the service. For Ubuntu v14.04+, run `service network-manager restart`. For Ubuntu v15.04+, run `systemctl restart NetworkManager.service`
 
-## <a id="linux"></a> Using <%= vars.platform_name %> Dev Offline with Linux
+### Option 2: Other Linux Distribution
 
-These sections describe how to configure Dnsmasq for Ubuntu or other Linux distributions.
-
-### <a id='ubuntu'></a> Ubuntu v14.04 or Later
-
-To configure Dnsmasq for Ubuntu:
-
-1. Edit the `dnsmasq.conf` file to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS. To do this, add the line `address=/.local.pcfdev.io/192.168.11.11` to `/etc/NetworkManager/dnsmasq.d/pcfdev` by running:
-
-	```
-	echo "address=/.local.pcfdev.io/192.168.11.11" > /etc/NetworkManager/dnsmasq.d/pcfdev
-	```
-
-1. Reload the service.
-	* For Ubuntu v14.04 and later patches, run:
-
-		```
-		service network-manager restart
-		```
-	* For Ubuntu v15.04 and later patches, run:
-
-		```
-		systemctl restart NetworkManager.service
-		```
-
-### <a id='other-linux'></a> Other Linux Distributions
-
-To configure Dnsmasq for other Linux distributions:
-
-1. Edit the `dnsmasq.conf` file to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS.
+1. Configure Dnsmasq by editing the `dnsmasq.conf` file to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS.
 
 1. Install Dnsmasq using your distribution's package manager.
 
-1. Configure Dnsmasq by editing the `dnsmasq.conf` file to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS. To do this, add the line `address=/.local.pcfdev.io/192.168.11.11` to `/etc/dnsmasq.conf` by running:
+1. Configure Dnsmasq by editing the `dnsmasq.conf` file to redirect the domain name `local.pcfdev.io` to the IP `192.168.11.11` without requiring a network connection to resolve the DNS. To perform this redirection, add the line `address=/.local.pcfdev.io/192.168.11.11` to `/etc/dnsmasq.conf`:
+<pre class="terminal">
+$ echo "address=/.local.pcfdev.io/192.168.11.11" >> /etc/dnsmasq.conf
+</pre>
 
-	```
-	echo "address=/.local.pcfdev.io/192.168.11.11" >> /etc/dnsmasq.conf
-	```
-
-<p class="note"><strong>Note:</strong> Details about configuring your Linux installation to use Dnsmasq may differ by distribution.</p>
+<p class="note"><strong>Note</strong>: Details about configuring your Linux installation to use Dnsmasq may differ by distribution.</p>
